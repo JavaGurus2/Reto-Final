@@ -23,10 +23,17 @@ const { novedad } = defineProps({
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+
   z-index: 0;
 }
 .card-busqueda-detalles {
   z-index: 1;
+}
+
+.card-busqueda img {
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  width: 100%;
 }
 </style>
