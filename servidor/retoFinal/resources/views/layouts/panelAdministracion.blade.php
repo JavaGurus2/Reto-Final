@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -28,8 +28,8 @@
             <div class="p-4 text-center">
                 <a href="#" class="d-block mb-3 text-decoration-none">
                     <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50" class="img-fluid"
-                        alt="">
-                    <span class="fs-4  d-md-inline ">Cervezas Killer</span>
+                        alt="aun sin foto">
+                    <span class="fs-4  d-md-inline ">Netflix Egibide</span>
                 </a>
                 <hr class="w-100">
             </div>
@@ -38,10 +38,60 @@
         <div class="offcanvas-body">
             <aside class="col-auto d-flex flex-column bg-gradient  dark-bg ">
 
-
                 @auth
                     <ul class="nav nav-pills flex-column flex-grow-1">
+                        @auth
+                            <li class="nav-item m-2 p-2">
+                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
+                                    <span class="d-md-inline p-1 ">Panel</span>
+                                </a>
+                            </li>
+                        @endauth
 
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('peliculas.index') }}"
+                                class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
+                                <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
+                                <span class=" d-md-inline p-1 ">Peliculas</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('series.index') }}"
+                                class="nav-link{{ request()->is('series') ? ' active' : '' }}">
+                                <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
+                                <span class="d-md-inline p-2">Series</span>
+                            </a>
+                        </li>
+
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('categorias.index') }}"
+                                class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
+                                <span class=" d-md-inline">Categorias</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('actores.index') }}"
+                                class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
+                                <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                <span class=" d-md-inline">Actores</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('usuarios.index') }}"
+                                class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
+                                <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                <span class=" d-md-inline">Usuarios</span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="mt-auto p-4">
                         <div class="d-flex align-items-center">
@@ -79,18 +129,77 @@
 
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100">
-            <div class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+            <div
+                class="bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
-                            class="img-fluid mx-3" alt="">
-                        <span class="fs-4 d-none d-md-inline ">Cervezas Killer</span>
+                            class="img-fluid mx-3" alt="aun sin foto">
+                        <span class="fs-4 d-none d-md-inline ">Netflix Egibide</span>
                     </a>
                     <hr class="w-100">
                 </div>
 
                 @auth
                     <ul class="nav nav-pills flex-column flex-grow-1">
+                        @auth
+                            <li class="nav-item m-2 p-2">
+                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                    <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 ">Panel</span>
+                                </a>
+                            </li>
+                        @endauth
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('peliculas.index') }}"
+                                class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
+                                <i class="fa-solid fa-box-open  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline p-1 ">Peliculas</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('series.index') }}"
+                                class="nav-link{{ request()->is('series') ? ' active' : '' }}">
+                                <i class="fa-solid fa-receipt me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline p-2">series</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('categorias.index') }}"
+                                class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline">Categorias</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('categorias.index') }}"
+                                class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
+                                <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline p-1 ">Categorias</span>
+                            </a>
+                        </li>
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('actores.index') }}"
+                                class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
+                                <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline ">Actores</span>
+                            </a>
+                        </li>
+                        <li class="nav-item m-2 p-2">
+                            <a href="{{ route('usuarios.index') }}"
+                                class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
+                                <i class="fa-solid fa-user-shield  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline  p-1">Usuarios</span>
+                            </a>
+                        </li>
+
 
                     </ul>
                     <div class="mt-auto p-4">
@@ -105,7 +214,7 @@
 
                                 </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item" href="">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="##">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -130,7 +239,7 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 py-4">
+            <div class="col px-md-4 min-vh-100 ">
                 @yield('content')
             </div>
         </div>

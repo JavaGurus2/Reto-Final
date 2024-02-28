@@ -1,260 +1,86 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
-        <title>@yield('title')</title>
-        @vite(['resources/sass/app.scss'])
-        @vite(['resources/css/app.css'])
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
-        <a class="navbar-brand mx-3" href="/dashboard">
-            <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer" >
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-            aria-controls="sidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <div class="container-fluid">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar"
-            aria-labelledby="sidebarLabel">
-            <div class="offcanvas-header">
-                <div class="p-4 text-center">
-                    <a href="#" class="d-block mb-3 text-decoration-none">
-                        <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50" class="img-fluid"
-                            alt="aun sin foto">
-                        <span class="fs-4  d-md-inline ">Netflix Egibide</span>
-                    </a>
-                    <hr class="w-100">
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <aside class="col-auto d-flex flex-column bg-gradient  dark-bg ">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-                    @auth
-                        <ul class="nav nav-pills flex-column flex-grow-1">
-                            @auth
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('dashboard') }}"
-                                        class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
-                                        <span class="d-md-inline p-1 ">Panel</span>
-                                    </a>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                            @endauth
+                            @endif
 
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('peliculas.index') }}"
-                                        class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
-                                        <span class=" d-md-inline p-1 ">Peliculas</span>
-                                    </a>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
 
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('series.index') }}"
-                                        class="nav-link{{ request()->is('series') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
-                                        <span class="d-md-inline p-2">Series</span>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                     </a>
-                                </li>
 
-
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('categorias.index') }}"
-                                        class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
-                                        <span class=" d-md-inline">Categorias</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('actores.index') }}"
-                                        class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
-                                        <span class=" d-md-inline">Actores</span>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('usuarios.index') }}"
-                                        class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
-                                        <span class=" d-md-inline">Usuarios</span>
-                                    </a>
-                                </li>
-                        </ul>
-                        <div class="mt-auto p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown">
-                                    <a href="#"
-                                        class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
-                                        id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ asset('/images/Killerlogo.png') }}" alt="" width="32"
-                                            height="32" class="rounded-circle me-2">
-                                        <strong>{{ auth()->user()->name }}</strong>
-                                    </a>
-                                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                        <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger w-80 m-2">
-                                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
-                                                </button>
-                                            </form>
-                                        </li>
-                                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
-
-                            </div>
-                        </div>
-                    @endauth
-                </aside>
-            </div>
-        </div>
-
-
-        <div class="container-fluid ">
-            <div class="row flex-nowrap min-vh-100">
-                <div
-                    class="col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
-                    <div class="p-4 text-center">
-                        <a href="#" class="d-block mb-3 text-decoration-none">
-                            <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
-                                class="img-fluid mx-3" alt="aun sin foto">
-                            <span class="fs-4 d-none d-md-inline ">No me acuerdo del name</span>
-                        </a>
-                        <hr class="w-100">
-                    </div>
-
-                    @auth
-                        <ul class="nav nav-pills flex-column flex-grow-1">
-                            @auth
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('dashboard') }}"
-                                        class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline p-1 ">Panel</span>
-                                    </a>
-                                </li>
-                            @endauth
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('peliculas.index') }}"
-                                        class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-box-open  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline p-1 ">Peliculas</span>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('series.index') }}"
-                                        class="nav-link{{ request()->is('series') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-receipt me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline p-2">series</span>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('categorias.index') }}"
-                                        class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline">Categorias</span>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('categorias.index') }}"
-                                        class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline p-1 ">Categorias</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('actores.index') }}"
-                                        class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline ">Actores</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item m-2 p-2">
-                                    <a href="{{ route('usuarios.index') }}"
-                                        class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
-                                        <i class="fa-solid fa-user-shield  me-3 fs-5 p-1"></i>
-                                        <span class="d-none d-md-inline  p-1">Usuarios</span>
-                                    </a>
-                                </li>
-
-
-                        </ul>
-                        <div class="mt-auto p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown">
-                                    <a href="#"
-                                        class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
-                                        id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt=""
-                                            width="32" height="32" class="rounded-circle me-2">
-                                        <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
-
-                                    </a>
-                                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                        <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger w-80 m-2">
-                                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
-                                                </button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <label class="switch ms-3" for="dark-mode-toggle">
-                                    <input type="checkbox" id="dark-mode-toggle">
-                                    <span class="slider">
-                                        <i class="fas fa-moon"></i>
-                                        <i class="fas fa-sun"></i>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                    @endauth
-                </div>
-                <div class="col px-md-4 min-vh-100">
-                    @include('layouts._partials.messages')
-                    @yield('content')
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
             </div>
+        </nav>
 
-        </div>
-
-        <div class="row bg-dark text-center text-white py-4" style="max-height: 100vh">
-            <div class="col">
-                @yield('footer')
-            </div>
-        </div>
-        <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
-        @vite(['resources/js/app.js'])
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
+</body>
 
 </html>

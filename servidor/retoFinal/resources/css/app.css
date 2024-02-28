@@ -1,4 +1,5 @@
 
+
 .nav-pills li a {
     background-color: transparent;
 }
@@ -96,3 +97,13 @@ input:checked + .slider:before {
     right: 0px;
 }
 
+/*DASHBOARD*/
+
+.border-purple {
+    border-color: purple !important;
+    transition: border-color 0.3s ease;
+}
+
+.border-purple:hover {
+    background-color: #6e42c166 !important;
+}
