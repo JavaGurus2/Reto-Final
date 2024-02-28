@@ -1,13 +1,131 @@
-<script setup></script>
+<script setup>
+const PROTOCOLO = 'http'
+const DIRECCION = 'localhost'
+import { ref } from 'vue'
+import Notificacion from './Notificacion.vue'
+const email = ref('')
+
+const password = ref('')
+
+const error = ref(false)
+
+const mensajeError = ref('')
+
+function mostrarError(mensaje) {
+  error.value = true
+  console.log('Hola' + error.value)
+  mensajeError.value = mensaje
+}
+
+async function loginApi() {
+  try {
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    })
+    if (response.ok) {
+      const data = await response.json()
+      sessionStorage.setItem('usuario', data) // o data.usuario
+    } else {
+      throw new Error(
+        'Ha ocurrido un error mientras se realizaba la peticion, intentelo de nuevo mas tarde'
+      )
+    }
+  } catch (e) {
+    // No se que hacer con el error de momento
+    mostrarError(e.message)
+  }
+}
+async function validarLogin() {
+  if (email.value.length == 0) {
+    mostrarError('El email no puede ser nulo')
+  }
+  if (password.value.length == 0) {
+    mostrarError('La contraseña no puede ser nula')
+  }
+  // loginApi() - de momento nada
+  if (!error.value) {
+    // Supuesto usuario recibido de la api
+    emit('logueado')
+  }
+}
+</script>
 
 <template>
-  <form class="row d-flex flex-comlumn">
-    <div class="form-floating col-12">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com" />
-      <label for="email">Email address</label>
+  <section class="vh-100 d-flex flex-column justify-content-center">
+    <Notificacion v-if="error" tipo="Error" :mensaje="mensajeError" />
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-4 d-flex">
+          <img src="/src/assets/logo.png" class="img-fluid" alt="Sample image" id="logo" />
+        </div>
+        <div class="col-lg-8">
+          <form @submit.prevent="validarLogin">
+            <div class="form-outline mb-4">
+              <input
+                type="email"
+                id="email"
+                class="form-control form-control-lg"
+                placeholder="Correo electronico"
+                v-model="email"
+              />
+            </div>
+
+            <div class="form-outline mb-3">
+              <input
+                type="password"
+                id="password"
+                class="form-control form-control-lg"
+                placeholder="Contraseña"
+                v-model="password"
+              />
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="form-check mb-0">
+                <input class="form-check-input me-2" type="checkbox" value="" id="recuerdame" />
+                <label class="form-check-label" for="recuerdame"> Recuerdame </label>
+              </div>
+              <a href="#!" class="text-body">¿Has olvidado la contraseña?</a>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="col-12 mt-2">
-      <input type="password" placeholder="Contraseña: " />
+    <div
+      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 bg-primary fixed-bottom"
+    >
+      <div class="text-white mb-3 mb-md-0">Copyright © 2024. Egibide</div>
+
+      <div>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="#!" class="text-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
     </div>
-  </form>
+  </section>
 </template>
+
+<style scoped>
+#logo {
+  @media screen and (max-width: 990px) {
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+}
+</style>
