@@ -12,7 +12,8 @@ class ActoreController extends Controller
      */
     public function index()
     {
-        //
+        $actores = Actore::all();
+        return view('actores.index', compact('actores'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ActoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('actores.create');
     }
 
     /**
@@ -28,7 +29,18 @@ class ActoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'email' => 'required|email|unique:bodegas,email',
+            'telefono' => 'required|string|max:20',
+            'persona_contacto' => 'required|string|max:255',
+            'anno_fundacion' => 'required|integer|min:1800|max:' . date('Y'),
+            'comentarios' => 'nullable|string',
+            'tiene_restaurante' => 'boolean',
+            'tiene_hotel' => 'boolean',
+        ]);
+
     }
 
     /**
