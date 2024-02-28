@@ -12,7 +12,7 @@ class PeliculaController extends Controller
      */
     public function index()
     {
-        $peliculas = Pelicula::all();
+        $peliculas = Pelicula::paginate(9);
         return view('peliculas.index',compact('peliculas'));
 
     }

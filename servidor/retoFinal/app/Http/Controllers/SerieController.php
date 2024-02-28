@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actore;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class SerieController extends Controller
      */
     public function index()
     {
-        //
+        $series = Actore::paginate(9);
+        return view('series.index', compact('series'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SerieController extends Controller
      */
     public function create()
     {
-        //
+        return view('series.create');
     }
 
     /**
@@ -28,7 +30,18 @@ class SerieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'sinopsis' => 'required|string|max:500',
+            'archivo' => 'required|string',
+            'imagen' => 'nullable'
+           ]);
+           try {
+            Serie::create($request->all());
+                return redirect()->route('series.index')->with('success', 'Serie creada correctamente');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Error al crear la pelicula: ' . $e->getMessage());
+            }
     }
 
     /**
@@ -36,7 +49,7 @@ class SerieController extends Controller
      */
     public function show(Serie $serie)
     {
-        //
+        return view('series.show', compact('serie'));
     }
 
     /**
@@ -44,7 +57,7 @@ class SerieController extends Controller
      */
     public function edit(Serie $serie)
     {
-        //
+        return view('series.edit', compact('serie'));
     }
 
     /**
@@ -52,7 +65,16 @@ class SerieController extends Controller
      */
     public function update(Request $request, Serie $serie)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'sinopsis' => 'required|string|max:500',
+            'archivo' => 'required|string',
+            'imagen' => 'nullable'
+           ]);
+           $serie->update($request->all());
+
+           return redirect()->route('series.index')->with('success', 'Serie editada correctamente');
+
     }
 
     /**
@@ -60,6 +82,7 @@ class SerieController extends Controller
      */
     public function destroy(Serie $serie)
     {
-        //
+        $serie->delete();
+        return redirect()->route('series.index')->with('success','Serie eliminada correctamente');
     }
 }

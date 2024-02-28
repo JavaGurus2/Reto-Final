@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ActoreController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\EpisodioController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SerieController;
+use App\Http\Controllers\TemporadaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +45,26 @@ Route::get('/series/{serie}', [SerieController::class, 'show'])->name('series.sh
 Route::get('/series/{serie}/edit', [SerieController::class, 'edit'])->name('series.edit');
 Route::put('/series/{serie}/update', [SerieController::class, 'update'])->name('series.update');
 Route::delete('/series/{serie}/delete', [SerieController::class, 'destroy'])->name('series.destroy');
+
+//comprobar esto echo por Ander uwu <------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//series temporadas
+Route::get('/series/{serie}/temporadas', [TemporadaController::class, 'index'])->name('temporadas.index');
+Route::get('/series/{serie}/temporadas/create', [TemporadaController::class, 'create'])->name('temporadas.create');
+Route::post('/series/{serie}/temporadas/store', [TemporadaController::class, 'store'])->name('temporadas.store');
+Route::get('/series/{serie}/temporadas/{temporada}', [TemporadaController::class, 'show'])->name('temporadas.show');
+Route::get('/series/{serie}/temporadas/{temporada}/edit', [TemporadaController::class, 'edit'])->name('temporadas.edit');
+Route::put('/series/{serie}/temporadas/{temporada}/update', [TemporadaController::class, 'update'])->name('temporadas.update');
+Route::delete('/series/{serie}/temporadas/{temporada}/delete', [TemporadaController::class, 'destroy'])->name('temporadas.destroy');
+
+//series temporadas episodios
+Route::get('/series/{serie}/temporadas/{temporada}/episodios', [EpisodioController::class, 'index'])->name('episodios.index');
+Route::get('/series/{serie}/temporadas/{temporada}/episodios/create', [EpisodioController::class, 'create'])->name('episodios.create');
+Route::post('/series/{serie}/temporadas/{temporada}/episodios/store', [EpisodioController::class, 'store'])->name('episodios.store');
+Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}', [EpisodioController::class, 'show'])->name('episodios.show');
+Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}/edit', [EpisodioController::class, 'edit'])->name('episodios.edit');
+Route::put('/series/{serie}/temporadas/{temporada}/episodios/{episodio}/update', [EpisodioController::class, 'update'])->name('episodios.update');
+Route::delete('/series/{serie}/temporadas/{temporada}/episodios/{episodio}/delete', [EpisodioController::class, 'destroy'])->name('episodios.destroy');
 
 //categorias
 Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');

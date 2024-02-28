@@ -13,7 +13,7 @@ class ActoreController extends Controller
      */
     public function index()
     {
-        $actores = Actore::all();
+        $actores = Actore::paginate(9);
         return view('actores.index', compact('actores'));
     }
 
