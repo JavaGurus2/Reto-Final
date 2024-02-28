@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actore;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ActoreController extends Controller
 {
@@ -31,15 +32,17 @@ class ActoreController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'direccion' => 'required|string|max:255',
-            'email' => 'required|email|unique:bodegas,email',
-            'telefono' => 'required|string|max:20',
-            'persona_contacto' => 'required|string|max:255',
-            'anno_fundacion' => 'required|integer|min:1800|max:' . date('Y'),
-            'comentarios' => 'nullable|string',
-            'tiene_restaurante' => 'boolean',
-            'tiene_hotel' => 'boolean',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:actores,email',
+            'imagen' => 'nullable'
         ]);
+
+        try {
+            Actore::create($request->all());
+            return redirect()->route('actores.index')->with('success', 'Actor/Actriz creado/a correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al crear el actor: ' . $e->getMessage());
+        }
 
     }
 
@@ -48,7 +51,7 @@ class ActoreController extends Controller
      */
     public function show(Actore $actore)
     {
-        //
+        return view('actores.show', compact('actore'));
     }
 
     /**
@@ -56,7 +59,7 @@ class ActoreController extends Controller
      */
     public function edit(Actore $actore)
     {
-        //
+        return view('actores.edit', compact('actore'));
     }
 
     /**
@@ -64,7 +67,15 @@ class ActoreController extends Controller
      */
     public function update(Request $request, Actore $actore)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:actores,email,' . $actore->id,
+            'imagen' => 'nullable'
+        ]);
+        $actore->update($request->all());
+
+        return redirect()->route('actores.index')->with('success', 'Actor/Actriz editado/a correctamente');
     }
 
     /**
@@ -72,6 +83,8 @@ class ActoreController extends Controller
      */
     public function destroy(Actore $actore)
     {
-        //
+        $actore->delete();
+        return redirect()->route('actores.index')->with('success', 'Actor/Actriz eliminado/a correctamente');
+
     }
 }

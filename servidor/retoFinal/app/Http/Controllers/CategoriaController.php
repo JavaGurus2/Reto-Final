@@ -12,7 +12,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+        return view('categorias.index', compact('categorias'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'imagen' => 'nullable'
+        ]);
+        try {
+            Categoria::create($request->all());
+            return redirect()->route('categorias.index')->with('success', 'Categoria creada correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al crear el actor: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -36,7 +46,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+       return view('categorias.show',compact('categoria'));
     }
 
     /**
@@ -44,7 +54,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.edit',compact('categoria'));
     }
 
     /**
@@ -52,7 +62,13 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'imagen' => 'nullable'
+        ]);
+        $categoria->update($request->all());
+        return redirect()->route('categorias.index')->with('success','Categoria editada correctamente');
+
     }
 
     /**
@@ -60,6 +76,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return redirect()->route('categorias.index')->with('success','Categoria Eliminada correctamente');
     }
 }
