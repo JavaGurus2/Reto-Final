@@ -4,30 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Actore;
 use App\Models\Serie;
+use App\Models\Temporada;
 use Illuminate\Http\Request;
 
 class SerieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $series = Actore::paginate(9);
         return view('series.index', compact('series'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('series.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,25 +39,20 @@ class SerieController extends Controller
             }
     }
 
-    /**
-     * Display the specified resource.
-     */
+//bea bea bea
     public function show(Serie $serie)
     {
-        return view('series.show', compact('serie'));
+        $temporadas = $serie->temporadas;
+        return view('series.show', compact('serie','temporadas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Serie $serie)
     {
         return view('series.edit', compact('serie'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Serie $serie)
     {
         $request->validate([
@@ -77,12 +67,11 @@ class SerieController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Serie $serie)
     {
         $serie->delete();
+
         return redirect()->route('series.index')->with('success','Serie eliminada correctamente');
     }
 }
