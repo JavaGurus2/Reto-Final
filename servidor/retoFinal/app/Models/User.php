@@ -8,9 +8,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Serie;
+use App\Models\Pelicula;
+
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function descargasPeliculas()
+    {
+        return $this->belongsToMany(Pelicula::class)->withTimestamps();
+    }
+
+    public function descargasSeries()
+    {
+        return $this->belongsToMany(Serie::class)->withTimestamps();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +36,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "imagen",
+        "rol"
     ];
 
     /**
