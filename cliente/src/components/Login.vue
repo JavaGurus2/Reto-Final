@@ -11,6 +11,8 @@ const error = ref(false)
 
 const mensajeError = ref('')
 
+const emit = defineEmits(['logueado'])
+
 function mostrarError(mensaje) {
   error.value = true
   console.log('Hola' + error.value)
@@ -54,6 +56,7 @@ async function validarLogin() {
 
 <template>
   <section class="vh-100 d-flex flex-column justify-content-center">
+    <!-- Mirar que solo puede salir una vez -->
     <Notificacion v-if="error" tipo="Error" :mensaje="mensajeError" />
     <div class="container-fluid">
       <div class="row d-flex justify-content-center align-items-center h-100">
