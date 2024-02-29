@@ -29,13 +29,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //peliculas
-Route::get('/peliculas', [PeliculaController::class, 'index'])->name('peliculas.index');
-Route::get('/peliculas/create', [PeliculaController::class, 'create'])->name('peliculas.create');
-Route::post('/peliculas/store', [PeliculaController::class, 'store'])->name('peliculas.store');
-Route::get('/peliculas/{pelicula}', [PeliculaController::class, 'show'])->name('peliculas.show');
-Route::get('/peliculas/{pelicula}/edit', [PeliculaController::class, 'edit'])->name('peliculas.edit');
-Route::put('/peliculas/{pelicula}/update', [PeliculaController::class, 'update'])->name('peliculas.update');
-Route::delete('/peliculas/{pelicula}/delete', [PeliculaController::class, 'destroy'])->name('peliculas.destroy');
+Route::resource("/peliculas", PeliculaController::class);
+
 
 //series
 Route::get('/series', [SerieController::class, 'index'])->name('series.index');

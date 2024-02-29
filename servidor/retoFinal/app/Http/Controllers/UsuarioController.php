@@ -8,10 +8,15 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         $usuarios = User::paginate(9);
-        return view('usuarios.index',compact('usuarios'));
+        return view('usuarios.index', compact('usuarios'));
     }
 
 
@@ -32,10 +37,10 @@ class UsuarioController extends Controller
         ]);
         try {
             User::create($request->all());
-                return redirect()->route('usuarios.index')->with('success', 'Usuario creada correctamente');
-            } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Error al crear el usuario: ' . $e->getMessage());
-            }
+            return redirect()->route('usuarios.index')->with('success', 'Usuario creada correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al crear el usuario: ' . $e->getMessage());
+        }
     }
 
 
@@ -61,13 +66,13 @@ class UsuarioController extends Controller
             'rol' => 'required|string|max:255'
         ]);
         $user->update($request->all());
-        return redirect()->route('usuarios.index')->with('success','Usuario editado correctamente');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario editado correctamente');
     }
 
 
     public function destroy(User $user)
     {
-     $user->delete();
-     return redirect()->route('usuarios.index')->with('success','Usuario eliminado correctamente');
+        $user->delete();
+        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
     }
 }

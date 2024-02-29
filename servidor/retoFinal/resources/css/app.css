@@ -4,6 +4,15 @@
     background-color: transparent;
 }
 
+.text-indigo-300 {
+    color: #818cf8; /* Este es el color indigo-300 */
+}
+
+a .text-indigo-300:hover {
+    scale: 1.5;
+    color: purple;
+}
+
 i, span{
     color:white;
 }
