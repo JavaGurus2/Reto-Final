@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('temporadas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->text("imagen");
-            $table->string('rol');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->bigInteger("numero");
+            $table->date("fecha_estreno");
+            $table->unsignedBigInteger("serie_id");
+            $table->foreign("serie_id")
+                ->references("id")
+                ->on("series")
+                ->onDelete("CASCADE");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('temporadas');
     }
 };
