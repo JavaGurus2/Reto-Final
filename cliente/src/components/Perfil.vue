@@ -1,20 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const previewPhoto = (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      photoPreview.value = e.target.result
-    }
-    reader.readAsDataURL(file)
-  } else {
-    photoPreview.value = null
-  }
-}
-
-const photoPreview = ref(null)
+const userPhoto = ref(null)
 const nombre = ref('')
 const email = ref('')
 const contraA = ref('')
@@ -26,6 +13,19 @@ const emailError = ref('')
 const contraAError = ref('')
 const contraNError = ref('')
 const contraCError = ref('')
+
+function previewPhoto(event) {
+  const file = event.target.files[0]
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      userPhoto.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+  } else {
+    userPhoto.value = null
+  }
+}
 
 function actualizarDP() {
   if (validacionesDP()) {
@@ -104,19 +104,18 @@ function validarContraC(contraN, contraC) {
 </script>
 
 <template>
-  <div class="row g-0">
-    <div class="col-12 d-flex flex-column">
-      <form @submit.prevent="actualizarDP" class="d-flex flex-column align-items-center mt-5">
+  <div class="row g-0 p-2 flex-grow-column">
+    <div class="col-12 d-flex flex-column justify-content-center">
+      <form @submit.prevent="actualizarDP" class="d-flex flex-column align-items-center my-4">
         <div class="d-flex flex-column align-items-center mb-4">
           <img
             class="ImgP mb-3"
-            v-if="photoPreview"
-            :src="photoPreview"
+            :src="userPhoto || '/src/assets/default_user.jpg'"
             alt="Vista previa"
             style="max-width: 100%; max-height: 200px; margin-top: 10px"
           />
           <label for="photo" class="form-label">
-            <span class="btn btn-primary btn-lg">Seleccionar Foto</span>
+            <span class="btn btn-primary btn-lg">Cambiar Foto</span>
             <input
               type="file"
               id="photo"
@@ -151,7 +150,7 @@ function validarContraC(contraN, contraC) {
         </div>
       </form>
       <hr />
-      <form @submit.prevent="actualizarC" class="d-flex flex-column align-items-center mb-5">
+      <form @submit.prevent="actualizarC" class="d-flex flex-column align-items-center my-4">
         <div class="form-outline mb-4">
           <input
             type="password"
@@ -193,6 +192,7 @@ function validarContraC(contraN, contraC) {
 <style>
 .ImgP {
   border-radius: 50%; /* Hace que la imagen sea redonda */
+  border: solid 1px #ca40d6;
   width: 100px; /* Ancho fijo de 64 píxeles */
   height: 100px; /* Altura fija de 64 píxeles */
   object-fit: cover; /* Ajusta la forma de rellenar el contenedor */
