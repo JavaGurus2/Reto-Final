@@ -74,10 +74,10 @@ Route::delete('/categorias/{categoria}/delete', [CategoriaController::class, 'de
 Route::get('/actores', [ActoreController::class, 'index'])->name('actores.index');
 Route::get('/actores/create', [ActoreController::class, 'create'])->name('actores.create');
 Route::post('/actores/store', [ActoreController::class, 'store'])->name('actores.store');
-Route::get('/actores/{actor}', [ActoreController::class, 'show'])->name('actores.show');
-Route::get('/actores/{actor}/edit', [ActoreController::class, 'edit'])->name('actores.edit');
-Route::put('/actores/{actor}/update', [ActoreController::class, 'update'])->name('actores.update');
-Route::delete('/actores/{actor}/delete', [ActoreController::class, 'destroy'])->name('actores.destroy');
+Route::get('/actores/{actore}', [ActoreController::class, 'show'])->name('actores.show');
+Route::get('/actores/{actore}/edit', [ActoreController::class, 'edit'])->name('actores.edit');
+Route::put('/actores/{actore}/update', [ActoreController::class, 'update'])->name('actores.update');
+Route::delete('/actores/{actore}/delete', [ActoreController::class, 'destroy'])->name('actores.destroy');
 
 //usuarios
 Route::get('/usuarios', [PeliculaController::class, 'index'])->name('usuarios.index');

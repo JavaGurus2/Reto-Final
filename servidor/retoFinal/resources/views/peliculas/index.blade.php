@@ -7,7 +7,7 @@
                 <div class="card shadow">
                     <div class="card-header d-flex justify-content-between ">
                         <span class="text-dark">{{ __('Peliculas') }}</span>
-                        <a href="{{ route('peliculas.create') }}" class="btn btn-primary">Crear pelicula</a>
+                        <a href="{{ route('peliculas.create') }}" class="btn btn-success">Crear pelicula</a>
                     </div>
 
                     <div class="card-body">

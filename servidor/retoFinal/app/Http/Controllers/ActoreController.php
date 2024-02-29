@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\TryCatch;
 
 class ActoreController extends Controller
@@ -29,20 +30,30 @@ class ActoreController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:actores,email',
-            'imagen' => 'nullable'
-        ]);
-
         try {
-            Actore::create($request->all());
+            $request->validate([
+                'nombre' => 'required|string|max:255',
+                'apellido' => 'required|string|max:255',
+                'email' => 'required|email|unique:actores,email',
+                'imagen' => 'nullable|image', // Validar que sea una imagen
+            ]);
+
+            // Guardar la imagen con un nombre único
+            $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
+            $imagenUrl = str_replace('public/', 'storage/', $imagen);
+
+            Actore::create([
+                'nombre' => $request->input('nombre'),
+                'apellido' => $request->input('apellido'),
+                'email' => $request->input('email'),
+                'imagen' => $imagenUrl
+            ]);
             return redirect()->route('actores.index')->with('success', 'Actor/Actriz creado/a correctamente');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al crear el actor: ' . $e->getMessage());
         }
     }
+
 
 
     public function show(Actore $actore)
@@ -59,15 +70,34 @@ class ActoreController extends Controller
 
     public function update(Request $request, Actore $actore)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:actores,email,' . $actore->id,
-            'imagen' => 'nullable'
-        ]);
-        $actore->update($request->all());
+        try {
+            $request->validate([
+                'nombre' => 'required|string|max:255',
+                'apellido' => 'required|string|max:255',
+                'email' => 'required|email|unique:actores,email,' . $actore->id,
+                'imagen' => 'nullable', // Validar que sea una imagen
+            ]);
 
-        return redirect()->route('actores.index')->with('success', 'Actor/Actriz editado/a correctamente');
+            $actore->nombre = $request->input('nombre');
+            $actore->apellido = $request->input('apellido');
+            $actore->email = $request->input('email');
+
+            // Guardar la nueva imagen si se proporciona
+            if ($request->hasFile('imagen')) {
+                // Eliminar la imagen anterior si existe
+                if ($actore->imagen) {
+                    Storage::delete(str_replace('storage/', 'public/', $actore->imagen));
+                }
+                // Guardar la nueva imagen con un nombre único
+                $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
+                $actore->imagen = str_replace('public/', 'storage/', $imagen);
+            }
+            $actore->save();
+
+            return redirect()->route('actores.index')->with('success', 'Actor/Actriz editado/a correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al editar el actor: ' . $e->getMessage());
+        }
     }
 
 

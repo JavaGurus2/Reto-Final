@@ -27,8 +27,8 @@
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="#" class="d-block mb-3 text-decoration-none">
-                    <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50" class="img-fluid"
-                        alt="aun sin foto">
+                    <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid"
+                        alt="">
                     <span class="fs-4  d-md-inline ">Netflix Egibide</span>
                 </a>
                 <hr class="w-100">
@@ -133,8 +133,8 @@
                 class="bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="#" class="d-block mb-3 text-decoration-none">
-                        <img src="{{ asset('/images/Killerlogo.png') }}" width="50" height="50"
-                            class="img-fluid mx-3" alt="aun sin foto">
+                        <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
+                            class="img-fluid mx-3" alt="logo">
                         <span class="fs-4 d-none d-md-inline ">Netflix Egibide</span>
                     </a>
                     <hr class="w-100">
@@ -177,14 +177,6 @@
                             </a>
                         </li>
 
-
-                        <li class="nav-item m-2 p-2">
-                            <a href="{{ route('categorias.index') }}"
-                                class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                <i class="fa-solid fa-tags  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline p-1 ">Categorias</span>
-                            </a>
-                        </li>
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('actores.index') }}"
                                 class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
