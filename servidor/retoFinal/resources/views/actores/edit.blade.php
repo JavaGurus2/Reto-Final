@@ -6,14 +6,14 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col">
-                <h1 class="mb-4">Editar Cliente</h1>
-                <form action="{{ route('actores.update', $cliente) }}" method="POST" class="needs-validation" novalidate>
+                <h1 class="mb-4">Editar actor/actriz</h1>
+                <form action="{{ route('actores.update', $actore) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="{{ Crypt::decrypt($actore->nombre) }}" readonly required>
+                            value="{{ $actore->nombre }}"  required>
                         <div class="invalid-feedback">
                             Por favor ingresa un nombre.
                         </div>
