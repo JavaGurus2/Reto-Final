@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class CategoriaController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         $categorias = Categoria::paginate(9);
@@ -38,13 +43,13 @@ class CategoriaController extends Controller
 
     public function show(Categoria $categoria)
     {
-       return view('categorias.show',compact('categoria'));
+        return view('categorias.show', compact('categoria'));
     }
 
 
     public function edit(Categoria $categoria)
     {
-        return view('categorias.edit',compact('categoria'));
+        return view('categorias.edit', compact('categoria'));
     }
 
 
@@ -55,14 +60,13 @@ class CategoriaController extends Controller
             'imagen' => 'nullable'
         ]);
         $categoria->update($request->all());
-        return redirect()->route('categorias.index')->with('success','Categoria editada correctamente');
-
+        return redirect()->route('categorias.index')->with('success', 'Categoria editada correctamente');
     }
 
 
     public function destroy(Categoria $categoria)
     {
         $categoria->delete();
-        return redirect()->route('categorias.index')->with('success','Categoria Eliminada correctamente');
+        return redirect()->route('categorias.index')->with('success', 'Categoria Eliminada correctamente');
     }
 }

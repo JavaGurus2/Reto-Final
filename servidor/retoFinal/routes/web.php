@@ -29,13 +29,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //peliculas
-Route::get('/peliculas', [PeliculaController::class, 'index'])->name('peliculas.index');
-Route::get('/peliculas/create', [PeliculaController::class, 'create'])->name('peliculas.create');
-Route::post('/peliculas/store', [PeliculaController::class, 'store'])->name('peliculas.store');
-Route::get('/peliculas/{pelicula}', [PeliculaController::class, 'show'])->name('peliculas.show');
-Route::get('/peliculas/{pelicula}/edit', [PeliculaController::class, 'edit'])->name('peliculas.edit');
-Route::put('/peliculas/{pelicula}/update', [PeliculaController::class, 'update'])->name('peliculas.update');
-Route::delete('/peliculas/{pelicula}/delete', [PeliculaController::class, 'destroy'])->name('peliculas.destroy');
+Route::resource("/peliculas", PeliculaController::class);
+
 
 //series
 Route::get('/series', [SerieController::class, 'index'])->name('series.index');
@@ -79,10 +74,10 @@ Route::delete('/categorias/{categoria}/delete', [CategoriaController::class, 'de
 Route::get('/actores', [ActoreController::class, 'index'])->name('actores.index');
 Route::get('/actores/create', [ActoreController::class, 'create'])->name('actores.create');
 Route::post('/actores/store', [ActoreController::class, 'store'])->name('actores.store');
-Route::get('/actores/{actor}', [ActoreController::class, 'show'])->name('actores.show');
-Route::get('/actores/{actor}/edit', [ActoreController::class, 'edit'])->name('actores.edit');
-Route::put('/actores/{actor}/update', [ActoreController::class, 'update'])->name('actores.update');
-Route::delete('/actores/{actor}/delete', [ActoreController::class, 'destroy'])->name('actores.destroy');
+Route::get('/actores/{actore}', [ActoreController::class, 'show'])->name('actores.show');
+Route::get('/actores/{actore}/edit', [ActoreController::class, 'edit'])->name('actores.edit');
+Route::put('/actores/{actore}/update', [ActoreController::class, 'update'])->name('actores.update');
+Route::delete('/actores/{actore}/delete', [ActoreController::class, 'destroy'])->name('actores.destroy');
 
 //usuarios
 Route::get('/usuarios', [PeliculaController::class, 'index'])->name('usuarios.index');

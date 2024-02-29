@@ -9,6 +9,11 @@ use Illuminate\Validation\Rule;
 class PeliculaController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         $peliculas = Pelicula::paginate(9);
@@ -122,5 +127,15 @@ class PeliculaController extends Controller
         $pelicula->save();
 
         return redirect()->route('peliculas.index')->with('success', 'La película ha sido actualizada correctamente.');
+    }
+
+    public function destroy(Pelicula $pelicula)
+    {
+
+        $pelicula->delete();
+
+        session()->flash('danger', 'pelicula borrado correctamente');
+
+        return redirect()->back();
     }
 }

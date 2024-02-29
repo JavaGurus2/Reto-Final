@@ -23,7 +23,9 @@
                         <dt class="col-sm-4">Email:</dt>
                         <dd class="col-sm-8">{{ $actore->email }}</dd>
                         <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8">{{ $actore->imagen }}</dd>
+                        <dd class="col-sm-8">
+                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" style="max-width: 100px;">
+                        </dd>
                     </dl>
                 </div>
                 <div class="px-3 mt-4">
