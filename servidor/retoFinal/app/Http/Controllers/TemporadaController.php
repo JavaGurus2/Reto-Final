@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class TemporadaController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index(Serie $serie)
     {
         $temporadas = $serie->temporadas;
@@ -48,19 +53,19 @@ class TemporadaController extends Controller
     }
 
 
-//bea bea bea
+    //bea bea bea
 
     public function show(Temporada $temporada, Serie $serie)
     {
         $episodios = $temporada->episodios;
 
 
-        return view('temporadas.show', compact('temporada', 'episodios','serie'));
+        return view('temporadas.show', compact('temporada', 'episodios', 'serie'));
     }
 
-    public function edit(Temporada $temporada,Serie $serie)
+    public function edit(Temporada $temporada, Serie $serie)
     {
-        return view('temporadas.edit', compact('temporada','serie'));
+        return view('temporadas.edit', compact('temporada', 'serie'));
     }
 
 

@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class SerieController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         $series = Actore::paginate(9);
@@ -30,20 +35,20 @@ class SerieController extends Controller
             'sinopsis' => 'required|string|max:500',
             'archivo' => 'required|string',
             'imagen' => 'nullable'
-           ]);
-           try {
+        ]);
+        try {
             Serie::create($request->all());
-                return redirect()->route('series.index')->with('success', 'Serie creada correctamente');
-            } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Error al crear la pelicula: ' . $e->getMessage());
-            }
+            return redirect()->route('series.index')->with('success', 'Serie creada correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al crear la pelicula: ' . $e->getMessage());
+        }
     }
 
-//bea bea bea
+    //bea bea bea
     public function show(Serie $serie)
     {
         $temporadas = $serie->temporadas;
-        return view('series.show', compact('serie','temporadas'));
+        return view('series.show', compact('serie', 'temporadas'));
     }
 
 
@@ -60,11 +65,10 @@ class SerieController extends Controller
             'sinopsis' => 'required|string|max:500',
             'archivo' => 'required|string',
             'imagen' => 'nullable'
-           ]);
-           $serie->update($request->all());
+        ]);
+        $serie->update($request->all());
 
-           return redirect()->route('series.index')->with('success', 'Serie editada correctamente');
-
+        return redirect()->route('series.index')->with('success', 'Serie editada correctamente');
     }
 
 
@@ -72,6 +76,6 @@ class SerieController extends Controller
     {
         $serie->delete();
 
-        return redirect()->route('series.index')->with('success','Serie eliminada correctamente');
+        return redirect()->route('series.index')->with('success', 'Serie eliminada correctamente');
     }
 }

@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class EpisodioController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index(Temporada $temporada, Serie $serie)
     {
         $episodios = $temporada->episodios;
@@ -27,7 +32,7 @@ class EpisodioController extends Controller
     public function store(Request $request, Temporada $temporada, Serie $serie)
     {
 
-           $request->validate([
+        $request->validate([
             'numero' => 'required|integer',
             'archivo' => 'required|string',
 
@@ -78,5 +83,4 @@ class EpisodioController extends Controller
 
         return redirect()->route('episodios.index', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio eliminado correctamente.');
     }
-
 }

@@ -9,6 +9,11 @@ use PhpParser\Node\Stmt\TryCatch;
 class ActoreController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         $actores = Actore::paginate(9);
@@ -37,7 +42,6 @@ class ActoreController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al crear el actor: ' . $e->getMessage());
         }
-
     }
 
 
@@ -71,6 +75,5 @@ class ActoreController extends Controller
     {
         $actore->delete();
         return redirect()->route('actores.index')->with('success', 'Actor/Actriz eliminado/a correctamente');
-
     }
 }

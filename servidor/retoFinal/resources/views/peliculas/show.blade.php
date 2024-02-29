@@ -3,11 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 mt-5">
                 <div class="card">
-                    <div class="card-header">{{ __('Peliculas') }}
-                        <a href="{{ route('peliculas.edit', $pelicula) }}">Editar</a>
-                        <a href="{{ route('peliculas.index') }}">Volver</a>
+                    <div class="card-header p-3">
+                        <a href="{{ route('peliculas.index') }}" class="text-indigo-300"> <i
+                                class="fa-solid fa-arrow-left  me-3 text-indigo-300"></i></a>
+                        {{ __('Peliculas') }}
+                        <a href="{{ route('peliculas.edit', $pelicula) }}" class="btn btn-warning ml-5">Editar</a>
                     </div>
 
                     <div class="card-body">
