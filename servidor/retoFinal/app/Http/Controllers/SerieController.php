@@ -17,7 +17,7 @@ class SerieController extends Controller
 
     public function index()
     {
-        $series = Actore::paginate(9);
+        $series = Serie::paginate(9);
         return view('series.index', compact('series'));
     }
 
@@ -31,17 +31,40 @@ class SerieController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'titulo' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'archivo' => 'required|string',
-            'imagen' => 'nullable'
+            'archivo' => 'mimes:mp4,mov,avi',
+            'imagen' => 'nullable',
+            'fecha_estreno' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (strtotime($value) > strtotime(now())) {
+                        $fail('La fecha no puede ser posterior a la actual.');
+                    }
+                },
+            ],
+
         ]);
-        try {
-            Serie::create($request->all());
-            return redirect()->route('series.index')->with('success', 'Serie creada correctamente');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al crear la pelicula: ' . $e->getMessage());
-        }
+
+        // Guardar la imagen con un nombre único
+        $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
+        $imagenUrl = str_replace('public/', 'storage/', $imagen);
+
+        // Guardar el archivo
+        $archivo = $request->file('archivo')->store('public/videos');
+        $archivoUrl = str_replace('public/', 'storage/', $archivo);
+
+        Serie::create([
+            'nombre' => $request->input('nombre'),
+            'sinopsis' => $request->input('sinopsis'),
+            'archivo' => $archivoUrl,
+            'imagen' => $imagenUrl,
+            'fecha_estreno' => $request->input('fecha_estreno'),
+
+        ]);
+
+        return redirect()->route('series.index')->with('success', 'La serie ha sido creada correctamente.');
     }
 
     //bea bea bea
