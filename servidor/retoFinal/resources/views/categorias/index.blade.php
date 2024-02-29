@@ -24,7 +24,6 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Categoria</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -33,7 +32,6 @@
                                         <tr>
 
                                             <td>{{ $categoria->nombre }}</td>
-                                            <td>{{ $categoria->imagen }}</td>
 
                                             <td class="p-1">
                                                 <a href="{{ route('categorias.show', $categoria) }}"
