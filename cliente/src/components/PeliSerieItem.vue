@@ -1,14 +1,14 @@
 <script setup>
-const { novedad } = defineProps({
-  novedad: Object
+const { peliserie } = defineProps({
+  peliserie: Object
 })
 </script>
 <template>
   <div class="card bg-black card-busqueda text-white" style="--bs-bg-opacity: 0.5">
     <img class="card-img-top" src="/src/assets/logo.png" alt="Card image" />
     <div class="card-img-overlay card-busqueda-detalles">
-      <h4 class="card-title">{{ novedad.titulo }}</h4>
-      <p class="card-text">{{ novedad.sinopsis }}</p>
+      <h4 class="card-title">{{ peliserie.titulo }}</h4>
+      <p class="card-text">{{ peliserie.sinopsis }}</p>
       <a href="#" class="btn btn-primary">Ver o descargar?</a>
     </div>
   </div>
@@ -16,6 +16,7 @@ const { novedad } = defineProps({
 <style scoped>
 .card-busqueda {
   position: relative;
+  border-radius: 0.5em;
 }
 .card-busqueda::after {
   content: '';
@@ -24,7 +25,7 @@ const { novedad } = defineProps({
   height: 100%;
   pointer-events: none;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
-
+  border-radius: 0.5em;
   z-index: 0;
 }
 .card-busqueda-detalles {
@@ -35,5 +36,6 @@ const { novedad } = defineProps({
   aspect-ratio: 9 / 16;
   object-fit: cover;
   width: 100%;
+  border-radius: 0.5em;
 }
 </style>
