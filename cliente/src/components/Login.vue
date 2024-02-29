@@ -1,6 +1,6 @@
 <script setup>
 const PROTOCOLO = 'http'
-const DIRECCION = 'localhost'
+const DIRECCION = '127.0.0.1:8000'
 import { ref } from 'vue'
 import Notificacion from './Notificacion.vue'
 const email = ref('')
@@ -21,11 +21,14 @@ function mostrarError(mensaje) {
 
 async function loginApi() {
   try {
+    const formData = new FormData()
+    formData.append('email', email.value)
+    formData.append('password', password.value)
     const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: password })
+      body: formData
     })
+
     if (response.ok) {
       const data = await response.json()
       sessionStorage.setItem('usuario', data) // o data.usuario
@@ -46,7 +49,7 @@ async function validarLogin() {
   if (password.value.length == 0) {
     mostrarError('La contraseña no puede ser nula')
   }
-  // loginApi() - de momento nada
+  await loginApi()
   if (!error.value) {
     // Supuesto usuario recibido de la api
     emit('logueado')
