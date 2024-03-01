@@ -15,7 +15,8 @@ class APIAuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $token = JWTAuth::fromUser(Auth::user());
-            return response()->json(compact('token'));
+            $user = Auth::user();
+            return response()->json(["token" => $token, "usuario" => $user]);
         }
 
         throw ValidationException::withMessages([

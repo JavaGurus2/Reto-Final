@@ -31,7 +31,9 @@ async function loginApi() {
 
     if (response.ok) {
       const data = await response.json()
-      sessionStorage.setItem('usuario', data) // o data.usuario
+      console.log(data)
+      sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
+      sessionStorage.setItem('token', data.token)
     } else {
       throw new Error(
         'Ha ocurrido un error mientras se realizaba la peticion, intentelo de nuevo mas tarde'

@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
+Route::middleware('auth.jwt')->get('/peliculas', [PeliculasController::class, 'index']);
