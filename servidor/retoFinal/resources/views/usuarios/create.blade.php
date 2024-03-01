@@ -7,15 +7,24 @@
         <div class="row">
             <div class="col-7">
                 <h1 class="mb-4">Crear Usuario</h1>
+                @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                 <form action="{{ route('usuarios.store') }}" method="POST"  enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        @if ($errors->has('nombre'))
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                        @if ($errors->has('name'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('nombre') }}
+                                {{ $errors->first('name') }}
                             </div>
                         @endif
                     </div>
@@ -44,7 +53,7 @@
                     </div>
 
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rol" name="rol">
+                        <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1" >
                         <label class="form-check-label" for="rol">Asignar Rol</label>
                     </div>
 

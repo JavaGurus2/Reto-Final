@@ -20,10 +20,10 @@
                         <dd class="col-sm-8">{{ $user->name }}</dd>
                         <dt class="col-sm-4">Email:</dt>
                         <dd class="col-sm-8">{{ $user->email }}</dd>
-                        <dt class="col-sm-4">Contraseña:</dt>
-                        <dd class="col-sm-8">{{ $user->password }}</dd>
+
                         <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8">{{ $user->imagen }}</dd>
+                        <dd class="col-sm-8"> <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario"
+                            style="max-width: 100px;"></dd>
                     </dl>
                 </div>
                 <div class="px-3 mt-4">
