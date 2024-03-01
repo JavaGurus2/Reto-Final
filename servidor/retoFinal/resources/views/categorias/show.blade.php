@@ -18,8 +18,7 @@
 
                         <dt class="col-sm-4">Nombre:</dt>
                         <dd class="col-sm-8">{{ $categoria->nombre }}</dd>
-                        <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8">{{ $categoria->imagen }}</dd>
+
                     </dl>
                 </div>
                 <div class="px-3 mt-4">

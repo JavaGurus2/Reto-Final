@@ -54,7 +54,7 @@
 
                     <div class="gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-secondary">Volver</a>
+                        <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary">Volver</a>
                     </div>
                 </form>
             </div>

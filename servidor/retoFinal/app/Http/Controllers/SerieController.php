@@ -33,7 +33,7 @@ class SerieController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'archivo' => 'mimes:mp4,mov,avi',
+            'clasificacion' => 'required|string|max:255',
             'imagen' => 'nullable',
             'fecha_estreno' => [
                 'required',
@@ -51,14 +51,11 @@ class SerieController extends Controller
         $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
 
-        // Guardar el archivo
-        $archivo = $request->file('archivo')->store('public/videos');
-        $archivoUrl = str_replace('public/', 'storage/', $archivo);
 
         Serie::create([
             'nombre' => $request->input('nombre'),
             'sinopsis' => $request->input('sinopsis'),
-            'archivo' => $archivoUrl,
+            'clasificacion' => $request->input('clasificacion'),
             'imagen' => $imagenUrl,
             'fecha_estreno' => $request->input('fecha_estreno'),
 
@@ -86,8 +83,18 @@ class SerieController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'archivo' => 'required|string',
-            'imagen' => 'nullable'
+            'clasificacion' => 'required|string|max:255',
+            'imagen' => 'nullable',
+            'fecha_estreno' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (strtotime($value) > strtotime(now())) {
+                        $fail('La fecha no puede ser posterior a la actual.');
+                    }
+                },
+            ],
+
         ]);
         $serie->update($request->all());
 

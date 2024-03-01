@@ -38,13 +38,6 @@
                             </div>
                         @endif
                     </div>
-
-                    <div class="form-group">
-                        <label for="archivo">Archivo</label>
-                        <input type="file" name="archivo" id="archivo" class="form-control-file" accept="video/*"
-                            required>
-                        <div class="invalid-feedback" id="archivoFeedback"></div>
-                    </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen" required>

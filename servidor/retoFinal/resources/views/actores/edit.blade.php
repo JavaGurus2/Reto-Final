@@ -46,7 +46,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen">
+                        <input type="file" class="form-control" id="imagen" name="imagen" >
+                        @if (isset($actore->imagen))
+                        <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película"
+                            style="max-width: 100px;">
+                    @endif
+
                     </div>
                     <div class="gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar</button>

@@ -18,11 +18,7 @@
                             Por favor ingresa un nombre.
                         </div>
                     </div>
-                    <div class="mb-8">
-                        <label for="imagen" class="form-label">imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen"
-                            value="{{ $categoria->imagen }}" >
-                    </div>
+
                     <div class="gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                         <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-secondary">Volver</a>
