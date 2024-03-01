@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIAuthController;
-use App\Http\Controllers\APIPeliculasController;
+use App\Http\Controllers\APIHomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth.jwt')->get('/peliculas', [APIHomeController::class, 'index']);
+Route::middleware('auth.jwt')->get('/home', [APIHomeController::class, 'rellenar']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
-Route::middleware('auth.jwt')->get('/peliculas', [APIPeliculasController::class, 'index']);

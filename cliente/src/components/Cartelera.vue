@@ -2,69 +2,18 @@
 //
 import PeliSerieItem from './PeliSerieItem.vue'
 import CategoriaItem from './CategoriaItem.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const categorias = ref([
-  { id: 1, nombre: 'Categoria 1' },
-  { id: 2, nombre: 'Categoria 2' },
-  { id: 3, nombre: 'Categoria 3' },
-  { id: 4, nombre: 'Categoria 4' },
-  { id: 5, nombre: 'Categoria 5' },
-  { id: 6, nombre: 'Categoria 6' },
-  { id: 7, nombre: 'Categoria 7' },
-  { id: 8, nombre: 'Categoria 8' }
-])
+const PROTOCOLO = 'http'
+const DIRECCION = 'localhost:8000'
+
+const categorias = ref([])
 
 const filtrado = ref(false)
 
 // Random o categorias seleccionadas
 
-const categoriasPeliSerie = ref([
-  {
-    id: 1,
-    nombre: 'Categoria 1',
-    peliculas_series: [
-      {
-        titulo: 'El Señor de los Anillos',
-        sinopsis:
-          'Un joven hobbit llamado Frodo Bolsón debe embarcarse en un viaje para destruir un poderoso anillo y salvar a la Tierra Media de la oscuridad.'
-      }
-    ]
-  },
-  {
-    id: 2,
-    nombre: 'Categoria 2',
-    peliculas_series: [
-      {
-        titulo: 'Breaking Bad',
-        sinopsis:
-          'Un profesor de química de secundaria, Walter White, se convierte en un fabricante de metanfetamina después de ser diagnosticado con cáncer terminal. Con la ayuda de un exalumno, Jesse Pinkman, Walter se sumerge en el mundo peligroso del narcotráfico.'
-      }
-    ]
-  },
-  {
-    id: 3,
-    nombre: 'Categoria 3',
-    peliculas_series: [
-      {
-        titulo: 'Stranger Things',
-        sinopsis:
-          'En la década de 1980 en Hawkins, Indiana, un grupo de niños se enfrenta a fuerzas sobrenaturales y al gobierno mientras buscan a su amigo desaparecido y encuentran a una niña con habilidades telequinéticas.'
-      }
-    ]
-  },
-  {
-    id: 4,
-    nombre: 'Categoria 4',
-    peliculas_series: [
-      {
-        titulo: 'The Mandalorian',
-        sinopsis:
-          'Un pistolero solitario, conocido simplemente como el Mandaloriano, se embarca en una peligrosa misión en los confines exteriores de la galaxia, lejos de la autoridad de la Nueva República.'
-      }
-    ]
-  }
-])
+const categoriasPeliSerie = ref([])
 
 // Funcion para filtrar por categorias
 const categoriasFiltradas = ref([1])
@@ -84,47 +33,24 @@ async function filtradoCategoria(categoria) {
   filtrado.value = true
 }
 
-const novedades = ref([
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  }
-])
+const novedades = ref([])
 
-const tendencias = ref([
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  },
-  {
-    titulo: 'Titulo 1',
-    sinopsis: 'lorem kasdijf dasfhaksjdhf asdkjfaksd fjkasdhf as dfkjasdfjkajkfahjfjk '
-  }
-])
+const tendencias = ref([])
 
 const miListaStorage = JSON.parse(localStorage.getItem('miLista')) || []
 
 const miLista = ref(miListaStorage)
+
+onMounted(async () => {
+  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/home`, {
+    headers: {
+      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await response.json()
+  console.log(data)
+})
 </script>
 <template>
   <div class="row p-2 g-0 bg-dark text-white">
