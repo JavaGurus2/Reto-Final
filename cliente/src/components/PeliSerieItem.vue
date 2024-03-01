@@ -5,7 +5,11 @@ const { peliserie } = defineProps({
 </script>
 <template>
   <div class="card bg-black card-busqueda text-white" style="--bs-bg-opacity: 0.5">
-    <img class="card-img-top" src="/src/assets/logo.png" alt="Card image" />
+    <img
+      class="card-img-top"
+      :src="`http://localhost:8000/app/public/${peliserie.imagen}`"
+      alt="Card image"
+    />
     <div class="card-img-overlay card-busqueda-detalles">
       <h4 class="card-title">{{ peliserie.titulo }}</h4>
       <p class="card-text">{{ peliserie.sinopsis }}</p>

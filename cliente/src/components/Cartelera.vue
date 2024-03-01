@@ -50,7 +50,8 @@ onBeforeMount(async () => {
   })
   const data = await response.json()
   categorias.value = data.todasCategorias
-  console.log(data)
+  novedades.value = [...data.novedades.peliculas, ...data.novedades.series]
+  tendencias.value = [...data.tendencias.peliculas, ...data.tendencias.series]
 })
 </script>
 <template>

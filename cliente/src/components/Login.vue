@@ -24,6 +24,7 @@ async function loginApi() {
     const formData = new FormData()
     formData.append('email', email.value)
     formData.append('password', password.value)
+    console.log(formData.getAll('email'))
     const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/login`, {
       method: 'POST',
       body: formData
