@@ -55,9 +55,12 @@ class APIHomeController extends Controller
 
     public function rellenar()
     {
-        $novedades = $this->novedades();
-        $tendencias = $this->tendencias();
-        $randomCategorias = $this->randomcategorias();
+        // $novedades = $this->novedades();
+        // $tendencias = $this->tendencias();
+        // $randomCategorias = $this->randomcategorias();
+        $novedades = [0, 1];
+        $tendencias = [0, 1];
+        $randomCategorias = "";
         $todasCategorias = $this->todasCategorias();
 
         $data = [

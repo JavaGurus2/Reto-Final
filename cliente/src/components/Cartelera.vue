@@ -2,7 +2,7 @@
 //
 import PeliSerieItem from './PeliSerieItem.vue'
 import CategoriaItem from './CategoriaItem.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 
 const PROTOCOLO = 'http'
 const DIRECCION = 'localhost:8000'
@@ -41,7 +41,7 @@ const miListaStorage = JSON.parse(localStorage.getItem('miLista')) || []
 
 const miLista = ref(miListaStorage)
 
-onMounted(async () => {
+onBeforeMount(async () => {
   const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/home`, {
     headers: {
       Authorization: 'Bearer ' + sessionStorage.getItem('token'),
@@ -49,6 +49,7 @@ onMounted(async () => {
     }
   })
   const data = await response.json()
+  categorias.value = data.todasCategorias
   console.log(data)
 })
 </script>
@@ -58,11 +59,13 @@ onMounted(async () => {
       <div class="scroll">
         <form class="categorias-container" style="gap: 1em; text-wrap: nowrap">
           <CategoriaItem
+            v-if="categorias.length > 0"
             v-for="(categoria, index) in categorias"
             :key="index"
             :categoria="categoria"
             @filtradoCategoria="filtradoCategoria"
           />
+          <p v-else>Cargando ...</p>
         </form>
       </div>
     </div>
