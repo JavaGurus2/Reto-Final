@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth.jwt')->get('/peliculas', [APIHomeController::class, 'index']);
 Route::middleware('auth.jwt')->get('/home', [APIHomeController::class, 'rellenar']);
+Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'UserDP']);
+Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
