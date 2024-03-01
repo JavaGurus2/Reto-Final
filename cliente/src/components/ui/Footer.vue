@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router'
 </script>
 <template>
-  <footer class="fixed-bottom row bg-black p-4">
+  <footer class="mt-auto mx-0 row bg-black py-4">
     <div class="col d-flex justify-content-center">
       <RouterLink to="home"
         ><svg
@@ -49,5 +49,9 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 a:hover svg path {
   fill: #777;
+}
+
+footer {
+  border-top: solid 1px #ca40d6;
 }
 </style>
