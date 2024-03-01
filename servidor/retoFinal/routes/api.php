@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIAuthController;
+use App\Http\Controllers\APIPeliculasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
-Route::middleware('auth.jwt')->get('/peliculas', [PeliculasController::class, 'index']);
+Route::middleware('auth.jwt')->get('/peliculas', [APIPeliculasController::class, 'index']);
