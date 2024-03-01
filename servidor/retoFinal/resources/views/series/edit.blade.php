@@ -13,7 +13,7 @@
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="{{ $serie->nombre }}"  required>
+                            value="{{ $serie->nombre }}" required>
                         <div class="invalid-feedback">
                             Por favor ingresa un nombre.
                         </div>
@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen"
-                            value="{{ $serie->imagen }}" >
+                            value="{{ $serie->imagen }}">
                     </div>
 
                     <div class="mb-3">
@@ -54,7 +54,7 @@
 
                     <div class="gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-secondary">Volver</a>
+                        <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary">Volver</a>
                     </div>
                 </form>
             </div>

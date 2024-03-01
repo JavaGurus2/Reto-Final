@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->text("sinopsis");
-            $table->string("archivo");
             $table->text("imagen");
             $table->date("fecha_estreno");
             $table->timestamps();

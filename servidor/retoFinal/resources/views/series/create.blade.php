@@ -39,12 +39,6 @@
                         @endif
                     </div>
 
-                    <div class="form-group">
-                        <label for="archivo">Archivo</label>
-                        <input type="file" name="archivo" id="archivo" class="form-control-file" accept="video/*"
-                            required>
-                        <div class="invalid-feedback" id="archivoFeedback"></div>
-                    </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen" required>
@@ -70,6 +64,28 @@
                                 {{ $errors->first('clasificacion') }}
                             </div>
                         @endif
+                    </div>
+                    <!-- CATEGORIAS -->
+                    <div class="mb-3">
+                        <div class="card p-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+
+                            <div class="row">
+                                @foreach ($categorias as $categoria)
+                                    <div class="col-6 col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="categorias[]"
+                                                value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
+                                            <label class="form-check-label"
+                                                for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @error('categorias[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
 

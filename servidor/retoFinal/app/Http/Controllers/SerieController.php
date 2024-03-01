@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actore;
+use App\Models\Categoria;
 use App\Models\Serie;
 use App\Models\Temporada;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class SerieController extends Controller
 
     public function create()
     {
-        return view('series.create');
+        $categorias = Categoria::all();
+        return view('series.create', compact("categorias"));
     }
 
 
@@ -33,7 +35,6 @@ class SerieController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'archivo' => 'mimes:mp4,mov,avi',
             'imagen' => 'nullable',
             'fecha_estreno' => [
                 'required',
@@ -51,18 +52,20 @@ class SerieController extends Controller
         $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
 
-        // Guardar el archivo
-        $archivo = $request->file('archivo')->store('public/videos');
-        $archivoUrl = str_replace('public/', 'storage/', $archivo);
 
-        Serie::create([
+
+        $serie = Serie::create([
             'nombre' => $request->input('nombre'),
             'sinopsis' => $request->input('sinopsis'),
-            'archivo' => $archivoUrl,
             'imagen' => $imagenUrl,
             'fecha_estreno' => $request->input('fecha_estreno'),
 
         ]);
+
+        $categoriasSeleccionadas = $request->input('categorias', []);
+
+        // Asociar las categorías al producto
+        $serie->categorias()->attach($categoriasSeleccionadas);
 
         return redirect()->route('series.index')->with('success', 'La serie ha sido creada correctamente.');
     }
@@ -86,7 +89,6 @@ class SerieController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'archivo' => 'required|string',
             'imagen' => 'nullable'
         ]);
         $serie->update($request->all());

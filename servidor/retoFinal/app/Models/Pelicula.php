@@ -16,12 +16,12 @@ class Pelicula extends Model
 
     public function categorias()
     {
-        return $this->belongsToMany(Categoria::class);
+        return $this->belongsToMany(Categoria::class, "pelicula_categoria");
     }
 
     public function actores()
     {
-        return $this->belongsToMany(Actore::class);
+        return $this->belongsToMany(Actore::class, "pelicula_actor", "pelicula_id", "actor_id");
     }
 
     public function descargas()
