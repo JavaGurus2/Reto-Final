@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/PerfilView.vue')
     },
     {
-      path: '/pelicula',
+      path: '/peliculas/:id',
       name: 'pelicula',
       component: () => import('../views/PeliculaView.vue')
     }
