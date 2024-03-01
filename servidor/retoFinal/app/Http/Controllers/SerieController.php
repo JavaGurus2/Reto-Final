@@ -35,6 +35,7 @@ class SerieController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
+            'clasificacion' => 'required|string|max:255',
             'imagen' => 'nullable',
             'fecha_estreno' => [
                 'required',
@@ -53,10 +54,10 @@ class SerieController extends Controller
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
 
 
-
         $serie = Serie::create([
             'nombre' => $request->input('nombre'),
             'sinopsis' => $request->input('sinopsis'),
+            'clasificacion' => $request->input('clasificacion'),
             'imagen' => $imagenUrl,
             'fecha_estreno' => $request->input('fecha_estreno'),
 
@@ -89,7 +90,18 @@ class SerieController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'sinopsis' => 'required|string|max:500',
-            'imagen' => 'nullable'
+            'clasificacion' => 'required|string|max:255',
+            'imagen' => 'nullable',
+            'fecha_estreno' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (strtotime($value) > strtotime(now())) {
+                        $fail('La fecha no puede ser posterior a la actual.');
+                    }
+                },
+            ],
+
         ]);
         $serie->update($request->all());
 

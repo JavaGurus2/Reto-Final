@@ -19,13 +19,6 @@
                             </div>
                         @endif
                     </div>
-                    <div class="mb-8">
-                        <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
-                        @error('imagen')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
 
                     <div class="d-grid gap-2 mt-4">
                         <input type="submit" class="btn btn-primary" value="Crear">
