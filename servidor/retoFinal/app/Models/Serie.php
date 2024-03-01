@@ -30,4 +30,14 @@ class Serie extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function categorias()
+    {
+        return $this->belongsToMany(Categoria::class, "serie_categoria");
+    }
+
+    public function actores()
+    {
+        return $this->belongsToMany(Actore::class, "serie_actor", "serie_id", "actor_id");
+    }
 }
