@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("apellido");
             $table->string("email");
             $table->text("imagen");
-            $table->string("rol");
             $table->timestamps();
         });
     }
