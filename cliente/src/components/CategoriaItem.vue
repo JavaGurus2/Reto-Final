@@ -17,7 +17,11 @@ const emit = defineEmits(['filtradoCategoria'])
     @click="
       () => {
         seleccionado = !seleccionado // Actualiza el valor de seleccionado
-        emit('filtradoCategoria', { id: categoria.id, seleccionado: seleccionado })
+        emit('filtradoCategoria', {
+          categoria: categoria,
+          seleccionado: seleccionado,
+          peliserie: null
+        })
       }
     "
     >{{ categoria.nombre }}</label

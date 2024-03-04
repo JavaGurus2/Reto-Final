@@ -16,21 +16,32 @@ const filtrado = ref(false)
 const categoriasPeliSerie = ref([])
 
 // Funcion para filtrar por categorias
-const categoriasFiltradas = ref([1])
+const categoriasFiltradas = ref([])
 
 async function filtradoCategoria(categoria) {
-  console.log(categoria)
-  if (!categoria.seleccionado) {
-    console.log('no selec')
-    categoriasPeliSerie.value = categoriasPeliSerie.value.filter((categoriaPeliSerie) => {
-      return categoriaPeliSerie.id == categoria.id
-    })
+  if (categoria.seleccionado) {
+    categoria.peliserie = await buscarContenidoCategoria(categoria.categoria.id)
+    categoriasFiltradas.value.push(categoria)
   } else {
-    // Si selec
-    console.log('Si selec')
+    categoriasFiltradas.value = categoriasFiltradas.value.filter((cat) => {
+      return cat.categoria.id != categoria.categoria.id
+    })
   }
-  console.log(categoriasPeliSerie.value)
   filtrado.value = true
+  if (categoriasFiltradas.value.length == 0) {
+    filtrado.value = false
+  }
+}
+
+async function buscarContenidoCategoria(categoria_id) {
+  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/home/${categoria_id}`, {
+    headers: {
+      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await response.json()
+  return [...data.peliculas, ...data.series]
 }
 
 const novedades = ref([])
@@ -52,6 +63,12 @@ onBeforeMount(async () => {
   categorias.value = data.todasCategorias
   novedades.value = [...data.novedades.peliculas, ...data.novedades.series]
   tendencias.value = [...data.tendencias.peliculas, ...data.tendencias.series]
+  categoriasPeliSerie.value = [...data.randomCategorias]
+  // Juntar las series y las peliculas
+  for (let i = 0; i < categoriasPeliSerie.value.length; i++) {
+    const elemento = categoriasPeliSerie.value[i]
+    elemento.peliserie = [...elemento.peliculas, ...elemento.series]
+  }
 })
 </script>
 <template>
@@ -106,39 +123,38 @@ onBeforeMount(async () => {
     <hr />
     <!-- Random o categorias seleccionadas -->
     <div
-      v-if="!filtrado"
+      v-if="!filtrado && categoriasFiltradas.length == 0"
       v-for="(elemento, index) in categoriasPeliSerie"
       :key="index"
       class="col-12 mt-2"
     >
-      <h2>{{ elemento.nombre }}</h2>
+      <h2>{{ elemento.categoria.nombre }}</h2>
       <!-- Primero el de las 5 random -->
       <div class="scroll">
         <div class="peliserie-container">
           <PeliSerieItem
-            v-for="(item, index) in elemento.peliculas_series"
+            v-for="(item, index) in elemento.peliserie"
             :key="index"
             :peliserie="item"
-            @filtradoCategoria="filtradoCategoria"
           />
         </div>
       </div>
     </div>
 
     <!-- El del filtrado -->
-    <!-- <div v-else class="col-12 mt-2">
-      <h2>{{ categoriasPeliSerie[0].nombre }}</h2>
+    <div v-else v-for="(elemento, i) in categoriasFiltradas" :key="i" class="col-12 mt-2">
+      <h2>{{ elemento.categoria.nombre }}</h2>
+      <!-- Primero el de las 5 random -->
       <div class="scroll">
         <div class="peliserie-container">
           <PeliSerieItem
-            v-for="(elemento, index) in categoriasPeliSerie[0].peliculas_series"
+            v-for="(item, index) in elemento.peliserie"
             :key="index"
-            :peliserie="elemento"
-            @filtradoCategoria="filtradoCategoria"
+            :peliserie="item"
           />
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
