@@ -1,39 +1,38 @@
-@use "funciones";
+@use "funciones" as funciones;
 
 //Estilos generales para la tabla
 table {
     border-collapse: collapse;
     width: 100%;
-  }
-  
+}
+
 th,
 td {
-border: 1px solid black;
-padding: 1rem;
+    border: 1px solid black;
+    padding: 1rem;
 }
 
 //Establezco el número máximo de columnas
 $inicio: 1;
-$fin: 5;
-
+$fin: 11;
 
 @for $num from $inicio to $fin {
-  tbody tr:nth-child(#{$num}) td {
-    background-color: funciones.colum-color($num);
-  }
+    tbody tr:nth-child(#{$num}) td {
+        background-color: funciones.colum-color($num);
+    }
 }
 
 //tabla index
 
 /* custom-styles.css */
 .card-custom {
-  box-shadow: 0 0.25rem 1rem rgba(138, 43, 226, 0.2); 
-  border-color: #6c757d; 
+  box-shadow: 0 0.25rem 1rem rgba(138, 43, 226, 0.2);
+  border-color: #6c757d;
 }
 
 .card-header-custom {
-  background-color: #800080; 
-  color: #ffffff; 
+  background-color: #800080;
+  color: #ffffff;
 }
 
 /* Estilos para la ventana modal */
