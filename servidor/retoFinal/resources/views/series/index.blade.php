@@ -12,15 +12,21 @@
                             class="bg-gradient-primary bg-dark rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                             <h6 class="text-white text-capitalize ps-3">Tabla de Series</h6>
 
-                                <a href="{{ route('series.create') }}" class="btn btn-success btn-md bg-gradient mb-3 mx-3">
-                                    <i class="fa-solid fa-plus"></i><span class="mx-3">Añadir Serie</span>
-                                </a>
+                            <a href="{{ route('series.create') }}" class="btn btn-success btn-md bg-gradient mb-3 mx-3">
+                                <i class="fa-solid fa-plus"></i><span class="mx-3">Añadir Serie</span>
+                            </a>
 
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
+                            <!--  componente de búsqueda -->
+                            @include('_components.search', [
+                                'route' => route('series.index'),
+                                'placeholder' => 'Buscar por título',
+                            ])
+                            <table id="indexTable"
+                                class="table table-striped table-hover align-items-center mb-0 p-4 text-center">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -36,8 +42,7 @@
                                             <td>{{ $serie->fecha_estreno }}</td>
 
                                             <td class="p-1">
-                                                <a href="{{ route('series.show', $serie) }}"
-                                                    class="btn btn-primary btn-md">
+                                                <a href="{{ route('series.show', $serie) }}" class="btn btn-primary btn-md">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"

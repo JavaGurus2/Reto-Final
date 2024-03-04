@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
-    @vite(['resources/sass/app.scss'])
     @vite(['resources/css/app.css'])
 </head>
 
@@ -42,7 +41,7 @@
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
                             <li class="nav-item m-2 p-2">
-                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                <a href="##" class="text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
                                     <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
                                     <span class="d-md-inline p-1 ">Panel</span>
                                 </a>
@@ -104,7 +103,7 @@
                                     <strong>{{ auth()->user()->name }}</strong>
                                 </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item" href="##">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -144,7 +143,8 @@
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
                             <li class="nav-item m-2 p-2">
-                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                <a href="{{ route('home') }}"
+                                    class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
                                     <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
                                     <span class="d-none d-md-inline p-1 ">Panel</span>
                                 </a>
@@ -181,7 +181,7 @@
                             <a href="{{ route('actores.index') }}"
                                 class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
                                 <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline ">Actores</span>
+                                <span class="d-none d-md-inline " style="color: white">Actores</span>
                             </a>
                         </li>
                         <li class="nav-item m-2 p-2">
@@ -200,13 +200,14 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt=""
-                                        width="32" height="32" class="rounded-circle me-2">
+
+                                    <img src="{{ asset(auth()->user()->imagen) }}" alt="" width="32"
+                                        height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 
                                 </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item" href="##">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -231,7 +232,9 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 ">
+            <div class="col px-md-4 min-vh-100 colorfondo">
+                @include('layouts._partials.messages')
+
                 @yield('content')
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\EpisodioController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SerieController;
 use App\Http\Controllers\TemporadaController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -88,3 +89,11 @@ Route::get('/usuarios/{user}', [UsuarioController::class, 'show'])->name('usuari
 Route::get('/usuarios/{user}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
 Route::put('/usuarios/{user}/update', [UsuarioController::class, 'update'])->name('usuarios.update');
 Route::delete('/usuarios/{user}/delete', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+
+
+//perfil
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name("perfil");
+
+Route::put('/perfil/{user}/update', [UserProfileController::class, 'update'])->name('perfil.update');

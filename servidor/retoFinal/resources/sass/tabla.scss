@@ -1,0 +1,67 @@
+@use "funciones";
+
+//Estilos generales para la tabla
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+th,
+td {
+border: 1px solid black;
+padding: 1rem;
+}
+
+//Establezco el número máximo de columnas
+$inicio: 1;
+$fin: 5;
+
+
+@for $num from $inicio to $fin {
+  tbody tr:nth-child(#{$num}) td {
+    background-color: funciones.colum-color($num);
+  }
+}
+
+//tabla index
+
+/* custom-styles.css */
+.card-custom {
+  box-shadow: 0 0.25rem 1rem rgba(138, 43, 226, 0.2); 
+  border-color: #6c757d; 
+}
+
+.card-header-custom {
+  background-color: #800080; 
+  color: #ffffff; 
+}
+
+/* Estilos para la ventana modal */
+.modal-content-custom {
+  background-color: #ffffff; /* Color de fondo */
+  border: 2px solid #6c757d; /* Borde */
+}
+
+.modal-header-custom {
+  background-color: #800080; /* Color del encabezado */
+  color: #ffffff; /* Color del texto del encabezado */
+  border-bottom: 1px solid #6c757d; /* Borde inferior */
+}
+
+.modal-body-custom {
+  color: #000000; /* Color del texto del cuerpo */
+}
+
+.modal-footer-custom {
+  border-top: 1px solid #6c757d; /* Borde superior */
+}
+
+/* Estilos adicionales */
+.modal-dialog-custom {
+  max-width: 800px; /* Ancho máximo del modal */
+}
+
+.table-hidden {
+  display: none;
+}
+
