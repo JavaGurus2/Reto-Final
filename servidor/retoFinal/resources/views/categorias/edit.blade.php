@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
                 <h1 class="mb-4">Editar Categoria</h1>
                 <form action="{{ route('categorias.update', $categoria) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple">Actualizar</button>
+                        <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

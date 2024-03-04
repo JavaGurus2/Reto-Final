@@ -11,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Información del actor/actriz
+                   <h3>Información del actor/actriz</h3>
                 </div>
                 <div class="card-body">
                     <dl class="row">

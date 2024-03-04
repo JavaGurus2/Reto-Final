@@ -6,7 +6,7 @@
             <div class="col-md-8 ">
                 <div class="card card-custom">
                     <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark">{{ __('series') }}</span>
+                        <span class="text-dark"><h3>{{ __('series') }}</h3></span>
                         <a href="{{ route('series.create') }}" class="btn btn-success">Crear serie</a>
                     </div>
 

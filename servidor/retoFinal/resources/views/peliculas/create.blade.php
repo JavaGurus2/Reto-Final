@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-5">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Peliculas') }}</div>
+                    <div class="card-header"><h3>{{ __('Peliculas') }}</h3></div>
 
                     <div class="card-body">
                         @if ($errors->any())
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Crear Película</button>
+                            <button type="submit" class="btn bg-purple">Crear Película</button>
                         </form>
                     </div>
                 </div>

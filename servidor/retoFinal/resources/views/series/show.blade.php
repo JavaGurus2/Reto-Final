@@ -3,7 +3,7 @@
 @section('title', 'Ver Serie')
 
 @section('content')
-    <div class="row d-flex justify-content-center align-items-center my-5 border-dark shadow-lg p-4 rounded bg-secondary">
+    <div class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
         <div class="col-6 justify-content-center align-items-center">
             <div>
                 <h1 class="mb-4">Detalle de la serie</h1>
@@ -58,7 +58,7 @@
         <div class="col-6 my-5">
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between ">
-                    <span class="text-dark">{{ __('temporadas') }}</span>
+                    <span class="text-dark"><h4>{{ __('temporadas') }}</h4></span>
                     <a href="{{ route('temporadas.create', $serie) }}" class="btn btn-success">Crear temporada</a>
                 </div>
 

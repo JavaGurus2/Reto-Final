@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-7">
+        <div class="row justify-content-center">
+            <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
                 <h1 class="mb-4">Crear Serie</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -113,9 +113,9 @@
 
 
 
-                    <div class="d-grid gap-2 mt-4">
-                        <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('series.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <div class="d-grid gap-3 m-5">
+                        <input type="submit" class="btn bg-purple" value="Crear">
+                        <a href="{{ route('series.index') }}" class="btn btn-warning">Cancelar</a>
                     </div>
                 </form>
             </div>

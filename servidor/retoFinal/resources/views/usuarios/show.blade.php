@@ -11,7 +11,7 @@
 
             <div class="card border">
                 <div class="card-header">
-                    Información del usuario
+                    <h3>Información del usuario</h3>
                 </div>
                 <div class="card-body  ">
                     <dl class="row ">

@@ -6,7 +6,7 @@
             <div class="col-md-8 ">
                 <div class="card card-custom">
                     <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark">{{ __('actores') }}</span>
+                        <span class="text-dark"><h3>{{ __('actores') }}</h3></span>
                         <a href="{{ route('actores.create') }}" class="btn btn-success">Crear actor</a>
                     </div>
 

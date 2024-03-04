@@ -3,15 +3,15 @@
 @section('title', 'Ver Episodio')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-8  my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
             <div>
                 <h1 class="mb-4">Detalle del episodio</h1>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    Información del episodio
+                   <h3> Información del episodio</h3>
                 </div>
                 <div class="card-body">
                     <dl class="row">
@@ -26,19 +26,18 @@
                         <dd class="col-sm-8">{{ $episodio->fecha_estreno }}</dd>
                         <dt class="col-sm-4">Duracion:</dt>
                         <dd class="col-sm-8">{{ $episodio->duracion }}</dd>
-                        <dt class="col-sm-4">Imagen:</dt>
+                        <dt class="col-sm-4">Episodio:</dt>
                         <dd class="col-sm-8">
-                            <video controls style="max-width: 300px;">
+                            <video class="rounded" controls style="max-width: 300px;">
                                 <source src="{{ asset($episodio->archivo) }}">
                             </video>
                         </dd>
 
                     </dl>
                 </div>
-                <div class="px-3 mt-4">
-                    <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}"
-                        class="btn btn-primary">Editar</a>
+                <div class="px-3 mt-4 justify-content-center">
+                    <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}" class="btn bg-purple">Editar</a>
+                    <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="btn btn-warning me-2">Volver</a>
                 </div>
             </div>
         </div>

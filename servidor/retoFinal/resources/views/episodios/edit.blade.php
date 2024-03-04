@@ -49,8 +49,8 @@
 
 
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('episodios.show', $episodio) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple">Actualizar</button>
+                        <a href="{{ route('episodios.show', $episodio) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

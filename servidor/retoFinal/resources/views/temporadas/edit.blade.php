@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
             <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
                 <h1 class="mb-4">Editar Temporada</h1>
                 <form action="{{ route('temporadas.update', [$serie, $temporada]) }}" method="POST" class="needs-validation"

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -48,7 +48,7 @@
                         <label for="imagen" class="form-label">imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($actore->imagen))
-                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" style="max-width: 100px;">
+                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" class="my-4 rounded" style="max-width: 300px;">
                         @endif
 
                     </div>

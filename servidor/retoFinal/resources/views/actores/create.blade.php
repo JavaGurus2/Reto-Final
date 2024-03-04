@@ -43,9 +43,9 @@
                         @enderror
                     </div>
 
-                    <div class="d-grid gap-2 mt-4">
+                    <div class="d-grid gap-2 m-5">
                         <input type="submit" class="btn bg-purple " value="Crear">
-                        <a href="{{ route('actores.index') }}" class="btn btn-primary">Cancelar</a>
+                        <a href="{{ route('actores.index') }}" class="btn btn-warning">Cancelar</a>
                     </div>
                 </form>
             </div>
