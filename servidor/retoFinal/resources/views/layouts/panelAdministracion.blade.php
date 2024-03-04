@@ -212,14 +212,16 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                </ul>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger w-80 m-2">
-                                        <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
-                                    </button>
-                                </form>
+                                    <li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger w-80 m-2">
+                                                <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
+                                            </button>
+                                        </form>
+                                    </li>
 
+                                </ul>
 
                             </div>
                             <label class="switch ms-3" for="dark-mode-toggle">
