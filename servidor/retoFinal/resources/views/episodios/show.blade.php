@@ -17,21 +17,28 @@
                     <dl class="row">
 
                         <dt class="col-sm-4">Nombre:</dt>
-                        <dd class="col-sm-8">{{ $episodio->nombre }}</dd>
+                        <dd class="col-sm-8">{{ $episodio->titulo }}</dd>
                         <dt class="col-sm-4">Numero:</dt>
                         <dd class="col-sm-8">{{ $episodio->numero }}</dd>
-                        <dt class="col-sm-4">Email:</dt>
+                        <dt class="col-sm-4">Sinopsis:</dt>
                         <dd class="col-sm-8">{{ $episodio->sinopsis }}</dd>
+                        <dt class="col-sm-4">Fecha estreno:</dt>
+                        <dd class="col-sm-8">{{ $episodio->fecha_estreno }}</dd>
                         <dt class="col-sm-4">Duracion:</dt>
                         <dd class="col-sm-8">{{ $episodio->duracion }}</dd>
                         <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8">{{ $episodio->archivo }}</dd>
+                        <dd class="col-sm-8">
+                            <video controls style="max-width: 300px;">
+                                <source src="{{ asset($episodio->archivo) }}">
+                            </video>
+                        </dd>
 
                     </dl>
                 </div>
                 <div class="px-3 mt-4">
-                    <a href="{{ route('episodios.index') }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('episodios.edit', $episodio) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="btn btn-secondary me-2">Volver</a>
+                    <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}"
+                        class="btn btn-primary">Editar</a>
                 </div>
             </div>
         </div>

@@ -4,20 +4,14 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
                 <h1 class="mb-4">Editar Temporada</h1>
-                <form action="{{ route('temporadas.update', $temporada) }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('temporadas.update', [$serie, $temporada]) }}" method="POST" class="needs-validation"
+                    novalidate>
                     @csrf
                     @method('PUT')
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="{{ $temporada->nombre }}"  required>
-                        <div class="invalid-feedback">
-                            Por favor ingresa un nombre.
-                        </div>
-                    </div>
+
                     <div class="mb-3">
                         <label for="numero" class="form-label">Numero</label>
                         <input type="number" class="form-control" id="numero" name="numero"
@@ -28,7 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="fecha_estreno" class="form-label">Fecha de Estreno</label>
-                        <input type="number" class="form-control" id="fecha_estreno" name="fecha_estreno"
+                        <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno"
                             value="{{ $temporada->fecha_estreno }}" required>
                         <div class="invalid-feedback">
                             Por favor ingresa la fecha de estreno
@@ -36,8 +30,8 @@
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('temporadas.show', $temporada) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple">Actualizar</button>
+                        <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

@@ -4,19 +4,19 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-7">
+        <div class="row justify-content-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
+            <div class="col-7 ">
                 <h1 class="mb-4">Crear Usuario</h1>
                 @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                <form action="{{ route('usuarios.store') }}" method="POST"  enctype="multipart/form-data">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -53,18 +53,21 @@
                     </div>
 
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1" >
+                        <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1">
                         <label class="form-check-label" for="rol">Asignar Rol</label>
                     </div>
 
 
-                    <div class="d-grid gap-2 mt-4">
-                        <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <div class="mb-3 d-flex justify-content-start ">
+                        <input type="submit" class="btn btn-primary bg-purple" style="width: 200px" value="Crear">
+                    </div>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <a href="{{ route('usuarios.index') }}" class="btn btn-warning" style="width: 200px">Cancelar</a>
                     </div>
                 </form>
             </div>
         </div>
+
     </div>
 
 

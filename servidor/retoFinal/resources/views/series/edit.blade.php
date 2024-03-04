@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center  ">
+            <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
                 <h1 class="mb-4">Editar Serie</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -110,8 +110,8 @@
 
 
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple ">Actualizar</button>
+                        <a href="{{ route('series.show', $serie) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

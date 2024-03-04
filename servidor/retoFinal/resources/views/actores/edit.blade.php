@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -46,16 +46,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen" >
+                        <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($actore->imagen))
-                        <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película"
-                            style="max-width: 100px;">
-                    @endif
+                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" style="max-width: 100px;">
+                        @endif
 
                     </div>
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple">Actualizar</button>
+                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

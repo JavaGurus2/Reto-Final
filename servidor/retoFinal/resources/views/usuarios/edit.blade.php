@@ -5,32 +5,33 @@
 @section('content')
     <div class="container mt-4">
         <div class="row">
-            <div class="col">
+            <div class="col  border border-dark shadow-lg p-4 rounded bg-secondary">
                 <h1 class="mb-4">Editar Usuario</h1>
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-                <form action="{{ route('usuarios.update', $user) }}" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('usuarios.update', $user) }}" method="POST" class="needs-validation"
+                    enctype="multipart/form-data" novalidate>
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name"
-                            value="{{ $user->name }}"  required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}"
+                            required>
                         <div class="invalid-feedback">
                             Por favor ingresa un nombre.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"
-                            value="{{ $user->email }}" required>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
+                            required>
                         <div class="invalid-feedback">
                             Por favor ingresa un correo electrónico.
                         </div>
@@ -46,19 +47,20 @@
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen">
-                            @if (isset($user->imagen))
-                            <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario"
-                                style="max-width: 100px;">
+                        @if (isset($user->imagen))
+                            <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario" class="my-4"
+                                style="max-width: 350px; ">
                         @endif
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1" {{ $user->rol ? 'checked' : '' }}>
+                        <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1"
+                            {{ $user->rol ? 'checked' : '' }}>
                         <label class="form-check-label" for="rol">Asignar Rol</label>
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('usuarios.show', $user) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple">Actualizar</button>
+                        <a href="{{ route('usuarios.show', $user) }}" class="btn btn-warning">Volver</a>
                     </div>
                 </form>
             </div>

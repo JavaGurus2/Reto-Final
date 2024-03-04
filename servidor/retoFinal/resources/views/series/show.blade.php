@@ -3,7 +3,7 @@
 @section('title', 'Ver Serie')
 
 @section('content')
-    <div class="row d-flex justify-content-center align-items-center my-5">
+    <div class="row d-flex justify-content-center align-items-center my-5 border-dark shadow-lg p-4 rounded bg-secondary">
         <div class="col-6 justify-content-center align-items-center">
             <div>
                 <h1 class="mb-4">Detalle de la serie</h1>
@@ -25,8 +25,8 @@
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8">
                             @if (isset($serie->imagen))
-                                <img src="{{ asset($serie->imagen) }}" alt="Imagen de la serie" class="img-fluid rounded"
-                                    style="max-width: 300px;">
+                                <img src="{{ asset($serie->imagen) }}" alt="Imagen de la serie"
+                                    class="img-fluid rounded sombraImagen" style="max-width: 300px;">
                             @endif
                         </dd>
 
@@ -47,8 +47,8 @@
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('series.index') }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('series.edit', $serie) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('series.index') }}" class="btn btn-warning me-2">Volver</a>
+                    <a href="{{ route('series.edit', $serie) }}" class="btn bg-purple">Editar</a>
                 </div>
             </div>
 

@@ -3,8 +3,8 @@
 @section('title', 'Ver Actor/Actriz')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center my-5">
+        <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
             <div>
                 <h1 class="mb-4">Detalle del actor/actriz</h1>
             </div>
@@ -29,8 +29,8 @@
                     </dl>
                 </div>
                 <div class="px-3 mt-4">
-                    <a href="{{ route('actores.index') }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('actores.edit', $actore) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('actores.edit', $actore) }}" class="btn bg-purple">Editar</a>
+                    <a href="{{ route('actores.index') }}" class="btn btn-warning me-2">Volver</a>
                 </div>
             </div>
         </div>

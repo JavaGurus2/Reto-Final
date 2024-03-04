@@ -109,3 +109,12 @@ body {
     background-color: $light-mode-bg;
     color: $light-mode-text !important;
 }
+
+.sombraImagen{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* offsetX offsetY blurRadius color */
+
+}
+
+label{
+    color: black;
+}

@@ -12,9 +12,9 @@
                             class="bg-gradient-primary bg-dark rounded-3 shadow-lg border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                             <h6 class="text-white text-capitalize ps-3">Tabla de Temporadas</h6>
 
-                                <a href="{{ route('temporadas.create') }}" class="btn btn-success btn-md bg-gradient mb-3 mx-3">
-                                    <i class="fa-solid fa-plus"></i><span class="mx-3">Añadir Temporada</span>
-                                </a>
+                            <a href="{{ route('temporadas.create') }}" class="btn btn-success btn-md bg-gradient mb-3 mx-3">
+                                <i class="fa-solid fa-plus"></i><span class="mx-3">Añadir Temporada</span>
+                            </a>
 
                         </div>
                     </div>
@@ -31,8 +31,7 @@
                                 <tbody>
                                     @forelse($temporadas as $temporada)
                                         <tr>
-
-                                            <td>{{ $temporada->nombre }}</td>
+                                            <td>{{ $serie->nombre }}</td>
                                             <td>{{ $temporada->numero }}</td>
 
                                             <td class="p-1">

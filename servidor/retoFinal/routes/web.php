@@ -6,7 +6,6 @@ use App\Http\Controllers\EpisodioController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SerieController;
 use App\Http\Controllers\TemporadaController;
-use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +55,7 @@ Route::delete('/series/{serie}/temporadas/{temporada}/delete', [TemporadaControl
 
 //series temporadas episodios
 Route::get('/series/{serie}/temporadas/{temporada}/episodios', [EpisodioController::class, 'index'])->name('episodios.index');
-Route::get('/series/{serie}/temporadas/{temporada}/episodios/create', [EpisodioController::class, 'create'])->name('episodios.create');
+Route::get('episodios/{serie},{temporada}/create', [EpisodioController::class, 'create'])->name('episodios.create');
 Route::post('/series/{serie}/temporadas/{temporada}/episodios/store', [EpisodioController::class, 'store'])->name('episodios.store');
 Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}', [EpisodioController::class, 'show'])->name('episodios.show');
 Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}/edit', [EpisodioController::class, 'edit'])->name('episodios.edit');
@@ -90,10 +89,9 @@ Route::get('/usuarios/{user}/edit', [UsuarioController::class, 'edit'])->name('u
 Route::put('/usuarios/{user}/update', [UsuarioController::class, 'update'])->name('usuarios.update');
 Route::delete('/usuarios/{user}/delete', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 
-
 //perfil
 Route::get('/perfil', function () {
     return view('perfil');
 })->name("perfil");
 
-Route::put('/perfil/{user}/update', [UserProfileController::class, 'update'])->name('perfil.update');
+Route::put('/perfil/{user}/update', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.update');

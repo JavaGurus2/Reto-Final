@@ -28,7 +28,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($peliculas as $pelicula)
+                                    @forelse ($peliculas as $pelicula)
                                         <tr>
                                             <td>{{ $pelicula->id }}</td>
                                             <td>{{ $pelicula->titulo }}</td>
@@ -80,7 +80,11 @@
 
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td>No hay peliculas</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

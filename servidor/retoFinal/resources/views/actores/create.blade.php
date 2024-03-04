@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-7">
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary">
                 <h1 class="mb-4">Crear Actor/Actriz</h1>
-                <form action="{{ route('actores.store') }}" method="POST"  enctype="multipart/form-data">
+                <form action="{{ route('actores.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="d-grid gap-2 mt-4">
-                        <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('actores.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <input type="submit" class="btn bg-purple " value="Crear">
+                        <a href="{{ route('actores.index') }}" class="btn btn-primary">Cancelar</a>
                     </div>
                 </form>
             </div>

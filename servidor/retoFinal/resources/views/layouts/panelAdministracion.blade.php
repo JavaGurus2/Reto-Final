@@ -21,8 +21,7 @@
 </nav>
 <div class="container-fluid">
 
-    <div class="offcanvas offcanvas-start bg-dark " tabindex="-1" id="sidebar"
-        aria-labelledby="sidebarLabel">
+    <div class="offcanvas offcanvas-start bg-dark " tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
@@ -41,7 +40,8 @@
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
                             <li class="  nav-item m-2 p-2">
-                                <a href="{{ route('home') }}" class=" text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                <a href="{{ route('home') }}"
+                                    class=" text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
                                     <i class=" imagenColor fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
                                     <span class="text-white d-md-inline p-1 ">Panel</span>
                                 </a>
@@ -207,17 +207,18 @@
 
                                 </a>
                                 <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item rounded fondoColor" href="{{ route('perfil') }}">Perfil</a></li>
+                                    <li><a class="dropdown-item rounded fondoColor"
+                                            href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                 </ul>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger w-80 m-2">
-                                                <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
-                                            </button>
-                                        </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger w-80 m-2">
+                                        <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
+                                    </button>
+                                </form>
 
 
                             </div>
@@ -232,7 +233,7 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 colorfondo">
+            <div class="col px-md-4 min-vh-100 ">
                 @include('layouts._partials.messages')
 
                 @yield('content')

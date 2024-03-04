@@ -123,16 +123,16 @@ input:checked + .slider:before {
   transform: scale(1.1);
 }
 
-.colorfondo {
-  background-color: lightgrey;
-}
-
 .ahover {
   transition: transform 0.3s ease;
 }
 
 .ahover:hover {
   transform: scale(1.4);
+}
+
+.btn-warning:hover {
+  transform: scale(1.1);
 }
 
 /*!
@@ -12106,16 +12106,16 @@ input:checked + .slider:before {
   transform: scale(1.1);
 }
 
-.colorfondo {
-  background-color: lightgrey;
-}
-
 .ahover {
   transition: transform 0.3s ease;
 }
 
 .ahover:hover {
   transform: scale(1.4);
+}
+
+.btn-warning:hover {
+  transform: scale(1.1);
 }
 
 table {
@@ -12167,6 +12167,46 @@ tbody tr:nth-child(9) td {
 
 tbody tr:nth-child(10) td {
   background-color: #cccccc;
+}
+
+tbody tr:nth-child(1) td {
+  color: white;
+}
+
+tbody tr:nth-child(2) td {
+  color: black;
+}
+
+tbody tr:nth-child(3) td {
+  color: white;
+}
+
+tbody tr:nth-child(4) td {
+  color: black;
+}
+
+tbody tr:nth-child(5) td {
+  color: white;
+}
+
+tbody tr:nth-child(6) td {
+  color: black;
+}
+
+tbody tr:nth-child(7) td {
+  color: white;
+}
+
+tbody tr:nth-child(8) td {
+  color: black;
+}
+
+tbody tr:nth-child(9) td {
+  color: white;
+}
+
+tbody tr:nth-child(10) td {
+  color: black;
 }
 
 /* custom-styles.css */
@@ -12293,6 +12333,14 @@ body.dark-mode {
 .light-bg {
   background-color: lightgray;
   color: #333 !important;
+}
+
+.sombraImagen {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* offsetX offsetY blurRadius color */
+}
+
+label {
+  color: black;
 }
 
 /*# sourceMappingURL=app.css.map */

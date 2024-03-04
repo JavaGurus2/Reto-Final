@@ -22,6 +22,11 @@ $fin: 11;
     }
 }
 
+@for $num from $inicio to $fin {
+    tbody tr:nth-child(#{$num}) td {
+        color: funciones.text-color($num);
+    }
+}
 //tabla index
 
 /* custom-styles.css */

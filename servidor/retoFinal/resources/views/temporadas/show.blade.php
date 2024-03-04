@@ -3,7 +3,8 @@
 @section('title', 'Ver episodios')
 
 @section('content')
-    <div class="row d-flex justify-content-center align-items-center my-5">
+    <div
+        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
         <div class="col-lg-6">
             <div>
                 <h1 class="mb-4">Detalle de la temporada</h1>
@@ -15,8 +16,8 @@
                 </div>
                 <div class="card-body">
                     <dl class="row">
-                        <dt class="col-sm-4">Nombre:</dt>
-                        <dd class="col-sm-8">{{ $temporada->nombre }}</dd>
+                        <dt class="col-sm-4">Nombre de la serie:</dt>
+                        <dd class="col-sm-8">{{ $serie->nombre }}</dd>
 
                         <dt class="col-sm-4">Número:</dt>
                         <dd class="col-sm-8">{{ $temporada->numero }}</dd>
@@ -26,8 +27,8 @@
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('temporadas.edit', [$temporada, $serie]) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('series.show', $serie) }}" class="btn btn-warning me-2">Volver</a>
+                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn bg-purple">Editar</a>
                 </div>
             </div>
         </div>

@@ -59,7 +59,7 @@ class TemporadaController extends Controller
         return view('temporadas.show', compact('temporada', 'episodios', 'serie'));
     }
 
-    public function edit(Temporada $temporada, Serie $serie)
+    public function edit(Serie $serie, Temporada $temporada)
     {
         return view('temporadas.edit', compact('temporada', 'serie'));
     }
