@@ -16,11 +16,11 @@ class Categoria extends Model
 
     public function peliculas()
     {
-        return $this->belongsToMany(Pelicula::class);
+        return $this->belongsToMany(Pelicula::class, "pelicula_categoria");
     }
 
     public function series()
     {
-        return $this->belongsToMany(Serie::class);
+        return $this->belongsToMany(Serie::class, "serie_categoria");
     }
 }
