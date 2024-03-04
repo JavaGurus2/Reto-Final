@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episodio;
 use App\Models\Serie;
 use App\Models\Temporada;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class TemporadaController extends Controller
 
     public function index(Serie $serie)
     {
-        $temporadas = $serie->temporadas;
+        $temporadas = $serie->temporadas()->paginate(10);
         return view('temporadas.index', compact('serie', 'temporadas'));
     }
 
@@ -32,32 +33,27 @@ class TemporadaController extends Controller
         $request->validate([
             'numero' => 'required|integer',
             'fecha_estreno' => 'required|date',
+            'serie_id' => 'required|integer'
         ]);
 
-
-        /*
-         $serie->temporadas()->create([
+        Temporada::create([
             'numero' => $request->numero,
             'fecha_estreno' => $request->fecha_estreno,
+            'serie_id' => $request->serie_id
         ]);
-        */
 
-        $temporada = new Temporada();
-        $temporada->serie_id = $serie->id;
-        $temporada->numero = $request->numero;
-        $temporada->fecha_estreno = $request->fecha_estreno;
-        $temporada->save();
-
-
-        return redirect()->route('temporadas.index', $serie->id)->with('success', 'Temporada creada correctamente.');
+        return redirect()->route('series.show', $serie->id)->with('success', 'Temporada creada correctamente.');
     }
+
+
+
 
 
     //bea bea bea
 
-    public function show(Temporada $temporada, Serie $serie)
+    public function show(Serie $serie, Temporada $temporada)
     {
-        $episodios = $temporada->episodios;
+        $episodios = $temporada->episodios()->paginate(10);
 
 
         return view('temporadas.show', compact('temporada', 'episodios', 'serie'));
@@ -69,27 +65,27 @@ class TemporadaController extends Controller
     }
 
 
-    public function update(Request $request, Temporada $temporada, Serie $serie)
+    public function update(Request $request, Serie $serie, Temporada $temporada)
     {
         $request->validate([
             'numero' => 'required|integer',
             'fecha_estreno' => 'required|date',
         ]);
 
-
-        $temporada->update([
-            'numero' => $request->numero,
-            'fecha_estreno' => $request->fecha_estreno,
-        ]);
+        // Actualizar los campos de la temporada
+        $temporada->numero = $request->numero;
+        $temporada->fecha_estreno = $request->fecha_estreno;
+        $temporada->save();
 
         return redirect()->route('temporadas.index', $serie->id)->with('success', 'Temporada actualizada correctamente.');
     }
 
 
-    public function destroy(Temporada $temporada, Serie $serie)
+
+    public function destroy(Serie $serie, Temporada $temporada)
     {
         $temporada->delete();
 
-        return redirect()->route('temporadas.index', $serie->id)->with('success', 'Temporada eliminada correctamente.');
+        return redirect()->route('series.show', $serie->id)->with('success', 'Temporada eliminada correctamente.');
     }
 }

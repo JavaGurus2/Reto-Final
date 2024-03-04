@@ -52,7 +52,7 @@ class SerieController extends Controller
         ]);
 
         // Guardar la imagen con un nombre único
-        $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
+        $imagen = $request->file('imagen')->store('public/imagenes');
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
 
 
@@ -83,7 +83,7 @@ class SerieController extends Controller
     {
         $categorias = Categoria::all();
         $actores = Actore::all();
-        $temporadas = $serie->temporadas;
+        $temporadas = $serie->temporadas()->paginate(10);
         return view('series.show', compact('serie', 'temporadas', "actores", "categorias"));
     }
 
@@ -126,7 +126,7 @@ class SerieController extends Controller
             Storage::delete(str_replace('storage/', 'public/', $serie->imagen));
 
             // Guardar la nueva imagen con un nombre único
-            $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
+            $imagen = $request->file('imagen')->store('public/imagenes');
             $serie->imagen = str_replace('public/', 'storage/', $imagen);
         }
 

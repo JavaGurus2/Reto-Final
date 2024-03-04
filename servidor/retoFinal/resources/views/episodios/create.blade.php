@@ -7,12 +7,22 @@
         <div class="row">
             <div class="col-7">
                 <h1 class="mb-4">Crear Episodio</h1>
-                <form action="{{ route('episodios.store') }}" method="POST"  enctype="multipart/form-data">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('episodios.store', [$serie, $temporada]) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="titulo" required>
                         @if ($errors->has('nombre'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('nombre') }}
@@ -38,12 +48,11 @@
                         @endif
                     </div>
 
-                    <div class="mb-3">
-                        <label for="archivo" class="form-label">Archivo</label>
-                        <input type="file" class="form-control" id="archivo" name="archivo"  required>
-                        @error('archivo')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="form-group">
+                        <label for="archivo">Archivo</label>
+                        <input type="file" name="archivo" id="archivo" class="form-control-file" accept="video/*"
+                            required>
+                        <div class="invalid-feedback" id="archivoFeedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="duracion" class="form-label">Duración (minutos)</label>
@@ -54,11 +63,19 @@
                             </div>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <label for="fecha_estreno">Fecha de Estreno</label>
+                        <input type="date" name="fecha_estreno" id="fecha_estreno" class="form-control" required>
+                        <div class="invalid-feedback" id="fechaEstrenoFeedback"></div>
+                    </div>
+
+                    <input type="hidden" name="temporada_id" value="{{ $temporada->id }}">
 
 
                     <div class="d-grid gap-2 mt-4">
                         <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('episodios.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('episodios.index', [$serie, $temporada]) }}"
+                            class="btn btn-secondary">Cancelar</a>
                     </div>
                 </form>
             </div>
