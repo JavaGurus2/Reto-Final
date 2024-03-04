@@ -211,14 +211,16 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                </ul>
+                                    <li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger w-80 m-2">
                                                 <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
                                             </button>
                                         </form>
+                                    </li>
 
+                                    </ul>
 
                             </div>
                             <label class="switch ms-3" for="dark-mode-toggle">
@@ -232,7 +234,7 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 colorfondo">
+            <div class="col px-md-4 min-vh-100 ">
                 @include('layouts._partials.messages')
 
                 @yield('content')
