@@ -40,6 +40,7 @@ class APIHomeController extends Controller
                 'categoria' => $categoria,
                 'peliculas' => $peliculas,
                 'series' => $series,
+                'peliserie' => null,
             ];
         });
 
@@ -57,8 +58,8 @@ class APIHomeController extends Controller
     {
         $novedades = $this->novedades();
         $tendencias = $this->tendencias();
-        // $randomCategorias = $this->randomcategorias();
-        $randomCategorias = "";
+        $randomCategorias = $this->randomcategorias();
+        // $randomCategorias = "";
         $todasCategorias = $this->todasCategorias();
 
         $data = [
@@ -76,6 +77,12 @@ class APIHomeController extends Controller
 
         return response()->json($data);
     }
-
+    public function filtro(Request $request)
+    {
+        $categoria = Categoria::find($request["categoria"]);
+        $series = $categoria->series()->get();
+        $peliculas = $categoria->peliculas()->get();
+        return response()->json(["peliculas" => $peliculas, "series" => $series]);
+    }
 
 }

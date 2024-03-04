@@ -11,7 +11,7 @@ const { peliserie } = defineProps({
       alt="Card image"
     />
     <div class="card-img-overlay card-busqueda-detalles">
-      <h4 class="card-title">{{ peliserie.titulo }}</h4>
+      <h4 class="card-title">{{ peliserie.titulo || peliserie.nombre }}</h4>
       <p class="card-text">{{ peliserie.sinopsis }}</p>
       <a href="#" class="btn btn-primary">Ver o descargar?</a>
     </div>

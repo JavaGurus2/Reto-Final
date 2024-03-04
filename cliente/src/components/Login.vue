@@ -3,6 +3,7 @@ const PROTOCOLO = 'http'
 const DIRECCION = '127.0.0.1:8000'
 import { ref } from 'vue'
 import Notificacion from './Notificacion.vue'
+import { useRouter } from 'vue-router'
 const email = ref('')
 
 const password = ref('')
@@ -55,7 +56,8 @@ async function validarLogin() {
   await loginApi()
   if (!error.value) {
     // Supuesto usuario recibido de la api
-    emit('logueado')
+    // emit('logueado')
+    window.location.replace('http://localhost:5174/home')
   }
 }
 </script>
