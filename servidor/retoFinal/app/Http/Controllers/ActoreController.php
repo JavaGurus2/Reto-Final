@@ -41,12 +41,13 @@ class ActoreController extends Controller
             // Guardar la imagen con un nombre único
             $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
             $imagenUrl = str_replace('public/', 'storage/', $imagen);
-
+            $binaryData = file_get_contents($request->file("imagen"));
+            $base64 = base64_encode($binaryData);
             Actore::create([
                 'nombre' => $request->input('nombre'),
                 'apellido' => $request->input('apellido'),
                 'email' => $request->input('email'),
-                'imagen' => $imagenUrl
+                'imagen' => $base64
             ]);
             return redirect()->route('actores.index')->with('success', 'Actor/Actriz creado/a correctamente');
         } catch (\Exception $e) {
@@ -88,9 +89,11 @@ class ActoreController extends Controller
                 if ($actore->imagen) {
                     Storage::delete(str_replace('storage/', 'public/', $actore->imagen));
                 }
+                $binaryData = file_get_contents($request->file("imagen"));
+                $base64 = base64_encode($binaryData);
                 // Guardar la nueva imagen con un nombre único
                 $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
-                $actore->imagen = str_replace('public/', 'storage/', $imagen);
+                $actore->imagen = $base64;
             }
             $actore->save();
 

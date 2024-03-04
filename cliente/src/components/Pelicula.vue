@@ -59,7 +59,7 @@ async function cargarPelicula() {
 <template>
   <div class="row g-0">
     <video id="miReproductor" width="640" height="360" controls>
-      <source src="/src/assets/trailer_inazuma.mp4" type="video/mp4" />
+      <source src="http://killercervezas.blog:81/video.mp4" type="video/mp4" />
       Tu navegador no soporta el tag de video.
     </video>
   </div>

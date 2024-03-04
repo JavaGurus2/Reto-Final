@@ -40,14 +40,15 @@ class UsuarioController extends Controller
         // Guardar la imagen
         $imagen = $request->file('imagen')->storeAs('public/imagenes', uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension());
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
-
+        $binaryData = file_get_contents($request->file("imagen"));
+        $base64 = base64_encode($binaryData);
         try {
             $user = User::create([
-                'name'=> $request->input('name'),
-                'email'=>$request->input('email'),
-                'password'=>$request->input('password'),
-                'imagen'=>$imagenUrl,
-                'rol'=> $request->input('rol')
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+                'imagen' => $base64,
+                'rol' => $request->input('rol')
             ]);
             return redirect()->route('usuarios.index')->with('success', 'Usuario creada correctamente');
         } catch (\Exception $e) {
@@ -80,16 +81,18 @@ class UsuarioController extends Controller
 
         // Guardar la nueva imagen si se proporciona
         if ($request->hasFile('imagen')) {
-            Storage::delete(str_replace('storage/','public/', $user->imagen));
+            Storage::delete(str_replace('storage/', 'public/', $user->imagen));
             $imagen = $request->file('imagen')->store('public/imagenes');
-            $user->imagen = str_replace('public/', 'storage/', $imagen);
+            $binaryData = file_get_contents($request->file("imagen"));
+            $base64 = base64_encode($binaryData);
+            $user->imagen = $base64;
 
         }
 
         $user->name = $request->input('name');
-        $user->email= $request->input('email');
-        $user->password= $request->input('password');
-        $user->rol= $request->input('rol');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->rol = $request->input('rol');
 
 
         $user->save();

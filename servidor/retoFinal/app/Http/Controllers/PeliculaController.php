@@ -58,12 +58,13 @@ class PeliculaController extends Controller
         // Guardar el archivo
         $archivo = $request->file('archivo')->store('public/videos');
         $archivoUrl = str_replace('public/', 'storage/', $archivo);
-
+        $binaryData = file_get_contents($request->file("imagen"));
+        $base64 = base64_encode($binaryData);
         // Crear la película en la base de datos
         $pelicula = Pelicula::create([
             'titulo' => $request->input('titulo'),
             'sinopsis' => $request->input('sinopsis'),
-            'imagen' => $imagenUrl,
+            "imagen" => $base64,
             'archivo' => $archivoUrl,
             'fecha_estreno' => $request->input('fecha_estreno'),
         ]);
@@ -87,7 +88,7 @@ class PeliculaController extends Controller
     {
         $categorias = Categoria::all();
         $actores = Actore::all();
-        return view('peliculas.show',  [
+        return view('peliculas.show', [
             "pelicula" => $pelicula,
             "actores" => $actores,
             "categorias" => $categorias,
@@ -100,7 +101,7 @@ class PeliculaController extends Controller
     {
         $categorias = Categoria::all();
         $actores = Actore::all();
-        return view('peliculas.show',  [
+        return view('peliculas.show', [
             "pelicula" => $pelicula,
             "actores" => $actores,
             "categorias" => $categorias,
@@ -137,10 +138,11 @@ class PeliculaController extends Controller
         if ($request->hasFile('imagen')) {
             // Eliminar la imagen anterior si existe
             Storage::delete(str_replace('storage/', 'public/', $pelicula->imagen));
-
+            $binaryData = file_get_contents($request->file("imagen"));
+            $base64 = base64_encode($binaryData);
             // Guardar la nueva imagen
             $imagen = $request->file('imagen')->store('public/imagenes');
-            $pelicula->imagen = str_replace('public/', 'storage/', $imagen);
+            $pelicula->imagen = $base64;
         }
 
         // Actualizar el archivo si se proporciona uno nuevo

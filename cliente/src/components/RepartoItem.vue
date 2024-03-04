@@ -1,11 +1,11 @@
 <script setup>
-const { peliserie } = defineProps({
+const { actor } = defineProps({
   actor: Object
 })
 </script>
 <template>
   <div class="card bg-black card-busqueda text-white" style="--bs-bg-opacity: 0.5">
-    <img class="card-img-top" src="/src/assets/logo.png" alt="Card image" />
+    <img class="card-img-top" :src="`data:image/png;base64,${actor.imagen}`" alt="Card image" />
     <div class="card-img-overlay card-busqueda-detalles">
       <h4 class="card-title">{{ actor.nombre }} {{ actor.apellido }}</h4>
     </div>

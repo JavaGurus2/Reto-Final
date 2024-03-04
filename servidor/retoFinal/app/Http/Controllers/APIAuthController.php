@@ -30,9 +30,10 @@ class APIAuthController extends Controller
     {
 
         $user = User::where('email', $request['referencia'])->first();
-
+        $binaryData = file_get_contents($request->file("imagen"));
+        $base64 = base64_encode($binaryData);
         $user->update([
-            "imagen" => $request['imagen'],
+            "imagen" => $base64,
             "name" => $request['nombre'],
             "email" => $request['email'],
         ]);

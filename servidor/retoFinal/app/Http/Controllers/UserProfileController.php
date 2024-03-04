@@ -27,9 +27,11 @@ class UserProfileController extends Controller
 
         // Guardar la nueva imagen si se proporciona
         if ($request->hasFile('imagen')) {
+            $binaryData = file_get_contents($request->file("imagen"));
+            $base64 = base64_encode($binaryData);
             Storage::delete(str_replace('storage/', 'public/', $user->imagen));
             $imagen = $request->file('imagen')->store('public/imagenes');
-            $user->imagen = str_replace('public/', 'storage/', $imagen);
+            $user->imagen = $base64;
         }
 
         $user->name = $request->input('name');

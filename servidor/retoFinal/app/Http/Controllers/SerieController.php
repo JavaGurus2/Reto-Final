@@ -55,12 +55,13 @@ class SerieController extends Controller
         $imagen = $request->file('imagen')->store('public/imagenes');
         $imagenUrl = str_replace('public/', 'storage/', $imagen);
 
-
+        $binaryData = file_get_contents($request->file("imagen"));
+        $base64 = base64_encode($binaryData);
         $serie = Serie::create([
             'nombre' => $request->input('nombre'),
             'sinopsis' => $request->input('sinopsis'),
             'clasificacion' => $request->input('clasificacion'),
-            'imagen' => $imagenUrl,
+            'imagen' => $base64,
             'fecha_estreno' => $request->input('fecha_estreno'),
 
         ]);
@@ -124,10 +125,11 @@ class SerieController extends Controller
         if ($request->hasFile('imagen')) {
             // Eliminar la imagen anterior si existe
             Storage::delete(str_replace('storage/', 'public/', $serie->imagen));
-
+            $binaryData = file_get_contents($request->file("imagen"));
+            $base64 = base64_encode($binaryData);
             // Guardar la nueva imagen con un nombre único
             $imagen = $request->file('imagen')->store('public/imagenes');
-            $serie->imagen = str_replace('public/', 'storage/', $imagen);
+            $serie->imagen = $base64;
         }
 
         // Guardar los cambios en la base de datos

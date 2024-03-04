@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,11 +14,12 @@ return new class extends Migration
             $table->id();
             $table->string("titulo");
             $table->text("sinopsis");
-            $table->text("imagen");
             $table->string("archivo");
             $table->date("fecha_estreno");
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE peliculas ADD imagen LONGBLOB");
     }
 
     /**
