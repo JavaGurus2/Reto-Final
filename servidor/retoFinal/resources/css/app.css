@@ -11871,6 +11871,30 @@ tbody tr:nth-child(4) td {
   background-color: #cccccc;
 }
 
+tbody tr:nth-child(5) td {
+  background-color: #888888;
+}
+
+tbody tr:nth-child(6) td {
+  background-color: #cccccc;
+}
+
+tbody tr:nth-child(7) td {
+  background-color: #888888;
+}
+
+tbody tr:nth-child(8) td {
+  background-color: #cccccc;
+}
+
+tbody tr:nth-child(9) td {
+  background-color: #888888;
+}
+
+tbody tr:nth-child(10) td {
+  background-color: #cccccc;
+}
+
 /* custom-styles.css */
 .card-custom {
   box-shadow: 0 0.25rem 1rem rgba(138, 43, 226, 0.2);
