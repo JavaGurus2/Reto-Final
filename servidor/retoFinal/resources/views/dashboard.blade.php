@@ -20,7 +20,7 @@
             <div class="row d-flex justify-content-center">
 
                     <div class="col-sm-10 col-md-4 col-lg-3 mb-3">
-                        <div class="card shadow-sm text-center bg-primary bg-gradient text-white">
+                        <div class=" card shadow-sm text-center bg-primary bg-gradient text-white">
                             <div class="card-body p-3">
                                 <h5 class="card-title mb-2">Peliculas</h5>
                                 <a href="#" class="d-block mb-3">

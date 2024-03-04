@@ -1,4 +1,140 @@
 @charset "UTF-8";
+.imagenColor {
+  color: #DB72E5;
+}
+
+.fondoColor:hover {
+  background-color: #DB72E5 !important;
+  color: white;
+}
+
+.panel {
+  color: white;
+}
+
+li {
+  transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+  background-color: #ed87f7;
+  border-radius: 1em;
+  transform: scale(1.1);
+}
+li:hover i {
+  color: black;
+}
+li:hover span {
+  color: white;
+}
+
+/* ESTILOS SWITCH MODO CLARO/OSCURO */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* ESTILOS ICONOS DEL SWITCH*/
+.slider i {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #CA40D6;
+}
+
+.switch i {
+  font-size: 1em;
+}
+
+.slider .fa-moon {
+  left: 10px;
+}
+
+.slider .fa-sun {
+  right: 0px;
+}
+
+/*DASHBOARD*/
+.border-purple {
+  border-color: purple !important;
+  transition: border-color 0.3s ease;
+}
+
+.border-purple:hover {
+  background-color: rgba(110, 66, 193, 0.4) !important;
+}
+
+.bg-purple, .bg-purplea {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.bg-purple {
+  background-color: #DB72E5 !important;
+}
+
+.bg-purplea {
+  background-color: #ed87f7 !important;
+}
+
+.bg-purple:hover, .bg-purplea:hover {
+  background-color: #CA40D6 !important;
+  transform: scale(1.1);
+}
+
+.colorfondo {
+  background-color: lightgrey;
+}
+
+.ahover {
+  transition: transform 0.3s ease;
+}
+
+.ahover:hover {
+  transform: scale(1.4);
+}
+
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -11844,6 +11980,144 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.imagenColor {
+  color: #DB72E5;
+}
+
+.fondoColor:hover {
+  background-color: #DB72E5 !important;
+  color: white;
+}
+
+.panel {
+  color: white;
+}
+
+li {
+  transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+  background-color: #ed87f7;
+  border-radius: 1em;
+  transform: scale(1.1);
+}
+
+li:hover i {
+  color: black;
+}
+
+li:hover span {
+  color: white;
+}
+
+/* ESTILOS SWITCH MODO CLARO/OSCURO */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* ESTILOS ICONOS DEL SWITCH*/
+.slider i {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #CA40D6;
+}
+
+.switch i {
+  font-size: 1em;
+}
+
+.slider .fa-moon {
+  left: 10px;
+}
+
+.slider .fa-sun {
+  right: 0px;
+}
+
+/*DASHBOARD*/
+.border-purple {
+  border-color: purple !important;
+  transition: border-color 0.3s ease;
+}
+
+.border-purple:hover {
+  background-color: rgba(110, 66, 193, 0.4) !important;
+}
+
+.bg-purple, .bg-purplea {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.bg-purple {
+  background-color: #DB72E5 !important;
+}
+
+.bg-purplea {
+  background-color: #ed87f7 !important;
+}
+
+.bg-purple:hover, .bg-purplea:hover {
+  background-color: #CA40D6 !important;
+  transform: scale(1.1);
+}
+
+.colorfondo {
+  background-color: lightgrey;
+}
+
+.ahover {
+  transition: transform 0.3s ease;
+}
+
+.ahover:hover {
+  transform: scale(1.4);
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
