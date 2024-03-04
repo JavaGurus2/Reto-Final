@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
-    @vite(['resources/sass/app.scss'])
     @vite(['resources/css/app.css'])
 </head>
 
@@ -22,14 +21,14 @@
 </nav>
 <div class="container-fluid">
 
-    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebar"
+    <div class="offcanvas offcanvas-start bg-dark " tabindex="-1" id="sidebar"
         aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
             <div class="p-4 text-center">
-                <a href="#" class="d-block mb-3 text-decoration-none">
+                <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                     <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid"
                         alt="">
-                    <span class="fs-4  d-md-inline ">Netflix Egibide</span>
+                    <span class="fs-4  d-md-inline text-white">Netflix Egibide</span>
                 </a>
                 <hr class="w-100">
             </div>
@@ -41,10 +40,10 @@
                 @auth
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
-                            <li class="nav-item m-2 p-2">
-                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
-                                    <span class="d-md-inline p-1 ">Panel</span>
+                            <li class="  nav-item m-2 p-2">
+                                <a href="{{ route('home') }}" class=" text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                    <i class=" imagenColor fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
+                                    <span class="text-white d-md-inline p-1 ">Panel</span>
                                 </a>
                             </li>
                         @endauth
@@ -52,8 +51,8 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('peliculas.index') }}"
                                 class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
-                                <i class="fa-solid fa-list-check  me-3 fs-5 p-1"></i>
-                                <span class=" d-md-inline p-1 ">Peliculas</span>
+                                <i class="imagenColor fa-solid fa-list-check  me-3 fs-5 p-1"></i>
+                                <span class="text-white d-md-inline p-1 ">Peliculas</span>
                             </a>
                         </li>
 
@@ -61,8 +60,8 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('series.index') }}"
                                 class="nav-link{{ request()->is('series') ? ' active' : '' }}">
-                                <i class="fa-solid fa-clipboard me-3 fs-5 p-1"></i>
-                                <span class="d-md-inline p-2">Series</span>
+                                <i class="imagenColor fa-solid fa-clipboard me-3 fs-5 p-1"></i>
+                                <span class="text-white d-md-inline p-2">Series</span>
                             </a>
                         </li>
 
@@ -71,16 +70,16 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('categorias.index') }}"
                                 class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
-                                <span class=" d-md-inline">Categorias</span>
+                                <i class="imagenColor fa-solid fa-people-group  me-3 fs-5 p-1"></i>
+                                <span class="text-white d-md-inline">Categorias</span>
                             </a>
                         </li>
 
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('actores.index') }}"
                                 class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
-                                <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
-                                <span class=" d-md-inline">Actores</span>
+                                <i class="imagenColor fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                <span class="text-white d-md-inline">Actores</span>
                             </a>
                         </li>
 
@@ -88,13 +87,13 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('usuarios.index') }}"
                                 class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
-                                <i class="fa-solid fa-key  me-3 fs-5 p-1"></i>
-                                <span class=" d-md-inline">Usuarios</span>
+                                <i class="imagenColor fa-solid fa-key  me-3 fs-5 p-1"></i>
+                                <span class="text-white d-md-inline">Usuarios</span>
                             </a>
                         </li>
                     </ul>
                     <div class="mt-auto p-4">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center ">
                             <div class="dropdown">
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
@@ -103,8 +102,8 @@
                                         height="32" class="rounded-circle me-2">
                                     <strong>{{ auth()->user()->name }}</strong>
                                 </a>
-                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item" href="##">Perfil</a></li>
+                                <ul class="dropdown-menu text-small shadow fondoColor" aria-labelledby="dropdownUser">
+                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -128,14 +127,14 @@
 
 
     <div class="container-fluid ">
-        <div class="row flex-nowrap min-vh-100">
+        <div class="row flex-nowrap min-vh-100 text-white">
             <div
-                class="bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+                class=" bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
-                    <a href="#" class="d-block mb-3 text-decoration-none">
+                    <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
                             class="img-fluid mx-3" alt="logo">
-                        <span class="fs-4 d-none d-md-inline ">Netflix Egibide</span>
+                        <span class="fs-4 d-none d-md-inline text-white ">Netflix Egibide</span>
                     </a>
                     <hr class="w-100">
                 </div>
@@ -144,9 +143,10 @@
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
                             <li class="nav-item m-2 p-2">
-                                <a href="##" class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
-                                    <i class="fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
-                                    <span class="d-none d-md-inline p-1 ">Panel</span>
+                                <a href="{{ route('home') }}"
+                                    class="nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                    <i class="imagenColor fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
+                                    <span class="d-none d-md-inline p-1 text-white ">Panel</span>
                                 </a>
                             </li>
                         @endauth
@@ -154,8 +154,8 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('peliculas.index') }}"
                                 class="nav-link{{ request()->is('peliculas') ? ' active' : '' }}">
-                                <i class="fa-solid fa-box-open  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline p-1 ">Peliculas</span>
+                                <i class="imagenColor fa-solid fa-box-open  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline p-1 text-white ">Peliculas</span>
                             </a>
                         </li>
 
@@ -163,8 +163,8 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('series.index') }}"
                                 class="nav-link{{ request()->is('series') ? ' active' : '' }}">
-                                <i class="fa-solid fa-receipt me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline p-2">series</span>
+                                <i class="imagenColor fa-solid fa-receipt me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline p-2 text-white">series</span>
                             </a>
                         </li>
 
@@ -172,23 +172,23 @@
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('categorias.index') }}"
                                 class="nav-link{{ request()->is('categorias') ? ' active' : '' }}">
-                                <i class="fa-solid fa-people-group  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline">Categorias</span>
+                                <i class="imagenColor fa-solid fa-people-group  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline text-white">Categorias</span>
                             </a>
                         </li>
 
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('actores.index') }}"
                                 class="nav-link{{ request()->is('actores') ? ' active' : '' }}">
-                                <i class="fa-solid fa-users  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline ">Actores</span>
+                                <i class="imagenColor fa-solid fa-users  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline text-white " style="color: white">Actores</span>
                             </a>
                         </li>
                         <li class="nav-item m-2 p-2">
                             <a href="{{ route('usuarios.index') }}"
                                 class="nav-link{{ request()->is('usuarios') ? ' active' : '' }}">
-                                <i class="fa-solid fa-user-shield  me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline  p-1">Usuarios</span>
+                                <i class="imagenColor fa-solid fa-user-shield  me-3 fs-5 p-1"></i>
+                                <span class="d-none d-md-inline  p-1 text-white">Usuarios</span>
                             </a>
                         </li>
 
@@ -200,25 +200,26 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt=""
-                                        width="32" height="32" class="rounded-circle me-2">
+
+                                    <img src="{{ asset(auth()->user()->imagen) }}" alt="" width="32"
+                                        height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 
                                 </a>
-                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item" href="##">Perfil</a></li>
+                                <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser">
+                                    <li><a class="dropdown-item rounded fondoColor" href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li>
+                                </ul>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger w-80 m-2">
                                                 <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
                                             </button>
                                         </form>
-                                    </li>
-                                </ul>
+
+
                             </div>
                             <label class="switch ms-3" for="dark-mode-toggle">
                                 <input type="checkbox" id="dark-mode-toggle">
@@ -231,7 +232,9 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 ">
+            <div class="col px-md-4 min-vh-100 colorfondo">
+                @include('layouts._partials.messages')
+
                 @yield('content')
             </div>
         </div>

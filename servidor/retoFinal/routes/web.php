@@ -6,6 +6,8 @@ use App\Http\Controllers\EpisodioController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SerieController;
 use App\Http\Controllers\TemporadaController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -80,10 +82,18 @@ Route::put('/actores/{actore}/update', [ActoreController::class, 'update'])->nam
 Route::delete('/actores/{actore}/delete', [ActoreController::class, 'destroy'])->name('actores.destroy');
 
 //usuarios
-Route::get('/usuarios', [PeliculaController::class, 'index'])->name('usuarios.index');
-Route::get('/usuarios/create', [PeliculaController::class, 'create'])->name('usuarios.create');
-Route::post('/usuarios/store', [PeliculaController::class, 'store'])->name('usuarios.store');
-Route::get('/usuarios/{usuario}', [PeliculaController::class, 'show'])->name('usuarios.show');
-Route::get('/usuarios/{usuario}/edit', [PeliculaController::class, 'edit'])->name('usuarios.edit');
-Route::put('/usuarios/{usuario}/update', [PeliculaController::class, 'update'])->name('usuarios.update');
-Route::delete('/usuarios/{usuario}/delete', [PeliculaController::class, 'destroy'])->name('usuarios.destroy');
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+Route::post('/usuarios/store', [UsuarioController::class, 'store'])->name('usuarios.store');
+Route::get('/usuarios/{user}', [UsuarioController::class, 'show'])->name('usuarios.show');
+Route::get('/usuarios/{user}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuarios/{user}/update', [UsuarioController::class, 'update'])->name('usuarios.update');
+Route::delete('/usuarios/{user}/delete', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+
+
+//perfil
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name("perfil");
+
+Route::put('/perfil/{user}/update', [UserProfileController::class, 'update'])->name('perfil.update');

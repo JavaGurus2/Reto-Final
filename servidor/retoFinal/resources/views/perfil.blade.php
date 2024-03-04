@@ -7,7 +7,7 @@
     <div class=" row d-flex justify-content-center my-4 ">
         <!-- Primer div -->
         <div class=" col-10 rounded-4 p-3 bg-primary position-relative"
-            style="height: 230px; background: url('{{ asset('/images/banner.png') }}'); background-size: cover;
+            style="height: 230px; background: url('{{ asset('/images/twd-perfil.jpg') }}'); background-size: cover;
             background-position: center center;
             background-attachment: local;">
         </div>
@@ -19,11 +19,20 @@
                     Informacion Perfil
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('storage/images/' . auth()->user()->imagen) }}" alt="foto-perfil"
-                        class="rounded-circle m-2" width="100" height="100">
+                    <img src="{{ asset(auth()->user()->imagen) }}" alt="foto-perfil" class="rounded-circle m-2" width="100"
+                        height="100">
                 </div>
 
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('perfil.update', auth()->user()) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -39,9 +48,17 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo Electrónico</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                value="{{ auth()->user()->email }}" disabled>
+                                value="{{ auth()->user()->email }}" required>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                value="{{ auth()->user()->password }}" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa una contraseña.
+                            </div>
+                        </div>
                         <!-- Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>

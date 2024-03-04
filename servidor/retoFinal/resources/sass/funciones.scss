@@ -1,0 +1,9 @@
+@use "colores" as *;
+
+@function colum-color($col-number) {
+    @if ($col-number%2 == 0) {
+      @return $color-col-pares;
+    } @else {
+      @return $color-col-impares;
+    }
+}

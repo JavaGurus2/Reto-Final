@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text("sinopsis");
             $table->text("imagen");
             $table->date("fecha_estreno");
+            $table->string("clasificacion");
             $table->timestamps();
         });
     }

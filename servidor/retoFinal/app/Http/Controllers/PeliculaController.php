@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actore;
+use App\Models\Categoria;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class PeliculaController extends Controller
@@ -23,7 +26,9 @@ class PeliculaController extends Controller
 
     public function create()
     {
-        return view('peliculas.create');
+        $categorias = Categoria::all();
+        $actores = Actore::all();
+        return view('peliculas.create', compact("categorias", "actores"));
     }
 
 
@@ -63,6 +68,16 @@ class PeliculaController extends Controller
             'fecha_estreno' => $request->input('fecha_estreno'),
         ]);
 
+        $categoriasSeleccionadas = $request->input('categorias', []);
+
+        // Asociar las categorías al producto
+        $pelicula->categorias()->attach($categoriasSeleccionadas);
+
+        $actoresSeleccionados = $request->input('actores', []);
+
+        // Asociar las categorías al producto
+        $pelicula->actores()->attach($actoresSeleccionados);
+
         return redirect()->route('peliculas.index')->with('success', 'La película ha sido creada correctamente.');
     }
 
@@ -70,8 +85,12 @@ class PeliculaController extends Controller
 
     public function show(Pelicula $pelicula)
     {
-        return view('peliculas.show', [
+        $categorias = Categoria::all();
+        $actores = Actore::all();
+        return view('peliculas.show',  [
             "pelicula" => $pelicula,
+            "actores" => $actores,
+            "categorias" => $categorias,
             "edit" => false
         ]);
     }
@@ -79,8 +98,12 @@ class PeliculaController extends Controller
 
     public function edit(Pelicula $pelicula)
     {
+        $categorias = Categoria::all();
+        $actores = Actore::all();
         return view('peliculas.show',  [
             "pelicula" => $pelicula,
+            "actores" => $actores,
+            "categorias" => $categorias,
             "edit" => true
         ]);
     }
@@ -92,12 +115,11 @@ class PeliculaController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'sinopsis' => 'required|string',
-            'imagen' => 'image|mimes:jpeg,png,jpg,gif', // Validar que sea una imagen
-            'archivo' => 'mimes:mp4,mov,avi',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Permitir que la imagen sea opcional
+            'archivo' => 'nullable|mimes:mp4,mov,avi', // Permitir que el archivo de video sea opcional
             'fecha_estreno' => [
                 'required',
                 'date',
-                Rule::unique('peliculas')->ignore($pelicula->id),
                 function ($attribute, $value, $fail) {
                     if (strtotime($value) > strtotime(now())) {
                         $fail('La fecha no puede ser posterior a la actual.');
@@ -111,14 +133,22 @@ class PeliculaController extends Controller
         $pelicula->sinopsis = $request->input('sinopsis');
         $pelicula->fecha_estreno = $request->input('fecha_estreno');
 
-        // Guardar la nueva imagen si se proporciona
+        // Actualizar la imagen si se proporciona una nueva
         if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior si existe
+            Storage::delete(str_replace('storage/', 'public/', $pelicula->imagen));
+
+            // Guardar la nueva imagen
             $imagen = $request->file('imagen')->store('public/imagenes');
             $pelicula->imagen = str_replace('public/', 'storage/', $imagen);
         }
 
-        // Guardar el nuevo archivo de video si se proporciona
+        // Actualizar el archivo si se proporciona uno nuevo
         if ($request->hasFile('archivo')) {
+            // Eliminar el archivo anterior si existe
+            Storage::delete(str_replace('storage/', 'public/', $pelicula->archivo));
+
+            // Guardar el nuevo archivo
             $archivo = $request->file('archivo')->store('public/videos');
             $pelicula->archivo = str_replace('public/', 'storage/', $archivo);
         }
@@ -126,8 +156,17 @@ class PeliculaController extends Controller
         // Guardar los cambios en la base de datos
         $pelicula->save();
 
+        // Actualizar las categorías asociadas
+        $categoriasSeleccionadas = $request->input('categorias', []);
+        $pelicula->categorias()->sync($categoriasSeleccionadas);
+
+        // Actualizar los actores asociados
+        $actoresSeleccionados = $request->input('actores', []);
+        $pelicula->actores()->sync($actoresSeleccionados);
+
         return redirect()->route('peliculas.index')->with('success', 'La película ha sido actualizada correctamente.');
     }
+
 
     public function destroy(Pelicula $pelicula)
     {

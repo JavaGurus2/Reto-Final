@@ -15,4 +15,9 @@ class Temporada extends Model
     {
         return $this->belongsTo(Serie::class);
     }
+
+    public function episodios()
+    {
+        return $this->hasMany(Episodio::class);
+    }
 }

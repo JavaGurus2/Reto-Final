@@ -7,7 +7,16 @@
         <div class="row">
             <div class="col-7">
                 <h1 class="mb-4">Crear Serie</h1>
-                <form action="{{ route('series.store') }}" method="POST"  enctype="multipart/form-data">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('series.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -29,10 +38,9 @@
                             </div>
                         @endif
                     </div>
-
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen"  required>
+                        <input type="file" class="form-control" id="imagen" name="imagen" required>
                         @error('archivo')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -55,6 +63,51 @@
                                 {{ $errors->first('clasificacion') }}
                             </div>
                         @endif
+                    </div>
+                    <!-- CATEGORIAS -->
+                    <!-- CATEGORIAS -->
+                    <div class="mb-3">
+                        <div class="card p-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+
+                            <div class="row">
+                                @foreach ($categorias as $categoria)
+                                    <div class="col-6 col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="categorias[]"
+                                                value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
+                                            <label class="form-check-label"
+                                                for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @error('categorias[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ACTORES -->
+                    <div class="mb-3">
+                        <div class="card p-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+
+                            <div class="row">
+                                @foreach ($actores as $actor)
+                                    <div class="col-6 col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="actores[]"
+                                                value="{{ $actor->id }}" id="{{ $actor->nombre }}">
+                                            <label class="form-check-label"
+                                                for="{{ $actor->nombre }}">{{ $actor->nombre }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @error('actores[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
 

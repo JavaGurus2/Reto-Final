@@ -52,6 +52,50 @@
                                 <input type="date" name="fecha_estreno" id="fecha_estreno" class="form-control" required>
                                 <div class="invalid-feedback" id="fechaEstrenoFeedback"></div>
                             </div>
+                            <!-- CATEGORIAS -->
+                            <div class="mb-3">
+                                <div class="card p-3">
+                                    <label for="categoria" class="form-label">Categoría</label>
+
+                                    <div class="row">
+                                        @foreach ($categorias as $categoria)
+                                            <div class="col-6 col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="categorias[]"
+                                                        value="{{ $categoria->id }}" id="{{ $categoria->nombre }}">
+                                                    <label class="form-check-label"
+                                                        for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @error('categorias[]')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ACTORES -->
+                            <div class="mb-3">
+                                <div class="card p-3">
+                                    <label for="categoria" class="form-label">Categoría</label>
+
+                                    <div class="row">
+                                        @foreach ($actores as $actor)
+                                            <div class="col-6 col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="actores[]"
+                                                        value="{{ $actor->id }}" id="{{ $actor->nombre }}">
+                                                    <label class="form-check-label"
+                                                        for="{{ $actor->nombre }}">{{ $actor->nombre }}</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @error('actores[]')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Crear Película</button>
                         </form>

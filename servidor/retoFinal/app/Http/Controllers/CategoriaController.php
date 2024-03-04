@@ -30,7 +30,6 @@ class CategoriaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'imagen' => 'nullable'
         ]);
         try {
             Categoria::create($request->all());
@@ -57,7 +56,6 @@ class CategoriaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'imagen' => 'nullable'
         ]);
         $categoria->update($request->all());
         return redirect()->route('categorias.index')->with('success', 'Categoria editada correctamente');

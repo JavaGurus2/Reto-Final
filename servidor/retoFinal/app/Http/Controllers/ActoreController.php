@@ -35,7 +35,7 @@ class ActoreController extends Controller
                 'nombre' => 'required|string|max:255',
                 'apellido' => 'required|string|max:255',
                 'email' => 'required|email|unique:actores,email',
-                'imagen' => 'nullable|image', // Validar que sea una imagen
+                'imagen' => 'nullable', // Validar que sea una imagen
             ]);
 
             // Guardar la imagen con un nombre único

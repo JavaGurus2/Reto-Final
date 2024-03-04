@@ -15,72 +15,109 @@ class EpisodioController extends Controller
         $this->middleware("auth");
     }
 
-    public function index(Temporada $temporada, Serie $serie)
+    public function index(Serie $serie, Temporada $temporada)
     {
-        $episodios = $temporada->episodios;
+        $episodios = $temporada->episodios()->paginate(10);
 
         return view('episodios.index', compact('episodios', 'serie', 'temporada'));
     }
 
 
-    public function create(Temporada $temporada, Serie $serie)
+    public function create(Serie $serie, Temporada $temporada)
     {
         return view('episodios.create', compact('temporada', 'serie'));
     }
 
 
-    public function store(Request $request, Temporada $temporada, Serie $serie)
+    public function store(Request $request, Serie $serie,  Temporada $temporada)
     {
 
-        $request->validate([
+        $validated = $request->validate([
+            "titulo"  => 'required|string',
+            "sinopsis"  => 'required|string',
             'numero' => 'required|integer',
-            'archivo' => 'required|string',
+            'duracion' => 'required|integer',
+            'fecha_estreno' => "required|date",
+            'archivo' => 'required|mimes:mp4,mov,avi', // Validar que sea un archivo de video
+            "temporada_id" => 'required|integer'
+        ]);
+
+
+        // Guardar el archivo
+        $archivo = $request->file('archivo')->store('public/series');
+        $archivoUrl = str_replace('public/', 'storage/', $archivo);
+
+        // Crear la película en la base de datos
+        $episodio = Episodio::create([
+            'numero' => $request->input('numero'),
+            'archivo' => $archivoUrl,
+            "duracion" => $request->input('duracion'),
+            "titulo"  => $request->input('titulo'),
+            "sinopsis"  => $request->input('sinopsis'),
+            'temporada_id' => $request->input('temporada_id'),
+            'fecha_estreno' => $request->input('fecha_estreno')
 
         ]);
 
-        $episodio = new Episodio();
-        $episodio->numero = $request->numero;
-        $episodio->archivo = $request->archivo;
-        $episodio->temporada_id = $temporada->id;
-        $episodio->save();
 
-
-        return redirect()->route('episodios.index', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio creado correctamente.');
+        return redirect()->route('temporadas.show', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio creado correctamente.');
     }
 
 
-    public function show(Episodio $episodio, Temporada $temporada, Serie $serie)
+    public function show(Serie $serie,  Temporada $temporada, Episodio $episodio)
     {
         return view('episodios.show', compact('episodio', 'temporada', 'serie'));
     }
 
-    public function edit(Episodio $episodio, Temporada $temporada, Serie $serie)
+    public function edit(Serie $serie, Temporada $temporada, Episodio $episodio)
     {
         return view('episodios.edit', compact('episodio', 'temporada', 'serie'));
     }
 
-    public function update(Request $request, Episodio $episodio, Temporada $temporada, Serie $serie)
+    public function update(Request $request, Serie $serie, Temporada $temporada, Episodio $episodio)
     {
-        $request->validate([
+        $validated = $request->validate([
+            'titulo' => 'required|string',
+            'sinopsis' => 'required|string',
             'numero' => 'required|integer',
-            'archivo' => 'required|string',
+            'duracion' => 'required|integer',
+            'fecha_estreno' => "required|date",
+
+            'archivo' => 'nullable|mimes:mp4,mov,avi', // Cambiado a 'nullable' para permitir la actualización opcional del archivo
+            'temporada_id' => 'required|integer'
         ]);
 
-        $episodio->update([
-            'numero' => $request->numero,
-            'archivo' => $request->archivo,
-        ]);
+        // Actualizar los campos de la película
+        $episodio->titulo = $request->input('titulo');
+        $episodio->sinopsis = $request->input('sinopsis');
+        $episodio->numero = $request->input('numero');
+        $episodio->duracion = $request->input('duracion');
+        $episodio->temporada_id = $request->input('temporada_id');
+        $episodio->fecha_estreno = $request->input('fecha_estreno');
 
-        return redirect()->route('episodios.index', ['serie' => $serie->id, 'temporada' => $temporada->id, 'episodio' => $episodio->id])->with('success', 'Episodio actualizado correctamente.');
+
+        // Si se proporciona un nuevo archivo, actualizarlo
+        if ($request->hasFile('archivo')) {
+            // Guardar el nuevo archivo
+            $archivo = $request->file('archivo')->store('public/series');
+            $archivoUrl = str_replace('public/', 'storage/', $archivo);
+            $episodio->archivo = $archivoUrl;
+        }
+
+        // Guardar los cambios en la base de datos
+        $episodio->save();
+
+        return redirect()->route('temporadas.show', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio actualizado correctamente.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Episodio $episodio, Temporada $temporada, Serie $serie)
+    public function destroy(Serie $serie, Temporada $temporada, Episodio $episodio)
     {
         $episodio->delete();
 
-        return redirect()->route('episodios.index', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio eliminado correctamente.');
+        return redirect()->route('temporadas.show', ['serie' => $serie->id, 'temporada' => $temporada->id])->with('success', 'Episodio eliminado correctamente.');
     }
 }

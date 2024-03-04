@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-7">
                 <h1 class="mb-4">Crear Temporada</h1>
-                <form action="{{ route('temporadas.store') }}" method="POST"  enctype="multipart/form-data">
+                <form action="{{ route('temporadas.store', $serie) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -38,9 +38,11 @@
                         @endif
                     </div>
 
+                    <input type="hidden" name="serie_id" value="{{ $serie->id }}">
+
                     <div class="d-grid gap-2 mt-4">
                         <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('temporadas.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('temporadas.index', $serie) }}" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </form>
             </div>

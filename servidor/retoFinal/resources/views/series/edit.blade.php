@@ -7,13 +7,22 @@
         <div class="row">
             <div class="col">
                 <h1 class="mb-4">Editar Serie</h1>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('series.update', $serie) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="{{ $serie->nombre }}"  required>
+                            value="{{ $serie->nombre }}" required>
                         <div class="invalid-feedback">
                             Por favor ingresa un nombre.
                         </div>
@@ -30,7 +39,7 @@
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen"
-                            value="{{ $serie->imagen }}" >
+                            value="{{ $serie->imagen }}">
                     </div>
 
                     <div class="mb-3">
@@ -51,10 +60,58 @@
                         </div>
                     </div>
 
+                    <!-- CATEGORIAS -->
+                    <div class="mb-3">
+                        <div class="card p-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+
+                            <div class="row">
+                                @foreach ($categorias as $categoria)
+                                    <div class="col-6 col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="categorias[]"
+                                                value="{{ $categoria->id }}" id="{{ $categoria->nombre }}"
+                                                {{ $serie->categorias->contains($categoria) ? 'checked' : '' }}>
+                                            <label class="form-check-label"
+                                                for="{{ $categoria->nombre }}">{{ $categoria->nombre }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @error('categorias[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACTORES -->
+                    <div class="mb-3">
+                        <div class="card p-3">
+                            <label for="actor" class="form-label">Actor</label>
+
+                            <div class="row">
+                                @foreach ($actores as $actor)
+                                    <div class="col-6 col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="actores[]"
+                                                value="{{ $actor->id }}" id="{{ $actor->nombre }}"
+                                                {{ $serie->actores->contains($actor) ? 'checked' : '' }}>
+                                            <label class="form-check-label"
+                                                for="{{ $actor->nombre }}">{{ $actor->nombre }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @error('actores[]')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-secondary">Volver</a>
+                        <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary">Volver</a>
                     </div>
                 </form>
             </div>
