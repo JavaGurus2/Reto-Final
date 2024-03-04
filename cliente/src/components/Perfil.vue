@@ -14,7 +14,6 @@ const contraAError = ref('')
 const contraNError = ref('')
 const contraCError = ref('')
 const success = ref('')
-const showModal = ref(false)
 
 const PROTOCOLO = 'http'
 const DIRECCION = 'localhost:8000'
@@ -52,7 +51,7 @@ async function actualizarDP() {
 
     if (data.data === 'Actualizado') {
       success.value = 'Datos Personales actualizados con exito.'
-      mostrarModal()
+      abrirModal()
       sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
     }
   }
@@ -116,13 +115,13 @@ async function actualizarC() {
 
       case 'Actualizado':
         success.value = 'Contraseña actualizada con exito.'
-        mostrarModal()
+        abrirModal()
         break
     }
 
-    // if (data.data === 'Error') {
-    //   contraAError.value = 'Error al actualizar, la contraseña actual es incorrecta.'
-    // }
+    contraA.value = ''
+    contraN.value = ''
+    contraC.value = ''
 
     sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
   }
@@ -159,31 +158,29 @@ function validarContraC(contraN, contraC) {
   return contraN === contraC
 }
 
-function mostrarModal() {
-  const miModal = new bootstrap.Modal(document.getElementById('miModal'))
-  miModal.show()
+function abrirModal() {
+  $('#miModal').modal('show')
 }
 
-function ocultarModal() {
-  const miModal = new bootstrap.Modal(document.getElementById('miModal'))
-  miModal.hide()
+function cerrarModal() {
+  $('#miModal').modal('hide')
 }
 </script>
 
 <template>
   <div class="row g-0 p-2 flex-grow-column">
     <div class="col-12 d-flex flex-column justify-content-center">
-      <div class="modal" id="modalSuccess">
-        <div class="modal-dialog">
+      <div class="modal" tabindex="-1" role="dialog" id="miModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Notificación</h5>
+              <h5 class="modal-title">Actualización</h5>
             </div>
             <div class="modal-body">
               <span class="text-success">{{ success }}</span>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" @click="ocultarModal">Aceptar</button>
+              <button type="button" class="btn btn-primary" @click="cerrarModal">Confirmar</button>
             </div>
           </div>
         </div>

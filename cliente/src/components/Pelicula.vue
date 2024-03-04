@@ -2,21 +2,58 @@
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
+import { usePeliculasStore } from '@/stores/pelicula'
 import RepartoItem from './RepartoItem.vue'
 
 const route = useRoute()
+
+//Variables de la pelicula
 const pelicula = ref('')
-const img = ref('')
 const titulo = ref('')
 const duracion = ref('')
 const fecha = ref('')
 const clasificacion = ref('')
 const sinopsis = ref('')
-const reparto = ref('')
+const id = ref('')
+const data = ref([])
+
+//Variables de los actores
+
+const PROTOCOLO = 'http'
+const DIRECCION = 'localhost:8000'
+
+const peliculasStore = usePeliculasStore()
+const actores = ref([])
 
 onMounted(() => {
-  const id = route.params.id
+  id.value = route.params.id
+  cargarPelicula()
 })
+
+async function cargarPelicula() {
+  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscarPelicula`, {
+    method: 'put',
+    headers: {
+      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: id.value
+    })
+  })
+
+  data.value = await response.json()
+
+  actores.value = data.value.actores
+
+  titulo.value = data.value.pelicula.titulo
+  peliculasStore.cambiarTitulo(titulo.value)
+  sinopsis.value = data.value.pelicula.sinopsis
+  fecha.value = data.value.pelicula.fecha_estreno
+  duracion.value = data.value.pelicula.duracion
+  clasificacion.value = data.value.pelicula.clasificacion
+  pelicula.value = data.value.pelicula.archivo
+}
 </script>
 
 <template>
@@ -27,23 +64,16 @@ onMounted(() => {
     </video>
   </div>
   <div class="col-10 align-self-center mt-3">
-    <p>fecha - duracion - clasificacion</p>
+    <p>{{ fecha }} - {{ duracion }} - {{ clasificacion }}</p>
     <p>
-      En un mundo donde el fútbol y la magia se entrelazan, un equipo de jóvenes talentosos se
-      enfrenta a desafíos inimaginables. Cuando un misterioso fenómeno amenaza con sumir al mundo en
-      la oscuridad, Mark Evans y sus amigos del equipo Inazuma Eleven deben desplegar sus
-      habilidades futbolísticas sobrenaturales para salvar el día. Con jugadas electrizantes,
-      amistad inquebrantable y la magia del fútbol en su máxima expresión, este equipo está listo
-      para enfrentarse a cualquier adversidad. ¿Podrán superar las fuerzas oscuras y llevar su
-      pasión por el fútbol a nuevas alturas? ¡Prepárate para una emocionante aventura donde la magia
-      del juego se convierte en la clave para la victoria!
+      {{ sinopsis }}
     </p>
   </div>
   <div class="col-10 align-self-center">
     <h2>Reparto</h2>
     <div class="scroll">
-      <div v-if="reparto.length > 0" class="peliserie-container">
-        <RepartoItem v-for="(actor, index) in reparto" :key="index" :actor="actor" />
+      <div v-if="actores.length > 0" class="peliserie-container">
+        <RepartoItem v-for="(actor, index) in actores" :key="index" :actor="actor" />
       </div>
       <p v-else>No hay actores asociados.</p>
     </div>

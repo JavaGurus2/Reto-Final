@@ -1,14 +1,17 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useBusquedaStore } from '../../stores/busqueda'
+import { usePeliculasStore } from '@/stores/pelicula'
 import { useRouter } from 'vue-router'
 
 const { carga } = defineProps({
   carga: String,
+  tipo: String,
   tipoBusqueda: String
 })
 
 const { buscar } = useBusquedaStore()
+const peliculasStore = usePeliculasStore()
 const textoBusqueda = ref('')
 const router = useRouter()
 
@@ -74,7 +77,8 @@ function irAtras() {
           />
         </svg>
       </button>
-      <h1 class="fs-4 m-0">{{ carga }}</h1>
+      <h1 v-if="tipo" class="fs-4 m-0">{{ tipo }}</h1>
+      <h1 v-else class="fs-4 m-0">{{ peliculasStore.titulo }}</h1>
     </div>
   </div>
 </template>

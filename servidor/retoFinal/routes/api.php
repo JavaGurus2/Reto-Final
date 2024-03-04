@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\APIHomeController;
+use App\Http\Controllers\APIPeliculaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::middleware('auth.jwt')->get('/peliculas', [APIHomeController::class, 'ind
 Route::middleware('auth.jwt')->get('/home', [APIHomeController::class, 'rellenar']);
 Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'UserDP']);
 Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
+Route::middleware('auth.jwt')->put('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
