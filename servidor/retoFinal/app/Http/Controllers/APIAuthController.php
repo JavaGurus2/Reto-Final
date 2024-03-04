@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class APIAuthController extends Controller
 {
@@ -22,5 +24,35 @@ class APIAuthController extends Controller
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
         ]);
+    }
+
+    public function UserDP(Request $request)
+    {
+
+        $user = User::where('email', $request['referencia'])->first();
+
+        $user->update([
+            "imagen" => $request['imagen'],
+            "name" => $request['nombre'],
+            "email" => $request['email'],
+        ]);
+
+        return response()->json(["data" => 'Actualizado', 'usuario' => $user]);
+    }
+
+    public function UserC(Request $request)
+    {
+
+        $user = User::where('email', $request['referencia'])->first();
+
+        if (password_verify($request['passwordA'], $user->password)) {
+            $user->update([
+                "password" => Hash::make($request['passwordN'])
+            ]);
+
+            return response()->json(["data" => 'Actualizado', 'usuario' => $user]);
+        } else {
+            return response()->json(["data" => 'Error', 'usuario' => $user]);
+        }
     }
 }

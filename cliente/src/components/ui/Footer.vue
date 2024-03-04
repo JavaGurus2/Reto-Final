@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <footer class="mt-auto mx-0 row bg-black py-4">
     <div class="col d-flex justify-content-center">
-      <RouterLink to="home"
+      <RouterLink to="/home"
         ><svg
           width="32"
           height="32"
@@ -20,7 +20,7 @@ import { RouterLink } from 'vue-router'
       </RouterLink>
     </div>
     <div class="col d-flex justify-content-center">
-      <RouterLink to="perfil">
+      <RouterLink to="/perfil">
         <svg
           width="33"
           height="32"

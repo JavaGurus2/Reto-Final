@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-const userPhoto = ref(null)
-const nombre = ref('')
-const email = ref('')
+const userPhoto = ref(JSON.parse(sessionStorage.getItem('usuario')).imagen)
+const nombre = ref(JSON.parse(sessionStorage.getItem('usuario')).name)
+const email = ref(JSON.parse(sessionStorage.getItem('usuario')).email)
 const contraA = ref('')
 const contraN = ref('')
 const contraC = ref('')
@@ -13,6 +13,11 @@ const emailError = ref('')
 const contraAError = ref('')
 const contraNError = ref('')
 const contraCError = ref('')
+const success = ref('')
+const showModal = ref(false)
+
+const PROTOCOLO = 'http'
+const DIRECCION = 'localhost:8000'
 
 function previewPhoto(event) {
   const file = event.target.files[0]
@@ -27,9 +32,29 @@ function previewPhoto(event) {
   }
 }
 
-function actualizarDP() {
+async function actualizarDP() {
   if (validacionesDP()) {
-    //Realizar la update
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/perfilDP`, {
+      method: 'put',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombre: nombre.value,
+        email: email.value,
+        imagen: userPhoto.value,
+        referencia: JSON.parse(sessionStorage.getItem('usuario')).email
+      })
+    })
+
+    const data = await response.json()
+
+    if (data.data === 'Actualizado') {
+      success.value = 'Datos Personales actualizados con exito.'
+      mostrarModal()
+      sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
+    }
   }
 }
 
@@ -65,9 +90,41 @@ function validarEmail(email) {
   return patron.test(email)
 }
 
-function actualizarC() {
+async function actualizarC() {
   if (validacionesC()) {
-    alert('hola')
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/perfilC`, {
+      method: 'put',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        passwordA: contraA.value,
+        passwordN: contraN.value,
+        referencia: JSON.parse(sessionStorage.getItem('usuario')).email
+      })
+    })
+
+    const data = await response.json()
+
+    console.log(data.data)
+
+    switch (data.data) {
+      case 'Error':
+        contraAError.value = 'Error al actualizar, la contraseña actual es incorrecta.'
+        break
+
+      case 'Actualizado':
+        success.value = 'Contraseña actualizada con exito.'
+        mostrarModal()
+        break
+    }
+
+    // if (data.data === 'Error') {
+    //   contraAError.value = 'Error al actualizar, la contraseña actual es incorrecta.'
+    // }
+
+    sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
   }
 }
 
@@ -101,12 +158,41 @@ function validarContraN(contraN) {
 function validarContraC(contraN, contraC) {
   return contraN === contraC
 }
+
+function mostrarModal() {
+  const miModal = new bootstrap.Modal(document.getElementById('miModal'))
+  miModal.show()
+}
+
+function ocultarModal() {
+  const miModal = new bootstrap.Modal(document.getElementById('miModal'))
+  miModal.hide()
+}
 </script>
 
 <template>
   <div class="row g-0 p-2 flex-grow-column">
     <div class="col-12 d-flex flex-column justify-content-center">
-      <form @submit.prevent="actualizarDP" class="d-flex flex-column align-items-center my-4">
+      <div class="modal" id="modalSuccess">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Notificación</h5>
+            </div>
+            <div class="modal-body">
+              <span class="text-success">{{ success }}</span>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" @click="ocultarModal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form
+        enctype="multipart/form-data"
+        @submit.prevent="actualizarDP"
+        class="d-flex flex-column align-items-center my-4"
+      >
         <div class="d-flex flex-column align-items-center mb-4">
           <img
             class="ImgP mb-3"
@@ -114,11 +200,11 @@ function validarContraC(contraN, contraC) {
             alt="Vista previa"
             style="max-width: 100%; max-height: 200px; margin-top: 10px"
           />
-          <label for="photo" class="form-label">
+          <label for="imagen" class="form-label">
             <span class="btn btn-primary btn-lg">Cambiar Foto</span>
             <input
               type="file"
-              id="photo"
+              id="imagen"
               class="form-control form-control-lg"
               style="display: none"
               @change="previewPhoto"
@@ -150,7 +236,11 @@ function validarContraC(contraN, contraC) {
         </div>
       </form>
       <hr />
-      <form @submit.prevent="actualizarC" class="d-flex flex-column align-items-center my-4">
+      <form
+        enctype="multipart/form-data"
+        @submit.prevent="actualizarC"
+        class="d-flex flex-column align-items-center my-4"
+      >
         <div class="form-outline mb-4">
           <input
             type="password"
