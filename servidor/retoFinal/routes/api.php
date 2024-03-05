@@ -27,4 +27,5 @@ Route::middleware('auth.jwt')->get('/home/{categoria}', [APIHomeController::clas
 Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'UserDP']);
 Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
 Route::middleware('auth.jwt')->put('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
+Route::middleware('auth.jwt')->put('/buscarSerie', [APISerieController::class, 'BuscarSerie']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');

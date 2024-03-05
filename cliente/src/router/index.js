@@ -26,6 +26,12 @@ const router = createRouter({
       name: 'pelicula',
       component: () => import('../views/PeliculaView.vue'),
       meta: { requiresAuth: true } // Esta ruta requiere autenticación
+    },
+    {
+      path: '/series/:id',
+      name: 'serie',
+      component: () => import('../views/SerieView.vue'),
+      
     }
   ]
 })
