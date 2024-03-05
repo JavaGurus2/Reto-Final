@@ -25,10 +25,10 @@
                         <dt class="col-sm-4">Fecha estreno:</dt>
                         <dd class="col-sm-8">{{ $episodio->fecha_estreno }}</dd>
                         <dt class="col-sm-4">Duracion:</dt>
-                        <dd class="col-sm-8">{{ $episodio->duracion }}</dd>
+                        <dd class="col-sm-8">{{ $episodio->duracion }}.min</dd>
                         <dt class="col-sm-4">Episodio:</dt>
                         <dd class="col-sm-8">
-                            <video class="rounded" controls style="max-width: 300px;">
+                            <video class="rounded" controls style="max-width: 500px;">
                                 <source src="{{ asset($episodio->archivo) }}">
                             </video>
                         </dd>

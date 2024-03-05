@@ -7,9 +7,13 @@ $blanco: #ffffff;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
+$font-size-base: 1.2rem ;
 $line-height-base: 1.6;
 
+body
+{
+    font-size: $font-size-base !important;
+}
 
 .imagenColor
 {

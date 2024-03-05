@@ -12,7 +12,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
     <a class="navbar-brand mx-3" href="/dashboard">
-        <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
+        <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid" alt="">
+
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
         aria-controls="sidebar">
@@ -27,7 +28,7 @@
                 <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                     <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid"
                         alt="">
-                    <span class="fs-4  d-md-inline text-white">Netflix Egibide</span>
+                    <span class="fs-4  d-md-inline text-white">EgiFlix</span>
                 </a>
                 <hr class="w-100">
             </div>
@@ -134,7 +135,7 @@
                     <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
                             class="img-fluid mx-3" alt="logo">
-                        <span class="fs-4 d-none d-md-inline text-white ">Netflix Egibide</span>
+                        <span class="fs-4 d-none d-md-inline text-white ">EgiFlix</span>
                     </a>
                     <hr class="w-100">
                 </div>
@@ -164,7 +165,7 @@
                             <a href="{{ route('series.index') }}"
                                 class="nav-link{{ request()->is('series') ? ' active' : '' }}">
                                 <i class="imagenColor fa-solid fa-receipt me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline p-2 text-white">series</span>
+                                <span class="d-none d-md-inline p-2 text-white">Series</span>
                             </a>
                         </li>
 

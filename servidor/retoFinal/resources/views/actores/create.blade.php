@@ -43,8 +43,8 @@
                         @enderror
                     </div>
 
-                    <div class="d-grid gap-2 m-5">
-                        <input type="submit" class="btn bg-purple " value="Crear">
+                    <div class="col-2 d-grid gap-2 m-5">
+                        <input type="submit" class="btn bg-purple" value="Crear">
                         <a href="{{ route('actores.index') }}" class="btn btn-warning">Cancelar</a>
                     </div>
                 </form>

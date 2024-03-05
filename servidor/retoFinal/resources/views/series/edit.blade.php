@@ -20,7 +20,7 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label"><h3>Nombre</h3></label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
                             value="{{ $serie->nombre }}" required>
                         <div class="invalid-feedback">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="sinopsis" class="form-label">Sinopsis</label>
+                        <label for="sinopsis" class="form-label"><h3>Sinopsis</h3></label>
                         <input type="text" class="form-control" id="sinopsis" name="sinopsis"
                             value="{{ $serie->sinopsis }}" required>
                         <div class="invalid-feedback">
@@ -37,13 +37,17 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="imagen" class="form-label">imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen"
-                            value="{{ $serie->imagen }}">
+                        <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded ">
+
+                    @if (isset($serie->imagen))
+                        <img src="{{ asset($serie->imagen) }}" class="my-3 rounded" alt="Imagen de la serie"
+                            style="max-width: 300px;">
+                    @endif
+                    <div class="invalid-feedback" id="imagenFeedback"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label">Fecha de Estreno</label>
+                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno"
                             value="{{ $serie->fecha_estreno }}" required>
                         <div class="invalid-feedback">
@@ -52,7 +56,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="clasificacion" class="form-label">Clasificación</label>
+                        <label for="clasificacion" class="form-label"><h3>Clasificación</h3></label>
                         <input type="text" class="form-control" id="clasificacion" name="clasificacion"
                             value="{{ $serie->clasificacion }}" required>
                         <div class="invalid-feedback">
@@ -63,7 +67,7 @@
                     <!-- CATEGORIAS -->
                     <div class="mb-3">
                         <div class="card p-3">
-                            <label for="categoria" class="form-label">Categoría</label>
+                            <label for="categoria" class="form-label"><h3>Categoría</h3></label>
 
                             <div class="row">
                                 @foreach ($categorias as $categoria)
@@ -87,7 +91,7 @@
                     <!-- ACTORES -->
                     <div class="mb-3">
                         <div class="card p-3">
-                            <label for="actor" class="form-label">Actor</label>
+                            <label for="actor" class="form-label"><h3>Actor</h3></label>
 
                             <div class="row">
                                 @foreach ($actores as $actor)

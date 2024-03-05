@@ -30,23 +30,24 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="form-group">
-                                <label for="titulo">Título</label>
+                            <div class="form-group my-2">
+                                <label for="titulo"><h3>Título</h3></label>
                                 <input type="text" name="titulo" id="titulo" class="form-control"
                                     value="{{ old('titulo', $pelicula->titulo ?? '') }}"
                                     {{ $edit ? 'required' : 'disabled' }}>
                                 <div class="invalid-feedback" id="tituloFeedback"></div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="sinopsis">Sinopsis</label>
+                            <div class="form-group my-2">
+                                <label for="sinopsis"><h3>Sinopsis</h3></label>
                                 <textarea name="sinopsis" id="sinopsis" class="form-control" rows="4" {{ $edit ? 'required' : 'disabled' }}>{{ old('sinopsis', $pelicula->sinopsis ?? '') }}</textarea>
                                 <div class="invalid-feedback" id="sinopsisFeedback"></div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="imagen">Imagen</label>
-                                <input type="file" name="imagen" id="imagen" class="form-control-file"
+                            <div class="form-group my-2">
+                                <label  for="imagen"><h3>Imagen</h3></label>
+                                <br>
+                                <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded "
                                     accept="image/*" {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->imagen))
                                     <img src="{{ asset($pelicula->imagen) }}" class="my-3 rounded" alt="Imagen de la película"
@@ -57,9 +58,10 @@
                             <br>
                             <br>
                             <br>
-                            <div class="form-group">
-                                <label for="archivo">Archivo</label>
-                                <input type="file" name="archivo" id="archivo" class="form-control-file"
+                            <div class="form-group my-2">
+                                <label for="archivo"><h3>Archivo</h3></label>
+                                <br>
+                                <input type="file" name="archivo" id="archivo" class="form-control-file bg-white p-2 rounded "
                                     accept="video/*" {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->archivo))
                                     <video class="rounded" controls style="max-width: 400px;">
@@ -69,17 +71,17 @@
                                 <div class="invalid-feedback" id="archivoFeedback"></div>
                             </div>
 
-                            <div class=" mb-3 form-group">
-                                <label for="fecha_estreno">Fecha de Estreno</label>
+                            <div class=" mb-3 form-group my-2">
+                                <label for="fecha_estreno"><h3>Fecha de Estreno</h3></label>
                                 <input type="date" name="fecha_estreno" id="fecha_estreno" class="form-control"
                                     value="{{ old('fecha_estreno', $pelicula->fecha_estreno ?? '') }}"
                                     {{ $edit ? 'required' : 'disabled' }}>
                                 <div class="invalid-feedback" id="fechaEstrenoFeedback"></div>
                             </div>
                             <!-- CATEGORIAS -->
-                            <div class="mb-3">
+                            <div class="mb-3 my-2">
                                 <div class="card p-3">
-                                    <label for="categoria" class="form-label">Categoría</label>
+                                    <label for="categoria" class="form-label"><h3>Categoría</h3></label>
 
                                     <div class="row">
                                         @foreach ($categorias as $categoria)
@@ -102,9 +104,9 @@
                             </div>
 
                             <!-- ACTORES -->
-                            <div class="mb-3">
+                            <div class="mb-3 my-2">
                                 <div class="card p-3">
-                                    <label for="actor" class="form-label">Actor</label>
+                                    <label for="actor" class="form-label"><h3>Actor</h3></label>
 
                                     <div class="row">
                                         @foreach ($actores as $actor)

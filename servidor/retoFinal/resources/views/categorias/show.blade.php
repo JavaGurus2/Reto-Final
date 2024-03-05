@@ -3,8 +3,8 @@
 @section('title', 'Ver Categoria')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
             <div>
                 <h1 class="mb-4">Detalle de la Categoria</h1>
             </div>
@@ -21,9 +21,9 @@
 
                     </dl>
                 </div>
-                <div class="px-3 mt-4">
-                    <a href="{{ route('categorias.index') }}" class="btn btn-warning me-2">Volver</a>
+                <div class="px-3 mt-4 mb-2">
                     <a href="{{ route('categorias.edit', $categoria) }}" class="btn bg-purple">Editar</a>
+                    <a href="{{ route('categorias.index') }}" class="btn btn-warning me-2">Volver</a>
                 </div>
             </div>
         </div>
