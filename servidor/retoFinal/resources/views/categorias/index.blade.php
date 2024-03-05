@@ -5,9 +5,9 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark"><h3>{{ __('categorias') }}</h3></span>
-                        <a href="{{ route('categorias.create') }}" class="btn btn-success">Crear categoria</a>
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                        <span class="text-dark"><h3>{{ __('Categorias') }}</h3></span>
+                        <a href="{{ route('categorias.create') }}" class="btn fondoRosa text-white">Crear categoria</a>
                     </div>
 
                     <div class="card-body">

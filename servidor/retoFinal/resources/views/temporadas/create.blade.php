@@ -4,14 +4,20 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-7">
-                <h1 class="mb-4">Crear Temporada</h1>
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
+                <h4>
+                    <a href="{{ route('series.show',$serie) }}" class="text-indigo-300"> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                    {{ __('Temporadas') }}
+
+                </h4>
+                <h1 class="mb-4 border-bottom">Crear Temporada</h1>
                 <form action="{{ route('temporadas.store', $serie) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label"><h3>Nombre</h3></label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
                         @if ($errors->has('nombre'))
                             <div class="invalid-feedback">
@@ -20,7 +26,7 @@
                         @endif
                     </div>
                     <div class="mb-3">
-                        <label for="numero" class="form-label">Numero</label>
+                        <label for="numero" class="form-label"><h3>Numero</h3></label>
                         <input type="text" class="form-control" id="numero" name="numero" required>
                         @if ($errors->has('numero'))
                             <div class="invalid-feedback">
@@ -29,7 +35,7 @@
                         @endif
                     </div>
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label">Fecha de Estreno</label>
+                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno" required>
                         @if ($errors->has('fecha_estreno'))
                             <div class="invalid-feedback">
@@ -40,9 +46,9 @@
 
                     <input type="hidden" name="serie_id" value="{{ $serie->id }}">
 
-                    <div class="d-grid gap-2 mt-4">
-                        <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('temporadas.index', $serie) }}" class="btn btn-secondary">Cancelar</a>
+                    <div class="gap-2 mt-4">
+                        <input type="submit" class="btn bg-purple text-white" value="Crear">
+
                     </div>
                 </form>
             </div>

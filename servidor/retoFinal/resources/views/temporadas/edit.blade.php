@@ -6,7 +6,13 @@
     <div class="container mt-4">
         <div class="row justify-content-center ">
             <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
-                <h1 class="mb-4">Editar Temporada</h1>
+                <h4 class="mb-5  text-white">
+                    <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="text-indigo-300 "> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Detalles Temporada ') }}
+
+                </h4>
+                <h1 class="mb-4 border-bottom">Editar Temporada</h1>
                 <form action="{{ route('temporadas.update', [$serie, $temporada]) }}" method="POST" class="needs-validation"
                     novalidate>
                     @csrf
@@ -30,8 +36,7 @@
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn bg-purple">Actualizar</button>
-                        <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="btn btn-warning">Volver</a>
+                        <button type="submit" class="btn bg-purple text-white">Actualizar</button>
                     </div>
                 </form>
             </div>

@@ -6,22 +6,28 @@
     <div class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
         <div class="col-6 justify-content-center align-items-center">
             <div>
-                <h1 class="mb-4">Detalle de la serie</h1>
+                <h4>
+                    <a href="{{ route('series.index') }}" class="text-indigo-300"> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                    {{ __('Series') }}
+
+                </h4>
+
             </div>
 
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Información de la serie</h5>
+                <div class="card-header fondoRosaClaro">
+                    <h5 class="card-title ">Información de la serie</h5>
                 </div>
                 <div class="card-body">
                     <dl class="row">
 
                         <dt class="col-sm-4">Nombre:</dt>
                         <dd class="col-sm-8">{{ $serie->nombre }}</dd>
-
+                        <hr>
                         <dt class="col-sm-4">Sinopsis:</dt>
                         <dd class="col-sm-8">{{ $serie->sinopsis }}</dd>
-
+                        <hr>
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8">
                             @if (isset($serie->imagen))
@@ -29,26 +35,19 @@
                                     class="img-fluid rounded sombraImagen" style="max-width: 300px;">
                             @endif
                         </dd>
-
-                        <dt class="col-sm-4">Archivo:</dt>
-                        <dd class="col-sm-8">
-                            @if (isset($serie->archivo))
-                                <video controls class="img-fluid rounded" style="max-width: 300px;">
-                                    <source src="{{ asset($serie->archivo) }}">
-                                </video>
-                            @endif
-                        </dd>
+                        <hr>
 
                         <dt class="col-sm-4">Fecha de estreno:</dt>
                         <dd class="col-sm-8">{{ $serie->fecha_estreno }}</dd>
+                        <hr>
 
                         <dt class="col-sm-4">Clasificacion:</dt>
                         <dd class="col-sm-8">{{ $serie->clasificacion }}</dd>
+                        <hr>
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('series.index') }}" class="btn btn-warning me-2">Volver</a>
-                    <a href="{{ route('series.edit', $serie) }}" class="btn bg-purple">Editar</a>
+                    <a href="{{ route('series.edit', $serie) }}" class="btn bg-purple text-white">Editar</a>
                 </div>
             </div>
 
@@ -57,9 +56,9 @@
         <!-- TEMPORADAS-->
         <div class="col-6 my-5">
             <div class="card shadow">
-                <div class="card-header d-flex justify-content-between ">
-                    <span class="text-dark"><h4>{{ __('temporadas') }}</h4></span>
-                    <a href="{{ route('temporadas.create', $serie) }}" class="btn btn-success">Crear temporada</a>
+                <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                    <span class="text-dark "><h4>{{ __('Temporadas') }}</h4></span>
+                    <a href="{{ route('temporadas.create', $serie) }}" class="btn fondoRosa text-white">Crear temporada</a>
                 </div>
 
                 <div class="card-body">

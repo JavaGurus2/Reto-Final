@@ -5,17 +5,26 @@
         <div class="row justify-content-center">
             <div class="col-md-8 mt-5 ">
                 <div class="card">
-                    <div class="card-header p-3 bg-secondary border-dark border box-shadow">
-                        <h2>
+                    <div class="card-header p-3 bg-secondary  text-white">
+                        <h4 class="p-1 m-1">
                             <a href="{{ route('peliculas.index') }}" class="text-indigo-300"> <i
-                                class="fa-solid fa-arrow-left  me-3 text-indigo-300"></i></a>
-                        {{ __('Peliculas') }}
-
-                        </h2>
+                                class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            {{ __('Películas') }}
+                        </h4>
 
                     </div>
 
+
+
+
                     <div class="card-body bg-secondary">
+                        @if ($edit)
+                        <h1 class="mb-4 border-bottom text-white">Editar Película</h1>
+                          @endif
+
+                          @if (!$edit)
+                          <a href="{{ route('peliculas.edit', $pelicula) }}" class="btn btn-warning ml-5 mb-5">Activar editar</a>
+                      @endif
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -128,7 +137,6 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('peliculas.edit', $pelicula) }}" class="btn btn-warning ml-5">Activar editar</a>
                             <button type="submit" class="btn bg-purple" id="submitButton"
                                 {{ $edit ? '' : 'disabled' }}>Modificar</button>
                         </form>

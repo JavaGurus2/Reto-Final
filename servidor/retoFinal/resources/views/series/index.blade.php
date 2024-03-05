@@ -5,9 +5,9 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark"><h3>{{ __('series') }}</h3></span>
-                        <a href="{{ route('series.create') }}" class="btn btn-success">Crear serie</a>
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                        <span class="text-dark"><h3>{{ __('Series') }}</h3></span>
+                        <a href="{{ route('series.create') }}" class="btn fondoRosa text-white">Crear serie</a>
                     </div>
 
                     <div class="card-body">

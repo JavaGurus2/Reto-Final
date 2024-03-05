@@ -3,13 +3,35 @@ $body-bg: #f8fafc;
 $color-rosa: #CA40D6;
 $color-rosa-dos: #DB72E5;
 $color-rosa-tres: #ed87f7;
+$fondo-rosa: #9302a0;
 $blanco: #ffffff;
-
+$color-panel: linear-gradient(90deg, rgba(107,12,103,1) 0%, rgba(107,0,102,1) 41%, rgba(60,11,56,1) 100%);
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 1.2rem ;
 $line-height-base: 1.6;
 
+.panelColor
+{
+    background: $color-panel ;
+}
+
+.fondoRosaClaro
+{
+    background-color: $color-rosa-dos !important;
+
+}
+
+.fondoRosa
+{
+    background-color: $fondo-rosa !important;
+
+}
+.fondoRosa:hover
+{
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.1);
+}
 body
 {
     font-size: $font-size-base !important;
@@ -132,10 +154,10 @@ input:checked + .slider:before {
     background-color: #6e42c166 !important;
 }
 
-.bg-purple,.bg-purplea {
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.bg-purple, .bg-purplea
+{
+    font-size:$font-size-base !important;
 }
-
 .bg-purple {
     background-color: $color-rosa-dos !important ;
 }
@@ -145,16 +167,16 @@ input:checked + .slider:before {
 }
 
 .bg-purple:hover,.bg-purplea:hover {
+    transition: background-color 0.3s ease, transform 0.3s ease;
     background-color: $color-rosa !important;
     transform: scale(1.1);
 }
 
 
-.ahover {
-    transition: transform 0.3s ease;
-}
+
 
 .ahover:hover {
+    transition: transform 0.3s ease;
     transform: scale(1.4);
 }
 

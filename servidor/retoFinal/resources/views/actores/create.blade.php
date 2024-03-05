@@ -6,7 +6,13 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary">
-                <h1 class="mb-4">Crear Actor/Actriz</h1>
+                <h4 class="p-3 m-1  text-white">
+                    <a href="{{ route('actores.index') }}" class="text-indigo-300 "> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Actores/Actrices') }}
+
+                </h4>
+                <h1 class="mb-4 border-bottom">Crear Actor/Actriz</h1>
                 <form action="{{ route('actores.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -43,9 +49,8 @@
                         @enderror
                     </div>
 
-                    <div class="col-2 d-grid gap-2 m-5">
-                        <input type="submit" class="btn bg-purple" value="Crear">
-                        <a href="{{ route('actores.index') }}" class="btn btn-warning">Cancelar</a>
+                    <div class="  gap-2 m-5">
+                        <input type="submit" class="btn bg-purple text-white" value="Crear">
                     </div>
                 </form>
             </div>

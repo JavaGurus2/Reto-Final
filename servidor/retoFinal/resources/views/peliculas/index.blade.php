@@ -5,12 +5,12 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
                         <span class="text-dark"><h3>{{ __('Peliculas') }}</h3></span>
-                        <a href="{{ route('peliculas.create') }}" class="btn btn-success">Crear pelicula</a>
+                        <a href="{{ route('peliculas.create') }}" class="btn fondoRosa text-white">Crear pelicula</a>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body ">
                         <!--  componente de búsqueda -->
                         @include('_components.search', [
                             'route' => route('peliculas.index'),

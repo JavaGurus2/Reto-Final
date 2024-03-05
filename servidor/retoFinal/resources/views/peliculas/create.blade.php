@@ -4,10 +4,16 @@
     <div class="container">
         <div class="row justify-content-center my-5">
             <div class="col-md-8">
-                <div class="card  bg-secondary border-dark border box-shadow">
-                    <div class="card-header"><h2>{{ __('Peliculas') }}</h2></div>
+                <div class="card   border-dark border box-shadow bg-secondary">
+                    <h4 class="p-3 m-1  text-white">
+                        <a href="{{ route('peliculas.index') }}" class="text-indigo-300 "> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                        {{ __('Películas') }}
 
-                    <div class="card-body">
+                    </h4>
+
+                    <div class="card-body ">
+                        <h1 class="mb-4 border-bottom text-white">Crear Película</h1>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -97,7 +103,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-purple">Crear Película</button>
+                            <button type="submit" class="btn bg-purple text-white ">Crear Película</button>
                         </form>
                     </div>
                 </div>

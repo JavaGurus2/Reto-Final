@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
+<nav class="navbar navbar-expand-lg navbar-dark panelColor d-md-none">
     <a class="navbar-brand mx-3" href="/dashboard">
         <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid" alt="">
 
@@ -22,7 +22,7 @@
 </nav>
 <div class="container-fluid">
 
-    <div class="offcanvas offcanvas-start bg-dark " tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+    <div class="offcanvas offcanvas-start panelColor " tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
@@ -130,7 +130,7 @@
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100 text-white">
             <div
-                class=" bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+                class="  col-auto d-flex flex-column panelColor min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
@@ -245,7 +245,7 @@
 
     </div>
 
-    <div class="row bg-dark text-center text-white py-4" style="max-height: 100vh">
+    <div class="row panelColor text-center text-white py-4" style="max-height: 100vh">
         <div class="col">
             @yield('footer')
         </div>

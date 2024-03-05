@@ -5,9 +5,9 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
                         <span class="text-dark"><h3>{{ __('Actores') }}</h3></span>
-                        <a href="{{ route('actores.create') }}" class="btn btn-success">Crear actor</a>
+                        <a href="{{ route('actores.create') }}" class="btn fondoRosa text-white">Crear actor</a>
                     </div>
 
                     <div class="card-body">

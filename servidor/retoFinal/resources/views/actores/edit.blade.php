@@ -6,6 +6,12 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary">
+                <h4 class="p-3 m-1  text-white">
+                    <a href="{{ route('actores.show', $actore) }}" class="text-indigo-300 "> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Detalles Actor/Actriz') }}
+
+                </h4>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -15,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                <h1 class="mb-4">Editar actor/actriz</h1>
+                <h1 class="mb-4 border-bottom">Editar actor/actriz</h1>
                 <form action="{{ route('actores.update', $actore) }}" method="POST" class="needs-validation" novalidate
                     enctype="multipart/form-data">
                     @csrf
@@ -53,8 +59,7 @@
 
                     </div>
                     <div class="gap-2">
-                        <button type="submit" class="btn bg-purple">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-warning">Volver</a>
+                        <button type="submit" class="btn bg-purple text-white">Actualizar</button>
                     </div>
                 </form>
             </div>

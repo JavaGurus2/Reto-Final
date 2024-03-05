@@ -4,9 +4,15 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row justify-content-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
-            <div class="col-7 ">
-                <h1 class="mb-4">Crear Usuario</h1>
+        <div class="row justify-content-center ">
+            <div class="col-8 my-5 border border-dark shadow-lg p-4 rounded bg-secondary " >
+                <h4 class="mb-3 p-1 m-1">
+                    <a href="{{ route('usuarios.index') }}" class="text-indigo-300"> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Usuarios') }}
+
+                </h4>
+                <h1 class="mb-4 border-bottom">Crear Usuario</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -61,9 +67,7 @@
                     <div class="mb-3 d-flex justify-content-start ">
                         <input type="submit" class="btn btn-primary bg-purple" style="width: 200px" value="Crear">
                     </div>
-                    <div class="mb-3 d-flex justify-content-end">
-                        <a href="{{ route('usuarios.index') }}" class="btn btn-warning" style="width: 200px">Cancelar</a>
-                    </div>
+
                 </form>
             </div>
         </div>

@@ -5,9 +5,9 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark"><h3>{{ __('usuarios') }}</h3></span>
-                        <a href="{{ route('usuarios.create') }}" class="btn btn-success">Crear usuario</a>
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                        <span class="text-dark"><h3>{{ __('Usuarios') }}</h3></span>
+                        <a href="{{ route('usuarios.create') }}" class="btn fondoRosa text-white">Crear usuario</a>
                     </div>
 
                     <div class="card-body">
