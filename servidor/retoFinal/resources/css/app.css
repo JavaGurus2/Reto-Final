@@ -12413,16 +12413,16 @@ input:checked + .slider:before {
 }
 
 body {
-  background-color: lightgray !important;
+  background: linear-gradient(90deg, rgb(13, 0, 12) 0%, rgb(194, 56, 126) 27%, rgb(199, 54, 106) 91%) !important;
   color: #000 !important;
 }
 body.dark-mode {
-  background-color: rgba(60, 60, 60, 0.8509803922) !important;
+  background: linear-gradient(90deg, rgb(13, 0, 12) 0%, rgb(60, 11, 56) 29%, rgb(107, 12, 103) 91%) !important;
   color: #000000;
 }
 
 .light-bg {
-  background-color: lightgray;
+  background-color: linear-gradient(90deg, rgb(13, 0, 12) 0%, rgb(194, 56, 126) 27%, rgb(199, 54, 106) 91%);
   color: #333 !important;
 }
 

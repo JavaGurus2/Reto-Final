@@ -245,7 +245,7 @@
 
     </div>
 
-    <div class="row panelColor text-center text-white py-4" style="max-height: 100vh">
+    <div class="row bg-dark bg-gradiant text-center text-white py-4" style="max-height: 100vh">
         <div class="col">
             @yield('footer')
         </div>
