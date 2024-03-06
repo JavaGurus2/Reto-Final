@@ -23,7 +23,7 @@
                             <table id="indexTable" class="table table-bordered table-dark">
                                 <thead class="bg-dark">
                                     <tr>
-                                        <th>Id</th>
+
                                         <th>Titulo</th>
                                         <th>Fecha estreno</th>
                                         <th>Acciones</th>
@@ -32,7 +32,6 @@
                                 <tbody>
                                     @forelse ($peliculas as $pelicula)
                                         <tr>
-                                            <td>{{ $pelicula->id }}</td>
                                             <td>{{ $pelicula->titulo }}</td>
                                             <td>{{ $pelicula->fecha_estreno }}</td>
                                             <td>

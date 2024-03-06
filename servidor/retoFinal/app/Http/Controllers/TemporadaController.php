@@ -31,12 +31,14 @@ class TemporadaController extends Controller
     public function store(Request $request, Serie $serie)
     {
         $request->validate([
+            'nombre' => 'required|string',
             'numero' => 'required|integer',
             'fecha_estreno' => 'required|date',
             'serie_id' => 'required|integer'
         ]);
 
         Temporada::create([
+            'nombre' => $request->nombre,
             'numero' => $request->numero,
             'fecha_estreno' => $request->fecha_estreno,
             'serie_id' => $request->serie_id
@@ -68,11 +70,13 @@ class TemporadaController extends Controller
     public function update(Request $request, Serie $serie, Temporada $temporada)
     {
         $request->validate([
+            'nombre' => 'required|string',
             'numero' => 'required|integer',
             'fecha_estreno' => 'required|date',
         ]);
 
         // Actualizar los campos de la temporada
+        $temporada->nombre = $request->nombre;
         $temporada->numero = $request->numero;
         $temporada->fecha_estreno = $request->fecha_estreno;
         $temporada->save();
