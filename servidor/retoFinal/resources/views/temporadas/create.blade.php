@@ -27,7 +27,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="numero" class="form-label"><h3>Numero</h3></label>
-                        <input type="text" class="form-control" id="numero" name="numero" required>
+                        <input type="number" class="form-control" id="numero" name="numero" required>
                         @if ($errors->has('numero'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('numero') }}

@@ -77,7 +77,7 @@ class TemporadaController extends Controller
         $temporada->fecha_estreno = $request->fecha_estreno;
         $temporada->save();
 
-        return redirect()->route('temporadas.index', $serie->id)->with('success', 'Temporada actualizada correctamente.');
+        return redirect()->route('series.show', $serie->id)->with('success', 'Temporada actualizada correctamente.');
     }
 
 

@@ -7,6 +7,15 @@
         <div class="row justify-content-center">
             <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
                 <h1 class="mb-4">Editar Episodio</h1>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <form action="{{ route('episodios.update', [$serie,$temporada,$episodio]) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
