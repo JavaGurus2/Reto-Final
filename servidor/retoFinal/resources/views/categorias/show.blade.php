@@ -4,11 +4,11 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
+        <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
             <div>
                 <h4 class="p-3 m-1  text-white">
                     <a href="{{ route('categorias.index') }}" class="text-indigo-300 "> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
                     {{ __('Categorías') }}
 
                 </h4>

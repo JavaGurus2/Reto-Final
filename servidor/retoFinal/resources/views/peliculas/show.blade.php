@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8 mt-5 ">
                 <div class="card">
-                    <div class="card-header p-3 bg-secondary  text-white">
-                        <h4 class="p-1 m-1">
+                    <div class="card-header p-3  text-dark">
+                        <h4 class="p-1 m-1 ">
                             <a href="{{ route('peliculas.index') }}" class="text-indigo-300"> <i
-                                class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                                    class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
                             {{ __('Películas') }}
                         </h4>
 
@@ -17,14 +17,15 @@
 
 
 
-                    <div class="card-body bg-secondary">
+                    <div class="card-body cartaShow">
                         @if ($edit)
-                        <h1 class="mb-4 border-bottom text-white">Editar Película</h1>
-                          @endif
+                            <h1 class="mb-4 border-bottom text-black">Editar Película</h1>
+                        @endif
 
-                          @if (!$edit)
-                          <a href="{{ route('peliculas.edit', $pelicula) }}" class="btn btn-warning ml-5 mb-5">Activar editar</a>
-                      @endif
+                        @if (!$edit)
+                            <a href="{{ route('peliculas.edit', $pelicula) }}" class="btn btn-warning ml-5 mb-5">Activar
+                                editar</a>
+                        @endif
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -34,13 +35,16 @@
                                 </ul>
                             </div>
                         @endif
+
                         <form id="peliculaForm" method="POST" action="{{ route('peliculas.update', $pelicula) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
                             <div class="form-group my-2">
-                                <label for="titulo"><h3>Título</h3></label>
+                                <label for="titulo">
+                                    <h3>Título</h3>
+                                </label>
                                 <input type="text" name="titulo" id="titulo" class="form-control"
                                     value="{{ old('titulo', $pelicula->titulo ?? '') }}"
                                     {{ $edit ? 'required' : 'disabled' }}>
@@ -48,19 +52,24 @@
                             </div>
 
                             <div class="form-group my-2">
-                                <label for="sinopsis"><h3>Sinopsis</h3></label>
+                                <label for="sinopsis">
+                                    <h3>Sinopsis</h3>
+                                </label>
                                 <textarea name="sinopsis" id="sinopsis" class="form-control" rows="4" {{ $edit ? 'required' : 'disabled' }}>{{ old('sinopsis', $pelicula->sinopsis ?? '') }}</textarea>
                                 <div class="invalid-feedback" id="sinopsisFeedback"></div>
                             </div>
 
                             <div class="form-group my-2">
-                                <label  for="imagen"><h3>Imagen</h3></label>
+                                <label for="imagen">
+                                    <h3>Imagen</h3>
+                                </label>
                                 <br>
-                                <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded "
-                                    accept="image/*" {{ $edit ? '' : 'disabled' }}>
+                                <input type="file" name="imagen" id="imagen"
+                                    class="form-control-file bg-white p-2 rounded " accept="image/*"
+                                    {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->imagen))
-                                    <img src="{{ asset($pelicula->imagen) }}" class="my-3 rounded" alt="Imagen de la película"
-                                        style="max-width: 300px;">
+                                    <img src="{{ asset($pelicula->imagen) }}" class="my-3 rounded"
+                                        alt="Imagen de la película" style="max-width: 300px;">
                                 @endif
                                 <div class="invalid-feedback" id="imagenFeedback"></div>
                             </div>
@@ -68,10 +77,13 @@
                             <br>
                             <br>
                             <div class="form-group my-2">
-                                <label for="archivo"><h3>Archivo</h3></label>
+                                <label for="archivo">
+                                    <h3>Archivo</h3>
+                                </label>
                                 <br>
-                                <input type="file" name="archivo" id="archivo" class="form-control-file bg-white p-2 rounded "
-                                    accept="video/*" {{ $edit ? '' : 'disabled' }}>
+                                <input type="file" name="archivo" id="archivo"
+                                    class="form-control-file bg-white p-2 rounded " accept="video/*"
+                                    {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->archivo))
                                     <video class="rounded" controls style="max-width: 400px;">
                                         <source src="{{ asset($pelicula->archivo) }}">
@@ -81,7 +93,9 @@
                             </div>
 
                             <div class=" mb-3 form-group my-2">
-                                <label for="fecha_estreno"><h3>Fecha de Estreno</h3></label>
+                                <label for="fecha_estreno">
+                                    <h3>Fecha de Estreno</h3>
+                                </label>
                                 <input type="date" name="fecha_estreno" id="fecha_estreno" class="form-control"
                                     value="{{ old('fecha_estreno', $pelicula->fecha_estreno ?? '') }}"
                                     {{ $edit ? 'required' : 'disabled' }}>
@@ -90,7 +104,9 @@
                             <!-- CATEGORIAS -->
                             <div class="mb-3 my-2">
                                 <div class="card p-3">
-                                    <label for="categoria" class="form-label"><h3>Categoría</h3></label>
+                                    <label for="categoria" class="form-label">
+                                        <h3>Categoría</h3>
+                                    </label>
 
                                     <div class="row">
                                         @foreach ($categorias as $categoria)
@@ -115,7 +131,9 @@
                             <!-- ACTORES -->
                             <div class="mb-3 my-2">
                                 <div class="card p-3">
-                                    <label for="actor" class="form-label"><h3>Actor</h3></label>
+                                    <label for="actor" class="form-label">
+                                        <h3>Actor</h3>
+                                    </label>
 
                                     <div class="row">
                                         @foreach ($actores as $actor)

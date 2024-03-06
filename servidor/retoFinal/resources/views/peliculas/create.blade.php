@@ -3,16 +3,16 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-5">
-            <div class="col-md-8">
-                <div class="card   border-dark border box-shadow bg-secondary">
+            <div class="col-md-8 cartaShow">
+                <div class="  box-shadow ">
                     <h4 class="p-3 m-1  text-white">
                         <a href="{{ route('peliculas.index') }}" class="text-indigo-300 "> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                                class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-black p-1"></i></a>
                         {{ __('Películas') }}
 
                     </h4>
 
-                    <div class="card-body ">
+                    <div class=" ">
                         <h1 class="mb-4 border-bottom text-white">Crear Película</h1>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -28,40 +28,52 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label for="titulo"><h3>Título</h3></label>
+                                <label for="titulo">
+                                    <h3>Título</h3>
+                                </label>
                                 <input type="text" name="titulo" id="titulo" class="form-control" required>
                                 <div class="invalid-feedback" id="tituloFeedback"></div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="sinopsis"><h3>Sinopsis</h3></label>
+                                <label for="sinopsis">
+                                    <h3>Sinopsis</h3>
+                                </label>
                                 <textarea name="sinopsis" id="sinopsis" class="form-control" rows="4" required></textarea>
                                 <div class="invalid-feedback" id="sinopsisFeedback"></div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="imagen"><h3>Imagen</h3></label>
-                                <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded "
-                                    accept="image/*" required>
+                                <label for="imagen">
+                                    <h3>Imagen</h3>
+                                </label>
+                                <input type="file" name="imagen" id="imagen"
+                                    class="form-control-file bg-white p-2 rounded " accept="image/*" required>
                                 <div class="invalid-feedback" id="imagenFeedback"></div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="archivo"><h3>Archivo</h3></label>
-                                <input type="file" name="archivo" id="archivo" class="form-control-file bg-white p-2 rounded "
-                                    accept="video/*" required>
+                                <label for="archivo">
+                                    <h3>Archivo</h3>
+                                </label>
+                                <input type="file" name="archivo" id="archivo"
+                                    class="form-control-file bg-white p-2 rounded " accept="video/*" required>
                                 <div class="invalid-feedback" id="archivoFeedback"></div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="fecha_estreno"><h3>Fecha de Estreno</h3></label>
+                                <label for="fecha_estreno">
+                                    <h3>Fecha de Estreno</h3>
+                                </label>
                                 <input type="date" name="fecha_estreno" id="fecha_estreno" class="form-control" required>
                                 <div class="invalid-feedback" id="fechaEstrenoFeedback"></div>
                             </div>
                             <!-- CATEGORIAS -->
                             <div class="mb-3">
                                 <div class="card p-3">
-                                    <label for="categoria" class="form-label"><h3>Categoría</h3></label>
+                                    <label for="categoria" class="form-label">
+                                        <h3>Categoría</h3>
+                                    </label>
 
                                     <div class="row">
                                         @foreach ($categorias as $categoria)
@@ -83,7 +95,9 @@
                             <!-- ACTORES -->
                             <div class="mb-3">
                                 <div class="card p-3">
-                                    <label for="categoria" class="form-label"><h3>Actor/Actriz</h3></label>
+                                    <label for="categoria" class="form-label">
+                                        <h3>Actor/Actriz</h3>
+                                    </label>
 
                                     <div class="row">
                                         @foreach ($actores as $actor)

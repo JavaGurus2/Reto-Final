@@ -4,12 +4,12 @@
 
 @section('content')
     <div
-        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
+        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded cartaShow">
         <div class="col-lg-6">
             <div>
                 <h4 class="mb-5">
-                    <a href="{{ route('series.show',$serie) }}" class="text-indigo-300"> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 "></i></a>
+                    <a href="{{ route('series.show', $serie) }}" class="text-indigo-300"> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 "></i></a>
                     {{ __('Detalles Serie') }}
 
                 </h4>
@@ -37,7 +37,8 @@
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn bg-purple text-white">Editar Temporada</a>
+                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn bg-purple text-white">Editar
+                        Temporada</a>
                 </div>
             </div>
         </div>
@@ -47,7 +48,8 @@
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between fondoRosaClaro">
                     <h5 class="text-dark">{{ __('Episodios') }}</h5>
-                    <a href="{{ route('episodios.create', [$serie, $temporada]) }}" class="btn fondoRosa text-white">Crear episodio</a>
+                    <a href="{{ route('episodios.create', [$serie, $temporada]) }}" class="btn fondoRosa text-white">Crear
+                        episodio</a>
                 </div>
 
                 <div class="card-body">
