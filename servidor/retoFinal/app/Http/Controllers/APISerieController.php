@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelicula;
+use App\Models\Serie;
 use Illuminate\Http\Request;
 
-class APIPeliculaController extends Controller
+class APISerieController extends Controller
 {
 
     public function BuscarSerie(Request $request)
@@ -19,9 +20,12 @@ class APIPeliculaController extends Controller
 
         $actores = $serie->actores()->get();
 
-        return response()->json(["data" => 'Encontrado', 'serie' => $serie, 
-                                'temporadas' => $temporadas,
-                                'episodios' => $episodios,
-                                'actores' => $actores]);
+        return response()->json([
+            "data" => 'Encontrado',
+            'serie' => $serie,
+            'temporadas' => $temporadas,
+            'episodios' => $episodios,
+            'actores' => $actores
+        ]);
     }
 }

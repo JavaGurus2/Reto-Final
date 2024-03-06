@@ -9,6 +9,6 @@ class APIBuscarController extends Controller
 
     public function buscar()
     {
-        //
+
     }
 }
