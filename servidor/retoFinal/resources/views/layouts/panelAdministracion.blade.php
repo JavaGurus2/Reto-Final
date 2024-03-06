@@ -130,7 +130,7 @@
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100 text-white">
             <div
-                class="  col-auto d-flex flex-column panelColor min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+                class="  col-auto d-flex flex-column panelColor min-vh-100 dark-bg d-none d-md-block col-sm-3 col-md-4 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
@@ -223,8 +223,11 @@
                                     </li>
 
                                 </ul>
-
                             </div>
+
+                        </div>
+                        <br>
+                        <div style="display: block; margin-top: 10px;">
                             <label class="switch ms-3" for="dark-mode-toggle">
                                 <input type="checkbox" id="dark-mode-toggle">
                                 <span class="slider">

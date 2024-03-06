@@ -3,12 +3,13 @@
 @section('title', 'Ver Serie')
 
 @section('content')
-    <div class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
+    <div
+        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
         <div class="col-6 justify-content-center align-items-center">
             <div>
                 <h4>
                     <a href="{{ route('series.index') }}" class="text-indigo-300"> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
                     {{ __('Series') }}
 
                 </h4>
@@ -57,7 +58,9 @@
         <div class="col-6 my-5">
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between fondoRosaClaro">
-                    <span class="text-dark "><h4>{{ __('Temporadas') }}</h4></span>
+                    <span class="text-dark ">
+                        <h4>{{ __('Temporadas') }}</h4>
+                    </span>
                     <a href="{{ route('temporadas.create', $serie) }}" class="btn fondoRosa text-white">Crear temporada</a>
                 </div>
 
@@ -93,13 +96,13 @@
                                                 tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-header card-header-custom ">
                                                             <h5 class="modal-title" id="confirmDeleteModalLabel">
                                                                 Confirmar Borrado {{ $temporada->id }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Cerrar"></button>
                                                         </div>
-                                                        <div class="modal-body">
+                                                        <div class="modal-body modal-content-custom ">
                                                             <p>¿Estás seguro de que deseas borrar esta temporada?</p>
                                                         </div>
                                                         <div class="modal-footer">

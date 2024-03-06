@@ -71,7 +71,7 @@ input:checked + .slider:before {
 }
 
 .switch i {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .slider .fa-moon {
@@ -84,7 +84,6 @@ input:checked + .slider:before {
 }
 
 
-//
 //modo claro/oscuro
 $dark-mode-bg: linear-gradient(90deg, rgba(13,0,12,1) 0%, rgba(60,11,56,1) 29%, rgba(107,12,103,1) 91%);
 $dark-mode-text: #000000;

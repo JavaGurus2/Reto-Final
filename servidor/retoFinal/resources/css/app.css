@@ -12313,7 +12313,8 @@ tbody tr:nth-child(10) td {
 
 /* Estilos para la ventana modal */
 .modal-content-custom {
-  background-color: #ffffff; /* Color de fondo */
+  color: white;
+  background-color: rgba(132, 130, 130, 0.771); /* Color de fondo */
   border: 2px solid #6c757d; /* Borde */
 }
 
@@ -12401,7 +12402,7 @@ input:checked + .slider:before {
 }
 
 .switch i {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .slider .fa-moon {

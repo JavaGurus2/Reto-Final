@@ -6,6 +6,7 @@ use App\Http\Controllers\EpisodioController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SerieController;
 use App\Http\Controllers\TemporadaController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -94,4 +95,4 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->name("perfil");
 
-Route::put('/perfil/{user}/update', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.update');
+Route::put('/perfil/{user}/update', [UserProfileController::class, 'update'])->name('perfil.update');

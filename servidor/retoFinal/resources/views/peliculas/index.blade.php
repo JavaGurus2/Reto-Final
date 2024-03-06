@@ -6,7 +6,9 @@
             <div class="col-md-8 ">
                 <div class="card card-custom">
                     <div class="card-header d-flex justify-content-between fondoRosaClaro">
-                        <span class="text-dark"><h3>{{ __('Peliculas') }}</h3></span>
+                        <span class="text-dark">
+                            <h3>{{ __('Peliculas') }}</h3>
+                        </span>
                         <a href="{{ route('peliculas.create') }}" class="btn fondoRosa text-white">Crear pelicula</a>
                     </div>
 
@@ -82,7 +84,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td>No hay peliculas</td>
+                                            <td colspan="4">No hay peliculas</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
