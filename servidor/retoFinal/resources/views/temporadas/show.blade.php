@@ -84,13 +84,13 @@
                                                 tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-header card-header-custom">
                                                             <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar
                                                                 Borrado {{ $episodio->id }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Cerrar"></button>
                                                         </div>
-                                                        <div class="modal-body">
+                                                        <div class="modal-body modal-content-custom">
                                                             <p>¿Estás seguro de que deseas borrar este episodio?</p>
                                                         </div>
                                                         <div class="modal-footer">
