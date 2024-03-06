@@ -4,6 +4,7 @@ use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\APIBuscarController;
 use App\Http\Controllers\APIHomeController;
 use App\Http\Controllers\APIPeliculaController;
+use App\Http\Controllers\APISerieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,6 @@ Route::middleware('auth.jwt')->get('/home', [APIHomeController::class, 'rellenar
 Route::middleware('auth.jwt')->get('/home/{categoria}', [APIHomeController::class, "filtro"]);
 Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'UserDP']);
 Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
-Route::middleware('auth.jwt')->put('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
-Route::middleware('auth.jwt')->put('/buscarSerie', [APISerieController::class, 'BuscarSerie']);
-Route::middleware('auth.jwt')->get('/buscar', [APIBuscarController::class, 'buscar']);
+Route::middleware('auth.jwt')->post('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
+Route::middleware('auth.jwt')->post('/buscarSerie', [APISerieController::class, 'BuscarSerie']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');

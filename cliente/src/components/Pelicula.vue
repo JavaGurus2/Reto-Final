@@ -32,7 +32,7 @@ onBeforeMount(() => {
 
 async function cargarPelicula() {
   const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscarPelicula`, {
-    method: 'put',
+    method: 'post',
     headers: {
       Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json'

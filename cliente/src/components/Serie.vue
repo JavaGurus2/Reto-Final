@@ -32,6 +32,8 @@ const numeroE = ref('')
 const duracion = ref('')
 const sinopsisE = ref('')
 
+const actores = ref([])
+
 const PROTOCOLO = 'http'
 const DIRECCION = 'admin.egiflix.es'
 
@@ -44,7 +46,7 @@ onMounted(() => {
 
 async function cargarSerie() {
   const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscarSerie`, {
-    method: 'put',
+    method: 'post',
     headers: {
       Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json'
@@ -56,7 +58,7 @@ async function cargarSerie() {
 
   data.value = await response.json()
 
-  //   peliculasStore.cambiarTitulo(titulo.value)
+  peliculasStore.cambiarTitulo(data.value.series.nombre)
 
   //Valores de la Serie
   nombreS.value = data.value.series.nombre
