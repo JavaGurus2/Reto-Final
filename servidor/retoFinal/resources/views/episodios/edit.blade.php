@@ -50,9 +50,18 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="archivo" class="form-label"><h3>Archivo</h3></label>
-                        <input type="file" class="form-control" id="archivo" name="archivo"
-                            value="{{ $episodio->imagen }}" >
+
+                            <label for="archivo"><h3>Archivo</h3></label>
+                            <br>
+                            <input type="file" name="archivo" id="archivo" class="form-control-file bg-white p-2 rounded "
+                                accept="video/*" >
+                            @if (isset($episodio->archivo))
+                                <video class="rounded" controls style="max-width: 400px;">
+                                    <source src="{{ asset($episodio->archivo) }}">
+                                </video>
+                            @endif
+                            <div class="invalid-feedback" id="archivoFeedback"></div>
+
                     </div>
                     <div class="mb-3">
                         <label for="duracion" class="form-label"><h3>Duración (minutos)</h3></label>
