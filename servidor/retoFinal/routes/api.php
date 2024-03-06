@@ -30,4 +30,7 @@ Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'User
 Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
 Route::middleware('auth.jwt')->post('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
 Route::middleware('auth.jwt')->post('/buscarSerie', [APISerieController::class, 'BuscarSerie']);
+Route::middleware('auth.jwt')->get('/buscar', [APIBuscarController::class, "buscar"]);
+Route::middleware('auth.jwt')->post('/milista', [APIMiListaController::class, "anadir"]);
+Route::middleware('auth.jwt')->delete('/milista/{id}', [APIMiListaController::class, "eliminar"]);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
