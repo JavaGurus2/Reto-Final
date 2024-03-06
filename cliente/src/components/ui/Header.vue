@@ -12,7 +12,7 @@
         />
         <span class="d-none d-md-block fs-1">Egiflix</span>
       </div>
-      <form class="w-100">
+      <form class="w-100" @submit.prevent="buscar">
         <div class="input-group bg-secondary-subtle rounded-2">
           <input
             type="text"
@@ -60,9 +60,16 @@ const { buscar } = useBusquedaStore()
 const textoBusqueda = ref('')
 const pelis = ref('')
 
+let timerId = null
+
 watch(textoBusqueda, async (nueva, anterior) => {
-  setTimeout(async () => {
-    await buscar(tipoBusqueda, textoBusqueda.value)
+  if (timerId) {
+    clearTimeout(timerId)
+  }
+
+  timerId = setTimeout(async () => {
+    console.log(textoBusqueda.value)
+    await buscar(textoBusqueda.value)
   }, 500)
 })
 </script>

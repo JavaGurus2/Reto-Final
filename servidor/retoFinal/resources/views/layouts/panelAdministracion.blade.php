@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <title>@yield('title')</title>
-    @vite(['resources/css/app.css'])
+    @vite(['resources/sass/app.scss'])
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
