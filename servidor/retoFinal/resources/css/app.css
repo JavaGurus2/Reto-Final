@@ -4,7 +4,7 @@
 }
 
 .fondoRosaClaro {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
 }
 
 .fondoRosa {
@@ -21,11 +21,11 @@ body {
 }
 
 .imagenColor {
-  color: #DB72E5;
+  color: rgba(255, 255, 255, 0.7960784314);
 }
 
 .fondoColor:hover {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
   color: white;
 }
 
@@ -38,7 +38,7 @@ li {
 }
 
 li:hover {
-  background-color: #ed87f7;
+  background-color: rgba(255, 255, 255, 0.8784313725);
   border-radius: 1em;
   transform: scale(1.1);
 }
@@ -132,17 +132,27 @@ input:checked + .slider:before {
 }
 
 .bg-purple {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
 }
 
 .bg-purplea {
-  background-color: #ed87f7 !important;
+  background-color: rgba(255, 255, 255, 0.8784313725) !important;
 }
 
 .bg-purple:hover, .bg-purplea:hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
-  background-color: #CA40D6 !important;
+  background-color: rgba(0, 0, 0, 0.418) !important;
+  color: white !important;
   transform: scale(1.1);
+}
+
+.bg-purple:hover .fa-solid.fa-list-check,
+.bg-purple:hover .ahover {
+  color: white !important;
+}
+
+.bg-purple:hover .ahover {
+  border-color: white !important; /* Establece el color del borde en blanco */
 }
 
 .ahover:hover {
@@ -12056,7 +12066,7 @@ textarea.form-control-lg {
 }
 
 .fondoRosaClaro {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
 }
 
 .fondoRosa {
@@ -12073,11 +12083,11 @@ body {
 }
 
 .imagenColor {
-  color: #DB72E5;
+  color: rgba(255, 255, 255, 0.7960784314);
 }
 
 .fondoColor:hover {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
   color: white;
 }
 
@@ -12090,7 +12100,7 @@ li {
 }
 
 li:hover {
-  background-color: #ed87f7;
+  background-color: rgba(255, 255, 255, 0.8784313725);
   border-radius: 1em;
   transform: scale(1.1);
 }
@@ -12186,17 +12196,27 @@ input:checked + .slider:before {
 }
 
 .bg-purple {
-  background-color: #DB72E5 !important;
+  background-color: rgba(255, 255, 255, 0.7960784314) !important;
 }
 
 .bg-purplea {
-  background-color: #ed87f7 !important;
+  background-color: rgba(255, 255, 255, 0.8784313725) !important;
 }
 
 .bg-purple:hover, .bg-purplea:hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
-  background-color: #CA40D6 !important;
+  background-color: rgba(0, 0, 0, 0.418) !important;
+  color: white !important;
   transform: scale(1.1);
+}
+
+.bg-purple:hover .fa-solid.fa-list-check,
+.bg-purple:hover .ahover {
+  color: white !important;
+}
+
+.bg-purple:hover .ahover {
+  border-color: white !important; /* Establece el color del borde en blanco */
 }
 
 .ahover:hover {
