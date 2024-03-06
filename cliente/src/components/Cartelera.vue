@@ -5,7 +5,7 @@ import CategoriaItem from './CategoriaItem.vue'
 import { ref, onBeforeMount } from 'vue'
 
 const PROTOCOLO = 'http'
-const DIRECCION = 'localhost:8000'
+const DIRECCION = 'admin.egiflix.es'
 
 const categorias = ref([])
 

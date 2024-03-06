@@ -16,7 +16,7 @@ const contraCError = ref('')
 const success = ref('')
 
 const PROTOCOLO = 'http'
-const DIRECCION = 'localhost:8000'
+const DIRECCION = 'admin.egiflix.es'
 
 function previewPhoto(event) {
   const file = event.target.files[0]

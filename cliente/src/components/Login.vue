@@ -1,6 +1,6 @@
 <script setup>
 const PROTOCOLO = 'http'
-const DIRECCION = '127.0.0.1:8000'
+const DIRECCION = 'admin.egiflix.es'
 import { ref } from 'vue'
 import Notificacion from './Notificacion.vue'
 import { useRouter } from 'vue-router'

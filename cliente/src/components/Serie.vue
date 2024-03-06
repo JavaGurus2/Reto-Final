@@ -32,12 +32,10 @@ const numeroE = ref('')
 const duracion = ref('')
 const sinopsisE = ref('')
 
-
 const PROTOCOLO = 'http'
-const DIRECCION = 'localhost:8000'
+const DIRECCION = 'admin.egiflix.es'
 
 const peliculasStore = usePeliculasStore()
-
 
 onMounted(() => {
   id.value = route.params.id
@@ -58,7 +56,7 @@ async function cargarSerie() {
 
   data.value = await response.json()
 
-//   peliculasStore.cambiarTitulo(titulo.value)
+  //   peliculasStore.cambiarTitulo(titulo.value)
 
   //Valores de la Serie
   nombreS.value = data.value.series.nombre
@@ -75,18 +73,16 @@ async function cargarSerie() {
 
   //Valores de los Episodios
   episodios.value = temporadas.value.episodios
-
 }
 
 function elegirTemporada(eleccion) {
-    temporada.value = eleccion
+  temporada.value = eleccion
 }
-
 </script>
 
 <template>
   <div class="row g-0">
-    <img :src="imagen" alt="Portada de la Serie">
+    <img :src="imagen" alt="Portada de la Serie" />
   </div>
   <div class="col-10 align-self-center mt-3">
     <p>{{ fecha }} - {{ clasificacion }}</p>
@@ -104,22 +100,29 @@ function elegirTemporada(eleccion) {
     </div>
   </div>
   <div v-if="temporadas.length > 0" class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Temporadas
-  </button>
-  <ul class="dropdown-menu">
-    <li v-for="(temporada, index) in temporadas" :key="index">
-        <button class="dropdown-item" @click="elegirTemporada(template.numero)">{{ temporada.numero }} - {{ temporada.nombre }}</button>
-    </li>
-  </ul>
-</div>
-<p v-else>No hay temporadas asociadas.</p>
-<div>
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Temporadas
+    </button>
+    <ul class="dropdown-menu">
+      <li v-for="(temporada, index) in temporadas" :key="index">
+        <button class="dropdown-item" @click="elegirTemporada(template.numero)">
+          {{ temporada.numero }} - {{ temporada.nombre }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <p v-else>No hay temporadas asociadas.</p>
+  <div>
     <div v-for="(episodio, index) in episodios" :key="index" class="episodio-container">
       <div class="episodio-thumbnail">
         <video id="miReproductor" width="640" height="360" controls>
-            <source src="http://killercervezas.blog:81/video.mp4" type="video/mp4" />
-            Tu navegador no soporta el tag de video.
+          <source src="http://killercervezas.blog:81/video.mp4" type="video/mp4" />
+          Tu navegador no soporta el tag de video.
         </video>
       </div>
       <div class="episodio-info">
@@ -131,18 +134,18 @@ function elegirTemporada(eleccion) {
   </div>
 </template>
 <style>
-  .episodio-container {
-    display: flex;
-    border-bottom: 1px solid #ddd; /* Línea separadora entre episodios */
-    padding: 20px;
-  }
+.episodio-container {
+  display: flex;
+  border-bottom: 1px solid #ddd; /* Línea separadora entre episodios */
+  padding: 20px;
+}
 
-  .episodio-thumbnail {
-    /* Estilos para la imagen del episodio (si la tienes) */
-    margin-right: 20px;
-  }
+.episodio-thumbnail {
+  /* Estilos para la imagen del episodio (si la tienes) */
+  margin-right: 20px;
+}
 
-  .episodio-info {
-    flex: 1;
-  }
+.episodio-info {
+  flex: 1;
+}
 </style>
