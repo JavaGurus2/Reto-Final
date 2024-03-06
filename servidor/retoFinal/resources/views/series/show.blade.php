@@ -4,7 +4,7 @@
 
 @section('content')
     <div
-        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
+        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded  cartaShow">
         <div class="col-6 justify-content-center align-items-center">
             <div>
                 <h4>

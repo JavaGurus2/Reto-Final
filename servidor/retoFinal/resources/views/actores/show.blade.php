@@ -4,11 +4,11 @@
 
 @section('content')
     <div class="row justify-content-center my-5">
-        <div class="col-8 border-dark shadow-lg p-4 rounded bg-secondary">
+        <div class="col-8 border-dark shadow-lg p-4 rounded cartaShow">
             <div>
                 <h4 class="p-3 m-1  text-white">
                     <a href="{{ route('actores.index') }}" class="text-indigo-300 "> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
                     {{ __('Actores/Actrices') }}
 
                 </h4>
@@ -16,7 +16,7 @@
 
             <div class="card">
                 <div class="card-header">
-                   <h3>Información del actor/actriz</h3>
+                    <h3>Información del actor/actriz</h3>
                 </div>
                 <div class="card-body">
                     <dl class="row">
@@ -32,7 +32,8 @@
                         <hr>
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8">
-                            <img src="{{ asset($actore->imagen) }}" alt="Imagen del actor" class="rounded box-shadow" style="max-width: 300px;">
+                            <img src="{{ asset($actore->imagen) }}" alt="Imagen del actor" class="rounded box-shadow"
+                                style="max-width: 300px;">
                         </dd>
                     </dl>
                 </div>

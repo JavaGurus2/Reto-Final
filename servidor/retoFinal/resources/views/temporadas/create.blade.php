@@ -5,10 +5,10 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
                 <h4>
-                    <a href="{{ route('series.show',$serie) }}" class="text-indigo-300"> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                    <a href="{{ route('series.show', $serie) }}" class="text-indigo-300"> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
                     {{ __('Temporadas') }}
 
                 </h4>
@@ -17,7 +17,9 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label"><h3>Nombre</h3></label>
+                        <label for="nombre" class="form-label">
+                            <h3>Nombre</h3>
+                        </label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
                         @if ($errors->has('nombre'))
                             <div class="invalid-feedback">
@@ -26,7 +28,9 @@
                         @endif
                     </div>
                     <div class="mb-3">
-                        <label for="numero" class="form-label"><h3>Numero</h3></label>
+                        <label for="numero" class="form-label">
+                            <h3>Numero</h3>
+                        </label>
                         <input type="number" class="form-control" id="numero" name="numero" required>
                         @if ($errors->has('numero'))
                             <div class="invalid-feedback">
@@ -35,7 +39,9 @@
                         @endif
                     </div>
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
+                        <label for="fecha_estreno" class="form-label">
+                            <h3>Fecha de Estreno</h3>
+                        </label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno" required>
                         @if ($errors->has('fecha_estreno'))
                             <div class="invalid-feedback">

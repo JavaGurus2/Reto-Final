@@ -4,11 +4,11 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-8  my-5 border border-dark shadow-lg p-4 rounded bg-secondary">
+        <div class="col-8  my-5 border border-dark shadow-lg p-4 rounded cartaShow">
             <div>
                 <h4>
-                    <a href="{{ route('temporadas.show', [$serie, $temporada])  }}" class="text-indigo-300"> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 mb-5"></i></a>
+                    <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="text-indigo-300"> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 mb-5"></i></a>
                     {{ __('Detalles Temporada') }}
 
                 </h4>
@@ -17,7 +17,7 @@
 
             <div class="card">
                 <div class="card-header">
-                   <h3> Información del episodio</h3>
+                    <h3> Información del episodio</h3>
                 </div>
                 <div class="card-body">
                     <dl class="row border rounded p-2 m-2">
@@ -47,7 +47,8 @@
                     </dl>
                 </div>
                 <div class="px-3 my-4 justify-content-center">
-                    <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}" class="btn bg-purple text-white">Editar</a>
+                    <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}"
+                        class="btn bg-purple text-white">Editar</a>
                 </div>
             </div>
         </div>
