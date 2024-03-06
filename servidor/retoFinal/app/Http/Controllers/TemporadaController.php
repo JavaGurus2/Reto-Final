@@ -24,7 +24,11 @@ class TemporadaController extends Controller
 
     public function create(Serie $serie)
     {
-        return view('temporadas.create', compact('serie'));
+        $ultimoNumeroTemporada = Temporada::where('serie_id', $serie->id)->max('numero');
+        return view('temporadas.create', [
+            "serie" => $serie,
+            'ultimoNumeroTemporada' => $ultimoNumeroTemporada
+        ]);
     }
 
 
