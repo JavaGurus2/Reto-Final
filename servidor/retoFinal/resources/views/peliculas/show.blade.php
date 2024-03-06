@@ -137,7 +137,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-purple" id="submitButton"
+                            <button type="submit" class="btn bg-purple text-white" id="submitButton"
                                 {{ $edit ? '' : 'disabled' }}>Modificar</button>
                         </form>
                     </div>

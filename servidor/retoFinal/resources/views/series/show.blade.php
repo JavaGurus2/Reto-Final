@@ -66,7 +66,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+
                                     <th>Numero temporada</th>
                                     <th>Fecha estreno</th>
                                     <th>Acciones</th>
@@ -75,7 +75,7 @@
                             <tbody>
                                 @forelse ($temporadas as $temporada)
                                     <tr>
-                                        <td>{{ $temporada->id }}</td>
+
                                         <td>{{ $temporada->numero }}</td>
                                         <td>{{ $temporada->fecha_estreno }}</td>
                                         <td>

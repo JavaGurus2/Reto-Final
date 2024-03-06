@@ -19,6 +19,15 @@
                     @method('PUT')
 
                     <div class="mb-3">
+                        <label for="nombre" class="form-label"><h3>Nombre</h3></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                            value="{{ $temporada->nombre }}" required>
+                        <div class="invalid-feedback">
+                            Por favor ingresa un nombre.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="numero" class="form-label">Numero</label>
                         <input type="number" class="form-control" id="numero" name="numero"
                             value="{{ $temporada->numero }}" required>
