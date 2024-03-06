@@ -25,6 +25,9 @@
                         <dt class="col-sm-4">Nombre de la serie:</dt>
                         <dd class="col-sm-8">{{ $serie->nombre }}</dd>
                         <hr>
+                        <dt class="col-sm-4">Nombre de la temporada:</dt>
+                        <dd class="col-sm-8">{{ $temporada->nombre }}</dd>
+                        <hr>
                         <dt class="col-sm-4">Número:</dt>
                         <dd class="col-sm-8">{{ $temporada->numero }}</dd>
                         <hr>
@@ -52,7 +55,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+
                                     <th>Número episodio</th>
                                     <th>Fecha estreno</th>
                                     <th>Acciones</th>
@@ -61,7 +64,7 @@
                             <tbody>
                                 @forelse ($episodios as $episodio)
                                     <tr>
-                                        <td>{{ $episodio->id }}</td>
+
                                         <td>{{ $episodio->numero }}</td>
                                         <td>{{ $episodio->fecha_estreno }}</td>
                                         <td>
