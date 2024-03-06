@@ -5,9 +5,11 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark">{{ __('series') }}</span>
-                        <a href="{{ route('series.create') }}" class="btn btn-success">Crear serie</a>
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                        <span class="text-dark">
+                            <h3>{{ __('Series') }}</h3>
+                        </span>
+                        <a href="{{ route('series.create') }}" class="btn fondoRosa text-white">Crear serie</a>
                     </div>
 
                     <div class="card-body">
@@ -85,6 +87,45 @@
                                 </tbody>
                             </table>
                         </div>
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                @if ($series->previousPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $series->appends(request()->except('page'))->previousPageUrl() }}">
+                                            <span aria-hidden="true" class="text-dark">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($series->currentPage() > 3)
+                                    <li class="page-item"><span class="page-link">1</span></li>
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+
+                                @for ($i = max(1, $series->currentPage() - 2); $i <= min($series->lastPage(), $series->currentPage() + 2); $i++)
+                                    <li class="page-item @if ($i == $series->currentPage()) active @endif">
+                                        <a class="page-link"
+                                            href="{{ $series->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+
+                                @if ($series->currentPage() < $series->lastPage() - 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    <li class="page-item"><span class="page-link">{{ $series->lastPage() }}</span></li>
+                                @endif
+
+                                @if ($series->nextPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $series->appends(request()->except('page'))->nextPageUrl() }}"
+                                            aria-label="Next">
+                                            <span aria-hidden="true" class="text-dark">&raquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

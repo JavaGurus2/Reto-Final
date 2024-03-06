@@ -4,14 +4,22 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-7">
-                <h1 class="mb-4">Crear Categoria</h1>
-                <form action="{{ route('categorias.store') }}" method="POST"  enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
+                <h4 class="p-3 m-1  text-white">
+                    <a href="{{ route('categorias.index') }}" class="text-indigo-300 "> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Categorías') }}
+
+                </h4>
+                <h1 class="mb-4 border-bottom">Crear Categoría</h1>
+                <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data" class="col-6 ">
                     @csrf
 
                     <div class="mb-4">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label">
+                            <h3>Nombre</h3>
+                        </label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
                         @if ($errors->has('nombre'))
                             <div class="invalid-feedback">
@@ -20,9 +28,8 @@
                         @endif
                     </div>
 
-                    <div class="d-grid gap-2 mt-4">
-                        <input type="submit" class="btn btn-primary" value="Crear">
-                        <a href="{{ route('categorias.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <div class=" gap-2 m-5">
+                        <input type="submit" class="btn bg-purple" value="Crear">
                     </div>
                 </form>
             </div>

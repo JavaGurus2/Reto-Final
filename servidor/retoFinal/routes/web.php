@@ -56,7 +56,7 @@ Route::delete('/series/{serie}/temporadas/{temporada}/delete', [TemporadaControl
 
 //series temporadas episodios
 Route::get('/series/{serie}/temporadas/{temporada}/episodios', [EpisodioController::class, 'index'])->name('episodios.index');
-Route::get('/series/{serie}/temporadas/{temporada}/episodios/create', [EpisodioController::class, 'create'])->name('episodios.create');
+Route::get('episodios/{serie},{temporada}/create', [EpisodioController::class, 'create'])->name('episodios.create');
 Route::post('/series/{serie}/temporadas/{temporada}/episodios/store', [EpisodioController::class, 'store'])->name('episodios.store');
 Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}', [EpisodioController::class, 'show'])->name('episodios.show');
 Route::get('/series/{serie}/temporadas/{temporada}/episodios/{episodio}/edit', [EpisodioController::class, 'edit'])->name('episodios.edit');
@@ -89,7 +89,6 @@ Route::get('/usuarios/{user}', [UsuarioController::class, 'show'])->name('usuari
 Route::get('/usuarios/{user}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
 Route::put('/usuarios/{user}/update', [UsuarioController::class, 'update'])->name('usuarios.update');
 Route::delete('/usuarios/{user}/delete', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
-
 
 //perfil
 Route::get('/perfil', function () {

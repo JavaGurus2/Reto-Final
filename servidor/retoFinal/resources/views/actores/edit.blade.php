@@ -4,8 +4,14 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary">
+                <h4 class="p-3 m-1  text-white">
+                    <a href="{{ route('actores.show', $actore) }}" class="text-indigo-300 "> <i
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                    {{ __('Detalles Actor/Actriz') }}
+
+                </h4>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -15,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                <h1 class="mb-4">Editar actor/actriz</h1>
+                <h1 class="mb-4 border-bottom">Editar actor/actriz</h1>
                 <form action="{{ route('actores.update', $actore) }}" method="POST" class="needs-validation" novalidate
                     enctype="multipart/form-data">
                     @csrf
@@ -46,16 +52,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen" >
+                        <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($actore->imagen))
-                        <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película"
-                            style="max-width: 100px;">
-                    @endif
+                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" class="my-4 rounded" style="max-width: 300px;">
+                        @endif
 
                     </div>
                     <div class="gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        <a href="{{ route('actores.show', $actore) }}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn bg-purple text-white">Actualizar</button>
                     </div>
                 </form>
             </div>

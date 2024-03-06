@@ -5,9 +5,11 @@
         <div class="row justify-content-center mt-5" style="height: 100vh;">
             <div class="col-md-8 ">
                 <div class="card card-custom">
-                    <div class="card-header d-flex justify-content-between">
-                        <span class="text-dark">{{ __('actores') }}</span>
-                        <a href="{{ route('actores.create') }}" class="btn btn-success">Crear actor</a>
+                    <div class="card-header d-flex justify-content-between fondoRosaClaro">
+                        <span class="text-dark">
+                            <h3>{{ __('Actores') }}</h3>
+                        </span>
+                        <a href="{{ route('actores.create') }}" class="btn fondoRosa text-white">Crear actor</a>
                     </div>
 
                     <div class="card-body">
@@ -86,6 +88,45 @@
                                 </tbody>
                             </table>
                         </div>
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                @if ($actores->previousPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $actores->appends(request()->except('page'))->previousPageUrl() }}">
+                                            <span aria-hidden="true" class="text-dark">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($actores->currentPage() > 3)
+                                    <li class="page-item"><span class="page-link">1</span></li>
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+
+                                @for ($i = max(1, $actores->currentPage() - 2); $i <= min($actores->lastPage(), $actores->currentPage() + 2); $i++)
+                                    <li class="page-item @if ($i == $actores->currentPage()) active @endif">
+                                        <a class="page-link"
+                                            href="{{ $actores->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+
+                                @if ($actores->currentPage() < $actores->lastPage() - 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    <li class="page-item"><span class="page-link">{{ $actores->lastPage() }}</span></li>
+                                @endif
+
+                                @if ($actores->nextPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $actores->appends(request()->except('page'))->nextPageUrl() }}"
+                                            aria-label="Next">
+                                            <span aria-hidden="true" class="text-dark">&raquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

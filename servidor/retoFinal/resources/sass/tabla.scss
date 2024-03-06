@@ -22,6 +22,11 @@ $fin: 11;
     }
 }
 
+@for $num from $inicio to $fin {
+    tbody tr:nth-child(#{$num}) td {
+        color: funciones.text-color($num);
+    }
+}
 //tabla index
 
 /* custom-styles.css */
@@ -37,7 +42,8 @@ $fin: 11;
 
 /* Estilos para la ventana modal */
 .modal-content-custom {
-  background-color: #ffffff; /* Color de fondo */
+    color: white;
+  background-color: rgba(132, 130, 130, 0.771); /* Color de fondo */
   border: 2px solid #6c757d; /* Borde */
 }
 
