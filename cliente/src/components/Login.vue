@@ -57,7 +57,7 @@ async function validarLogin() {
   if (!error.value) {
     // Supuesto usuario recibido de la api
     // emit('logueado')
-    window.location.replace('http://localhost:5174/home')
+    window.location.replace(window.location.href + 'home')
   }
 }
 </script>
