@@ -68,7 +68,10 @@ function descargar() {
     </video>
   </div>
   <div class="col-10 align-self-center mt-3">
-    <p>{{ fecha }} - {{ duracion }} - {{ clasificacion }}</p>
+    <p>
+      Fecha de estreno: {{ fecha }} -Clasificación: {{ clasificacion }} -Duración:
+      {{ duracion }} min
+    </p>
     <p>
       {{ sinopsis }}
     </p>
@@ -85,3 +88,25 @@ function descargar() {
   <a v-if="pelicula" :download="true" :href="pelicula">Descargar</a>
   <button v-if="pelicula" @click="descargar">Descargar tesst</button>
 </template>
+<style>
+.scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.peliserie-container,
+.categorias-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.peliserie-container > * {
+  flex: 0 0 auto;
+  width: 10%;
+  margin-right: 10px;
+}
+</style>

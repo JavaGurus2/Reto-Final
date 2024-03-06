@@ -7,7 +7,7 @@ const { actor } = defineProps({
   <div class="card bg-black card-busqueda text-white" style="--bs-bg-opacity: 0.5">
     <img class="card-img-top" :src="`data:image/png;base64,${actor.imagen}`" alt="Card image" />
     <div class="card-img-overlay card-busqueda-detalles">
-      <h4 class="card-title">{{ actor.nombre }} {{ actor.apellido }}</h4>
+      <h4 class="d-none d-xl-block card-title">{{ actor.nombre }} {{ actor.apellido }}</h4>
     </div>
   </div>
 </template>
@@ -15,6 +15,9 @@ const { actor } = defineProps({
 .card-busqueda {
   position: relative;
   border-radius: 0.5em;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  max-width: 250px;
 }
 .card-busqueda::after {
   content: '';

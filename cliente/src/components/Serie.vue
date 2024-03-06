@@ -10,19 +10,18 @@ const route = useRoute()
 //Variable del fetch
 const data = ref([])
 
-//Variables de la pelicula
+//Variables de la Serie
 const serie = ref('')
 const nombreS = ref('')
 const fecha = ref('')
 const clasificacion = ref('')
 const sinopsisS = ref('')
+const imagen = ref('')
 const id = ref('')
 
 //Variables de las Temporadas
 const temporadas = ref([])
-const temporada = ref('')
-const numeroT = ref('')
-const nombreT = ref('')
+const temporadaSeleccionada = ref(1)
 
 //Variables de los Episodios
 const episodios = ref([])
@@ -58,84 +57,156 @@ async function cargarSerie() {
 
   data.value = await response.json()
 
-  peliculasStore.cambiarTitulo(data.value.series.nombre)
+  peliculasStore.cambiarTitulo(data.value.serie.nombre)
 
   //Valores de la Serie
-  nombreS.value = data.value.series.nombre
-  sinopsisS.value = data.value.series.sinopsis
-  fecha.value = data.value.series.fecha_estreno
-  clasificacion.value = data.value.series.clasificacion
-  imagen.value = data.value.series.imagen
+  nombreS.value = data.value.serie.nombre
+  sinopsisS.value = data.value.serie.sinopsis
+  fecha.value = data.value.serie.fecha_estreno
+  clasificacion.value = data.value.serie.clasificacion
+  imagen.value = data.value.serie.imagen
 
   //Valores de las Temporadas
   temporadas.value = data.value.temporadas
 
+  //Valores de los Episodios
+  episodios.value = data.value.episodios
+
   //Valores de los Actores
   actores.value = data.value.actores
-
-  //Valores de los Episodios
-  episodios.value = temporadas.value.episodios
 }
 
 function elegirTemporada(eleccion) {
-  temporada.value = eleccion
+  temporadaSeleccionada.value = eleccion
 }
 </script>
 
 <template>
   <div class="row g-0">
-    <img :src="imagen" alt="Portada de la Serie" />
+    <img
+      :src="`data:image/png;base64,${imagen}`"
+      alt="Portada de la Serie"
+      width="640"
+      height="360"
+      style="object-fit: cover"
+    />
   </div>
-  <div class="col-10 align-self-center mt-3">
-    <p>{{ fecha }} - {{ clasificacion }}</p>
-    <p>
-      {{ sinopsisS }}
-    </p>
-  </div>
-  <div class="col-10 align-self-center">
-    <h2>Reparto</h2>
-    <div class="scroll">
-      <div v-if="actores.length > 0" class="peliserie-container">
-        <RepartoItem v-for="(actor, index) in actores" :key="index" :actor="actor" />
-      </div>
-      <p v-else>No hay actores asociados.</p>
+  <div class="row g-0 justify-content-center align-items-center">
+    <div class="col-10 align-self-center mt-3">
+      <p>Fecha de estreno: {{ fecha }} - Clasificación: {{ clasificacion }}</p>
+      <p>
+        {{ sinopsisS }}
+      </p>
     </div>
-  </div>
-  <div v-if="temporadas.length > 0" class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Temporadas
-    </button>
-    <ul class="dropdown-menu">
-      <li v-for="(temporada, index) in temporadas" :key="index">
-        <button class="dropdown-item" @click="elegirTemporada(template.numero)">
-          {{ temporada.numero }} - {{ temporada.nombre }}
-        </button>
-      </li>
-    </ul>
-  </div>
-  <p v-else>No hay temporadas asociadas.</p>
-  <div>
-    <div v-for="(episodio, index) in episodios" :key="index" class="episodio-container">
-      <div class="episodio-thumbnail">
-        <video id="miReproductor" width="640" height="360" controls>
-          <source src="http://killercervezas.blog:81/video.mp4" type="video/mp4" />
-          Tu navegador no soporta el tag de video.
-        </video>
+    <div class="col-10 align-self-center d-none d-md-block">
+      <h2>Reparto</h2>
+      <div class="scroll">
+        <div v-if="actores.length > 0" class="peliserie-container mb-4">
+          <RepartoItem v-for="(actor, index) in actores" :key="index" :actor="actor" />
+        </div>
+        <p v-else>No hay actores asociados.</p>
       </div>
-      <div class="episodio-info">
-        <h3>{{ episodio.numeroE }}. {{ episodio.nombreE }}</h3>
-        <p>{{ episodio.duracion }}</p>
-        <p>{{ episodio.sinopsisE }}</p>
+    </div>
+    <div v-if="temporadas.length > 0" class="col-10 align-self-center dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Temporada {{ temporadaSeleccionada }}
+      </button>
+      <ul class="dropdown-menu">
+        <li v-for="(temporada, index) in temporadas" :key="index">
+          <button class="dropdown-item" @click="elegirTemporada(temporada.id)">
+            {{ temporada.numero }}. {{ temporada.nombre }}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <p v-else>No hay temporadas asociadas.</p>
+
+    <div class="col-10 align-self-center mb-4">
+      <div v-for="(episodio, index) in episodios" :key="index">
+        <div
+          v-if="temporadaSeleccionada === episodio.temporada_id"
+          class="row g-0 episodio-container"
+        >
+          <div class="col-12 col-xl-4 episodio-thumbnail">
+            <video id="miReproductor" width="100%" height="auto" controls>
+              <source
+                :src="'http://egiflix.es:81/' + episodio.archivo.split('/').pop()"
+                type="video/mp4"
+              />
+              Tu navegador no soporta el tag de video.
+            </video>
+          </div>
+          <div class="col-8 episodio-info">
+            <div class="row g-0">
+              <div class="col-6">
+                <h3>{{ episodio.numero }}. {{ episodio.nombre }}</h3>
+                <p>Duración: {{ episodio.duracion }} min</p>
+              </div>
+
+              <div class="col-6 descarga d-flex align-items-center justify-content-end">
+                <a
+                  :download="true"
+                  :href="'http://egiflix.es:81/' + episodio.archivo.split('/').pop()"
+                  class="justify-content-center"
+                  ><svg
+                    width="22"
+                    height="28"
+                    viewBox="0 0 22 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.333252 27.3334V24.6667H21.6666V27.3334H0.333252ZM10.9999 22L1.66659 10H6.99992V0.666687H14.9999V10H20.3333L10.9999 22Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div class="sinopsis-container">
+                <p class="sinopsis">{{ episodio.sinopsis }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <p
+        v-if="
+          temporadaSeleccionada &&
+          !episodios.some((episodio) => temporadaSeleccionada === episodio.temporada_id)
+        "
+      >
+        No hay episodios asociados.
+      </p>
     </div>
   </div>
 </template>
 <style>
+.scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.peliserie-container,
+.categorias-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.peliserie-container > * {
+  flex: 0 0 auto;
+  width: 15%;
+  margin-right: 10px;
+}
+
 .episodio-container {
   display: flex;
   border-bottom: 1px solid #ddd; /* Línea separadora entre episodios */
@@ -149,5 +220,15 @@ function elegirTemporada(eleccion) {
 
 .episodio-info {
   flex: 1;
+  overflow: hidden; /* Oculta el contenido que excede el tamaño del contenedor */
+}
+
+.sinopsis-container {
+  max-height: 4.8em; /* Ajusta según el tamaño de la línea y el número de líneas deseadas */
+  overflow: hidden;
+}
+
+.sinopsis {
+  white-space: normal; /* Permite que la sinopsis se divida en varias líneas */
 }
 </style>

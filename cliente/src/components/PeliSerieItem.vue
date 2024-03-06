@@ -2,7 +2,7 @@
 const { peliserie } = defineProps({
   peliserie: Object
 })
-let URL = 'http://localhost:5174/'
+let URL = 'http://localhost:5173/'
 if (peliserie.nombre) {
   URL += 'series/' + peliserie.id
 } else {

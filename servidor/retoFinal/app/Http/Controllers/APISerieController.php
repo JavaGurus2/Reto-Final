@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelicula;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 
@@ -16,7 +15,13 @@ class APISerieController extends Controller
 
         $temporadas = $serie->temporadas()->get();
 
-        $episodios = $temporadas->episodios()->get();
+        $episodios = [];
+
+        // Obtener los episodios de cada temporada
+        foreach ($temporadas as $temporada) {
+            $episodiosTemporada = $temporada->episodios()->get();
+            $episodios = array_merge($episodios, $episodiosTemporada->toArray());
+        }
 
         $actores = $serie->actores()->get();
 
