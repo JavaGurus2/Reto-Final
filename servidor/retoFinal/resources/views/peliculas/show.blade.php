@@ -35,6 +35,7 @@
                                 </ul>
                             </div>
                         @endif
+
                         <form id="peliculaForm" method="POST" action="{{ route('peliculas.update', $pelicula) }}"
                             enctype="multipart/form-data">
                             @csrf

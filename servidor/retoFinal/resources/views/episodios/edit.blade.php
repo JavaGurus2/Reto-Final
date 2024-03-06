@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
                 <h4>
                     <a href="{{ route('episodios.show', [$serie, $temporada, $episodio]) }}" class="text-indigo-300"> <i
                             class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-5"></i></a>
@@ -23,7 +23,7 @@
                     </div>
                 @endif
                 <form action="{{ route('episodios.update', [$serie, $temporada, $episodio]) }}" method="POST"
-                    class="needs-validation" novalidate>
+                    class="needs-validation" novalidate enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -58,8 +58,8 @@
                         <label for="archivo" class="form-label">
                             <h3>Archivo</h3>
                         </label>
-                        <input type="file" class="form-control" id="archivo" name="archivo"
-                            value="{{ $episodio->imagen }}">
+                        <input type="file" name="archivo" id="archivo"
+                            class="form-control-file  bg-white p-2 rounded text-black" accept="video/*">
                     </div>
                     <div class="mb-3">
                         <label for="duracion" class="form-label">
