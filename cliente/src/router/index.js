@@ -31,7 +31,13 @@ const router = createRouter({
       path: '/series/:id',
       name: 'serie',
       component: () => import('../views/SerieView.vue'),
-      
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/buscar',
+      name: 'buscar',
+      component: () => import('../views/BuscarView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })

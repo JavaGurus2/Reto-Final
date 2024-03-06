@@ -49,8 +49,9 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from 'vue'
+import { camelize, ref, watch } from 'vue'
 import { useBusquedaStore } from '../../stores/busqueda'
+import { useRouter } from 'vue-router'
 const { tipoBusqueda } = defineProps({
   tipoBusqueda: String
 })
@@ -58,18 +59,17 @@ const { tipoBusqueda } = defineProps({
 const { buscar } = useBusquedaStore()
 
 const textoBusqueda = ref('')
-const pelis = ref('')
 
 let timerId = null
 
+const router = useRouter()
 watch(textoBusqueda, async (nueva, anterior) => {
   if (timerId) {
     clearTimeout(timerId)
   }
-
   timerId = setTimeout(async () => {
-    console.log(textoBusqueda.value)
     await buscar(textoBusqueda.value)
-  }, 500)
+    router.push({ path: '/buscar' })
+  }, 1000)
 })
 </script>
