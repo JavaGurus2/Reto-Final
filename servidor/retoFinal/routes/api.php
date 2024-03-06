@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIAuthController;
+use App\Http\Controllers\APIBuscarController;
 use App\Http\Controllers\APIHomeController;
 use App\Http\Controllers\APIPeliculaController;
 use Illuminate\Http\Request;
@@ -28,4 +29,5 @@ Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'User
 Route::middleware('auth.jwt')->put('/perfilC', [APIAuthController::class, 'UserC']);
 Route::middleware('auth.jwt')->put('/buscarPelicula', [APIPeliculaController::class, 'BuscarPelicula']);
 Route::middleware('auth.jwt')->put('/buscarSerie', [APISerieController::class, 'BuscarSerie']);
+Route::middleware('auth.jwt')->get('/buscar', [APIBuscarController::class, 'buscar']);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
