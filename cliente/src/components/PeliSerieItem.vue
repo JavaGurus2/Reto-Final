@@ -11,7 +11,12 @@ if (peliserie.nombre) {
 </script>
 <template>
   <a :href="URL" class="card bg-black card-busqueda text-white" style="--bs-bg-opacity: 0.5">
-    <img class="card-img-top" :src="`data:image/png;base64,${peliserie.imagen}`" alt="Card image" />
+    <img
+      class="card-img-top"
+      :src="`data:image/png;base64,${peliserie.imagen}`"
+      alt="Card image"
+      loading="lazy"
+    />
     <div class="card-img-overlay card-busqueda-detalles">
       <h4 class="card-title">{{ peliserie.titulo || peliserie.nombre }}</h4>
       <!-- <a href="#" class="btn btn-primary">Ver o descargar?</a> -->

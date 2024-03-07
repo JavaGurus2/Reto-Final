@@ -7,7 +7,7 @@ export const useBusquedaStore = defineStore('busqueda', () => {
   const texto = ref('')
   async function buscar(textoBus) {
     try {
-      const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/search?texto=${textoBus}`, {
+      const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscar?texto=${textoBus}`, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token')
         }

@@ -1,5 +1,5 @@
 <template>
-  <header class="row">
+  <header class="row g-0">
     <div class="col-12 d-flex gap-2 p-4 bg-blackl">
       <a href="http://localhost:5173/home">
         <svg
@@ -15,8 +15,16 @@
           ></path>
         </svg>
       </a>
-      <form action="" class="w-100">
-        <input type="text" name="buscar" id="buscar" v-model="text" class="form-control w-100" />
+      <form class="w-100" @submit.prevent="null">
+        <input
+          type="text"
+          name="buscar"
+          id="buscar"
+          v-model="text"
+          class="form-control w-100 bg-black"
+          placeholder="Buscar"
+          @input="cambiar"
+        />
       </form>
     </div>
   </header>
@@ -32,4 +40,17 @@ onBeforeMount(async () => {
   await busquedaStore.buscar(busquedaStore.texto)
   emit('buscado', busquedaStore.resultadoBusqueda)
 })
+
+let timerId = null
+const busquedaStore = useBusquedaStore()
+
+async function cambiar() {
+  if (timerId) {
+    clearTimeout(timerId)
+  }
+  timerId = setTimeout(async () => {
+    await busquedaStore.buscar(text.value)
+    emit('buscado', busquedaStore.resultadoBusqueda)
+  }, 500)
+}
 </script>
