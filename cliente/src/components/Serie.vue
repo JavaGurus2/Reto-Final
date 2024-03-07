@@ -114,6 +114,7 @@ async function comprobarMiLista() {
 }
 
 async function cambiarMiLista() {
+  await comprobarMiLista()
   let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
   if (mensajeMiLista.value.includes('Añadir')) {
     try {
@@ -143,6 +144,10 @@ async function cambiarMiLista() {
         method: 'DELETE',
         body: JSON.stringify({ id: milistaItem.value })
       })
+      const data = await response.json()
+      if (data.data == 'borrado') {
+        mensajeMiLista.value = 'Añadir a Mi Lista'
+      }
     } catch (error) {
       console.error(error)
     }
