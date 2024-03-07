@@ -6,6 +6,7 @@ use App\Http\Controllers\APIDescargasController;
 use App\Http\Controllers\APIHomeController;
 use App\Http\Controllers\APIMiListaController;
 use App\Http\Controllers\APIPeliculaController;
+use App\Http\Controllers\APIPeliculasController;
 use App\Http\Controllers\APISerieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
