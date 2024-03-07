@@ -26,4 +26,20 @@ class APIMiListaController extends Controller
         $contenido->delete();
         return response()->json(["data" => "borrado"]);
     }
+    public function comprobar(Request $request)
+    {
+        $tipo = $request["tipo"];
+        $referencia_id = $request["referencia_id"];
+
+        if ($tipo == "serie") {
+            $milistaItem = MiLista::where('tipo', $tipo)
+                ->where('referencia_id', $referencia_id)
+                ->get();
+        } elseif ($tipo == "pelicula") {
+            $milistaItem = MiLista::where('tipo', $tipo)
+                ->where('referencia_id', $referencia_id)
+                ->get();
+        }
+        return response()->json(compact('milistaItem'));
+    }
 }

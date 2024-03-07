@@ -31,6 +31,10 @@ const numeroE = ref('')
 const duracion = ref('')
 const sinopsisE = ref('')
 
+// Para mi lista
+
+const referencia_id = ref('')
+
 const actores = ref([])
 
 const PROTOCOLO = 'http'
@@ -38,9 +42,10 @@ const DIRECCION = 'admin.egiflix.es'
 
 const peliculasStore = usePeliculasStore()
 
-onMounted(() => {
+onMounted(async () => {
   id.value = route.params.id
-  cargarSerie()
+  await cargarSerie()
+  await comprobarMiLista()
 })
 
 async function cargarSerie() {
@@ -74,10 +79,38 @@ async function cargarSerie() {
 
   //Valores de los Actores
   actores.value = data.value.actores
+
+  // Valores mi lista
+  referencia_id.value = data.value.serie.id
 }
 
 function elegirTemporada(eleccion) {
   temporadaSeleccionada.value = eleccion
+}
+
+// Lo de mi lista
+const mensajeMiLista = ref('')
+
+async function comprobarMiLista() {
+  try {
+    const response = await fetch(
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${data.value.serie.id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        }
+      }
+    )
+    const datos = await response.json()
+    console.log(datos)
+    if (datos.milistaItem) {
+      mensajeMiLista.value = 'Quitar de Mi Lista'
+    } else {
+      mensajeMiLista.value = 'Añadir a mi lista'
+    }
+  } catch (error) {
+    console.error(error.message)
+  }
 }
 </script>
 
@@ -97,6 +130,13 @@ function elegirTemporada(eleccion) {
       <p>
         {{ sinopsisS }}
       </p>
+      <button
+        v-if="mensajeMiLista"
+        :class="`btn btn-outline-danger mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+        @click="cambiarMiLista"
+      >
+        {{ mensajeMiLista }}
+      </button>
     </div>
     <div class="col-10 align-self-center d-none d-md-block">
       <h2>Reparto</h2>
