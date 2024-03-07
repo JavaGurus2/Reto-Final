@@ -60,7 +60,7 @@
 
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="rol" name="rol" value="1">
-                        <label class="form-check-label" for="rol">Asignar Rol</label>
+                        <label class="form-check-label" for="rol">Asignar Rol admin</label>
                     </div>
 
 
