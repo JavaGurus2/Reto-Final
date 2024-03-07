@@ -9,7 +9,6 @@
   
   <script setup>
   import Header from '../components/ui/Header.vue'
-  import Series from '../components/TodasSeries.vue'
+  import Series from '../components/CarteleraSeries.vue'
   import Footer from '../components/ui/Footer.vue'
   </script>
-  
