@@ -38,6 +38,12 @@ const router = createRouter({
       name: 'buscar',
       component: () => import('../views/BuscarView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/peliculas',
+      name: 'peliculas',
+      component: () => import('../views/PeliculasView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })

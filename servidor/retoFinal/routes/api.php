@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth.jwt')->get('/peliculas', [APIHomeController::class, 'index']);
+Route::middleware('auth.jwt')->get('/peliculas', [APIPeliculaController::class, 'rellenar']);
+Route::middleware('auth.jwt')->get('/peliculas/{categoria}', [APIPeliculaController::class, "filtro"]);
 Route::middleware('auth.jwt')->get('/home', [APIHomeController::class, 'rellenar']);
 Route::middleware('auth.jwt')->get('/home/{categoria}', [APIHomeController::class, "filtro"]);
 Route::middleware('auth.jwt')->put('/perfilDP', [APIAuthController::class, 'UserDP']);
