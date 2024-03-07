@@ -78,7 +78,7 @@ onBeforeMount(async () => {
   <div class="row p-2 g-0 bg-dark text-white">
     <div class="col-12 p-2">
       <div class="scroll">
-        <form class="categorias-container" style="gap: 1em; text-wrap: nowrap">
+        <form class="categorias-container" style="padding-bottom: 1em; gap: 1em; text-wrap: nowrap">
           <CategoriaItem
             v-if="categorias.length > 0"
             v-for="(categoria, index) in categorias"
