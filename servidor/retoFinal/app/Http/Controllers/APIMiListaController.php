@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\miLista;
 use Illuminate\Http\Request;
-use App\Models\MiLista;
 
 class APIMiListaController extends Controller
 {
@@ -15,14 +15,14 @@ class APIMiListaController extends Controller
             "tipo" => "required",
         ]);
 
-        MiLista::create($validated);
+        miLista::create($validated);
 
         return response()->json(["data" => "creado"]);
     }
 
     public function eliminar(string $id)
     {
-        $contenido = MiLista::find($id);
+        $contenido = miLista::find($id);
         $contenido->delete();
         return response()->json(["data" => "borrado"]);
     }
@@ -32,11 +32,11 @@ class APIMiListaController extends Controller
         $referencia_id = $request["referencia_id"];
 
         if ($tipo == "serie") {
-            $milistaItem = MiLista::where('tipo', $tipo)
+            $milistaItem = miLista::where('tipo', $tipo)
                 ->where('referencia_id', $referencia_id)
                 ->get();
         } elseif ($tipo == "pelicula") {
-            $milistaItem = MiLista::where('tipo', $tipo)
+            $milistaItem = miLista::where('tipo', $tipo)
                 ->where('referencia_id', $referencia_id)
                 ->get();
         }
