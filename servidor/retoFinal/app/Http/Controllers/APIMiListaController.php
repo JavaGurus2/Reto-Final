@@ -13,6 +13,7 @@ class APIMiListaController extends Controller
         $validated = $request->validate([
             "referencia_id" => "required",
             "tipo" => "required",
+            "user_id"
         ]);
 
         miLista::create($validated);
@@ -22,7 +23,6 @@ class APIMiListaController extends Controller
 
     public function eliminar(Request $request)
     {
-
         $contenido = miLista::find($request["id"]);
         $contenido->delete();
         return response()->json(["data" => "borrado"]);
@@ -31,16 +31,13 @@ class APIMiListaController extends Controller
     {
         $tipo = $request["tipo"];
         $referencia_id = $request["referencia_id"];
+        $user_id = $request["user_id"];
 
-        if ($tipo == "serie") {
-            $milistaItem = miLista::where('tipo', $tipo)
-                ->where('referencia_id', $referencia_id)
-                ->get();
-        } elseif ($tipo == "pelicula") {
-            $milistaItem = miLista::where('tipo', $tipo)
-                ->where('referencia_id', $referencia_id)
-                ->get();
-        }
+        $milistaItem = miLista::where('tipo', $tipo)
+            ->where('referencia_id', $referencia_id)
+            ->where('user_id', $user_id)
+            ->get();
+
         return response()->json(compact('milistaItem'));
     }
 }

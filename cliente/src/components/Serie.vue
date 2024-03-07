@@ -94,7 +94,7 @@ const milistaItem = ref('')
 async function comprobarMiLista() {
   try {
     const response = await fetch(
-      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${referencia_id.value}`,
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${referencia_id.value}&user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
       {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token')
@@ -124,7 +124,11 @@ async function cambiarMiLista() {
           'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify({ referencia_id: referencia_id.value, tipo: 'serie' })
+        body: JSON.stringify({
+          referencia_id: referencia_id.value,
+          tipo: 'serie',
+          user_id: JSON.parse(sessionStorage.getItem('usuario')).id
+        })
       })
       const datos = await response.json()
       if (datos) {
@@ -135,7 +139,6 @@ async function cambiarMiLista() {
     }
   } else {
     try {
-      console.log(milistaItem.value + '----------------')
       const response = await fetch(URL, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token'),
