@@ -119,7 +119,6 @@ async function cambiarMiLista() {
   if (mensajeMiLista.value.includes('Añadir')) {
     try {
       const user_id = JSON.parse(sessionStorage.getItem('usuario')).id
-      console.log(user_id)
       const response = await fetch(URL, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token'),

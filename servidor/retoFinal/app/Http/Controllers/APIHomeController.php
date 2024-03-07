@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Pelicula;
 use App\Models\Serie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class APIHomeController extends Controller
@@ -54,17 +55,40 @@ class APIHomeController extends Controller
         return $categorias;
     }
 
-    public function milista()
+    public function milista($user_id)
     {
-        return null;
+        $user = User::find($user_id);
+        if (!$user) {
+            return null;
+        }
+        $milistas = $user->milistas();
+
+        $series = [];
+        $peliculas = [];
+
+        foreach ($milistas as $milista) {
+            if ($milista->tipo == 'pelicula') {
+                $pelicula = Pelicula::find($milista->referencia_id);
+                if ($pelicula) {
+                    $peliculas[] = $pelicula;
+                }
+            } elseif ($milista->tipo == 'serie') {
+                $serie = Serie::find($milista->referencia_id);
+                if ($serie) {
+                    $series[] = $serie;
+                }
+            }
+        }
+        return [$series, $peliculas];
     }
 
-    public function rellenar()
+    public function rellenar(Request $request)
     {
+        $user_id = $request["user_id"];
         $novedades = $this->novedades();
         $tendencias = $this->tendencias();
         $randomCategorias = $this->randomcategorias();
-        $milista = $this->milista();
+        $milista = $this->milista($user_id);
         $todasCategorias = $this->todasCategorias();
 
         $data = [
@@ -78,7 +102,10 @@ class APIHomeController extends Controller
             ],
             'randomCategorias' => $randomCategorias,
             'todasCategorias' => $todasCategorias,
-            'milista' => $milista
+            'milista' => [
+                'series' => $milista[0],
+                'peliculas' => $milista[1],
+            ]
         ];
 
         return response()->json($data);

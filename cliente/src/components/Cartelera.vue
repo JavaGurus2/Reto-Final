@@ -48,17 +48,18 @@ const novedades = ref([])
 
 const tendencias = ref([])
 
-const miListaStorage = JSON.parse(localStorage.getItem('miLista')) || []
-
-const miLista = ref(miListaStorage)
+const miLista = ref([])
 
 onBeforeMount(async () => {
-  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/home`, {
-    headers: {
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-      'Content-Type': 'application/json'
+  const response = await fetch(
+    `${PROTOCOLO}://${DIRECCION}/api/home?user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
+    {
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      }
     }
-  })
+  )
   const data = await response.json()
   categorias.value = data.todasCategorias
   novedades.value = [...data.novedades.peliculas, ...data.novedades.series]
@@ -69,6 +70,8 @@ onBeforeMount(async () => {
     const elemento = categoriasPeliSerie.value[i]
     elemento.peliserie = [...elemento.peliculas, ...elemento.series]
   }
+  // Mi lista
+  miLista.value = [...data.milista]
 })
 </script>
 <template>
