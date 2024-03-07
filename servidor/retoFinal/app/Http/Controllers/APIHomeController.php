@@ -54,12 +54,17 @@ class APIHomeController extends Controller
         return $categorias;
     }
 
+    public function milista()
+    {
+        return null;
+    }
+
     public function rellenar()
     {
         $novedades = $this->novedades();
         $tendencias = $this->tendencias();
         $randomCategorias = $this->randomcategorias();
-        // $randomCategorias = "";
+        $milista = $this->milista();
         $todasCategorias = $this->todasCategorias();
 
         $data = [
@@ -73,6 +78,7 @@ class APIHomeController extends Controller
             ],
             'randomCategorias' => $randomCategorias,
             'todasCategorias' => $todasCategorias,
+            'milista' => $milista
         ];
 
         return response()->json($data);

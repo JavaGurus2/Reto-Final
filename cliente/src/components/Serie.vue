@@ -31,6 +31,10 @@ const numeroE = ref('')
 const duracion = ref('')
 const sinopsisE = ref('')
 
+// Para mi lista
+
+const referencia_id = ref('')
+
 const actores = ref([])
 
 const PROTOCOLO = 'http'
@@ -38,9 +42,10 @@ const DIRECCION = 'admin.egiflix.es'
 
 const peliculasStore = usePeliculasStore()
 
-onMounted(() => {
+onMounted(async () => {
   id.value = route.params.id
-  cargarSerie()
+  await cargarSerie()
+  await comprobarMiLista()
 })
 
 async function cargarSerie() {
@@ -74,10 +79,84 @@ async function cargarSerie() {
 
   //Valores de los Actores
   actores.value = data.value.actores
+
+  // Valores mi lista
+  referencia_id.value = data.value.serie.id
 }
 
 function elegirTemporada(eleccion) {
   temporadaSeleccionada.value = eleccion
+}
+
+// Lo de mi lista
+const mensajeMiLista = ref('')
+const milistaItem = ref('')
+async function comprobarMiLista() {
+  try {
+    const response = await fetch(
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${referencia_id.value}&user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        }
+      }
+    )
+    const datos = await response.json()
+    if (datos.milistaItem.length > 0) {
+      mensajeMiLista.value = 'Quitar de Mi Lista'
+      milistaItem.value = datos.milistaItem[0].id
+    } else {
+      mensajeMiLista.value = 'Añadir a mi lista'
+    }
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
+async function cambiarMiLista() {
+  await comprobarMiLista()
+  let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
+  if (mensajeMiLista.value.includes('Añadir')) {
+    try {
+      const user_id = JSON.parse(sessionStorage.getItem('usuario')).id
+      console.log(user_id)
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          referencia_id: referencia_id.value,
+          tipo: 'serie',
+          user_id: user_id
+        })
+      })
+      const datos = await response.json()
+      if (datos) {
+        mensajeMiLista.value = 'Quitar de Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    try {
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'DELETE',
+        body: JSON.stringify({ id: milistaItem.value })
+      })
+      const data = await response.json()
+      if (data.data == 'borrado') {
+        mensajeMiLista.value = 'Añadir a Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 </script>
 
@@ -97,6 +176,13 @@ function elegirTemporada(eleccion) {
       <p>
         {{ sinopsisS }}
       </p>
+      <button
+        v-if="mensajeMiLista"
+        :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+        @click="cambiarMiLista"
+      >
+        {{ mensajeMiLista }}
+      </button>
     </div>
     <div class="col-10 align-self-center d-none d-md-block">
       <h2>Reparto</h2>

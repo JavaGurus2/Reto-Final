@@ -12,7 +12,7 @@
         />
         <span class="d-none d-md-block fs-1">Egiflix</span>
       </div>
-      <form class="w-100" @submit.prevent="buscar">
+      <form class="w-100" @submit.prevent="null">
         <div class="input-group bg-secondary-subtle rounded-2">
           <input
             type="text"
@@ -70,6 +70,6 @@ watch(textoBusqueda, async (nueva, anterior) => {
   timerId = setTimeout(async () => {
     await buscar(textoBusqueda.value)
     router.push({ path: '/buscar' })
-  }, 1000)
+  }, 500)
 })
 </script>
