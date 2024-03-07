@@ -174,9 +174,22 @@ async function cambiarMiLista() {
 }
 
 .scroll::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+  height: 0.5em;
 }
 
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 0.5em;
+}
+.scroll::-webkit-scrollbar-thumb:hover,
+.scroll::-webkit-scrollbar-thumb:active {
+  background-color: #999;
+}
 .peliserie-container,
 .categorias-container {
   display: flex;
