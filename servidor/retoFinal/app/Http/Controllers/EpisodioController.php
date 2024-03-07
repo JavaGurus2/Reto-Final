@@ -25,7 +25,9 @@ class EpisodioController extends Controller
 
     public function create(Serie $serie, Temporada $temporada)
     {
-        return view('episodios.create', compact('temporada', 'serie'));
+        $ultimoNumeroEpisodio = Episodio::where('temporada_id', $temporada->id)->max('numero');
+
+        return view('episodios.create', compact('temporada', 'serie', "ultimoNumeroEpisodio"));
     }
 
 
@@ -44,7 +46,7 @@ class EpisodioController extends Controller
 
 
         // Guardar el archivo
-        $archivo = $request->file('archivo')->store('public/series');
+        $archivo = $request->file('archivo')->store('public/videos');
         $archivoUrl = str_replace('public/', 'storage/', $archivo);
 
         // Crear la película en la base de datos
@@ -99,7 +101,7 @@ class EpisodioController extends Controller
         // Si se proporciona un nuevo archivo, actualizarlo
         if ($request->hasFile('archivo')) {
             // Guardar el nuevo archivo
-            $archivo = $request->file('archivo')->store('public/series');
+            $archivo = $request->file('archivo')->store('public/videos');
             $archivoUrl = str_replace('public/', 'storage/', $archivo);
             $episodio->archivo = $archivoUrl;
         }

@@ -71,7 +71,7 @@ input:checked + .slider:before {
 }
 
 .switch i {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .slider .fa-moon {
@@ -84,23 +84,22 @@ input:checked + .slider:before {
 }
 
 
-//
 //modo claro/oscuro
-$dark-mode-bg: #3c3c3cd9;
+$dark-mode-bg: linear-gradient(90deg, rgba(13,0,12,1) 0%, rgba(60,11,56,1) 29%, rgba(107,12,103,1) 91%);
 $dark-mode-text: #000000;
 
 
-$light-mode-bg: lightgray;
+$light-mode-bg:linear-gradient(90deg, rgba(13,0,12,1) 0%, rgba(194,56,126,1) 27%, rgba(199,54,106,1) 91%);
 $light-mode-text: #333;
 
 body {
     & {
-        background-color: $light-mode-bg !important; // Fondo claro por defecto
+        background: $light-mode-bg !important; // Fondo claro por defecto
         color: #000 !important; // Texto oscuro por defecto
     }
 
     &.dark-mode {
-        background-color: $dark-mode-bg !important;
+        background: $dark-mode-bg !important;
         color: $dark-mode-text;
     }
 }
@@ -108,4 +107,17 @@ body {
 .light-bg {
     background-color: $light-mode-bg;
     color: $light-mode-text !important;
+}
+
+.sombraImagen{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* offsetX offsetY blurRadius color */
+
+}
+
+label{
+    color: black;
+}
+
+.cartaShow{
+    background-color: rgba(125, 125, 125, 0.425);
 }

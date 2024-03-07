@@ -10,9 +10,10 @@
     @vite(['resources/sass/app.scss'])
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
+<nav class="navbar navbar-expand-lg navbar-dark panelColor d-md-none">
     <a class="navbar-brand mx-3" href="/dashboard">
-        <img src="{{ asset('/images/Killerlogo.png') }}" width="30" height="30" alt="Cervezas Killer">
+        <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid" alt="">
+
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
         aria-controls="sidebar">
@@ -21,14 +22,13 @@
 </nav>
 <div class="container-fluid">
 
-    <div class="offcanvas offcanvas-start bg-dark " tabindex="-1" id="sidebar"
-        aria-labelledby="sidebarLabel">
+    <div class="offcanvas offcanvas-start panelColor " tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                     <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid"
                         alt="">
-                    <span class="fs-4  d-md-inline text-white">Netflix Egibide</span>
+                    <span class="fs-4  d-md-inline text-white">EgiFlix</span>
                 </a>
                 <hr class="w-100">
             </div>
@@ -41,7 +41,8 @@
                     <ul class="nav nav-pills flex-column flex-grow-1">
                         @auth
                             <li class="  nav-item m-2 p-2">
-                                <a href="{{ route('home') }}" class=" text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
+                                <a href="{{ route('home') }}"
+                                    class=" text-light nav-link{{ request()->is('dashboard') ? ' active' : '' }}">
                                     <i class=" imagenColor fa-solid fa-tachometer-alt  me-3 fs-5 p-1"></i>
                                     <span class="text-white d-md-inline p-1 ">Panel</span>
                                 </a>
@@ -129,12 +130,12 @@
     <div class="container-fluid ">
         <div class="row flex-nowrap min-vh-100 text-white">
             <div
-                class=" bg-dark col-auto d-flex flex-column bg-gradient min-vh-100 dark-bg d-none d-md-block col-md-3 col-xl-2">
+                class="  col-auto d-flex flex-column panelColor min-vh-100 dark-bg d-none d-md-block col-sm-3 col-md-4 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
                         <img src="{{ asset('/images/logo.png') }}" width="50" height="50"
                             class="img-fluid mx-3" alt="logo">
-                        <span class="fs-4 d-none d-md-inline text-white ">Netflix Egibide</span>
+                        <span class="fs-4 d-none d-md-inline text-white ">EgiFlix</span>
                     </a>
                     <hr class="w-100">
                 </div>
@@ -164,7 +165,7 @@
                             <a href="{{ route('series.index') }}"
                                 class="nav-link{{ request()->is('series') ? ' active' : '' }}">
                                 <i class="imagenColor fa-solid fa-receipt me-3 fs-5 p-1"></i>
-                                <span class="d-none d-md-inline p-2 text-white">series</span>
+                                <span class="d-none d-md-inline p-2 text-white">Series</span>
                             </a>
                         </li>
 
@@ -207,20 +208,26 @@
 
                                 </a>
                                 <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser">
-                                    <li><a class="dropdown-item rounded fondoColor" href="{{ route('perfil') }}">Perfil</a></li>
+                                    <li><a class="dropdown-item rounded fondoColor"
+                                            href="{{ route('perfil') }}">Perfil</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                </ul>
+                                    <li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger w-80 m-2">
                                                 <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
                                             </button>
                                         </form>
+                                    </li>
 
-
+                                </ul>
                             </div>
+
+                        </div>
+                        <br>
+                        <div style="display: block; margin-top: 10px;">
                             <label class="switch ms-3" for="dark-mode-toggle">
                                 <input type="checkbox" id="dark-mode-toggle">
                                 <span class="slider">
@@ -232,7 +239,7 @@
                     </div>
                 @endauth
             </div>
-            <div class="col px-md-4 min-vh-100 colorfondo">
+            <div class="col px-md-4 min-vh-100 ">
                 @include('layouts._partials.messages')
 
                 @yield('content')
@@ -241,7 +248,7 @@
 
     </div>
 
-    <div class="row bg-dark text-center text-white py-4" style="max-height: 100vh">
+    <div class="row bg-dark bg-gradiant text-center text-white py-4" style="max-height: 100vh">
         <div class="col">
             @yield('footer')
         </div>

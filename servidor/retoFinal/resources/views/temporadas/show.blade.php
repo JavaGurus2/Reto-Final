@@ -3,31 +3,42 @@
 @section('title', 'Ver episodios')
 
 @section('content')
-    <div class="row d-flex justify-content-center align-items-center my-5">
+    <div
+        class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded cartaShow">
         <div class="col-lg-6">
             <div>
-                <h1 class="mb-4">Detalle de la temporada</h1>
+                <h4 class="mb-5">
+                    <a href="{{ route('series.show', $serie) }}" class="text-indigo-300"> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 "></i></a>
+                    {{ __('Detalles Serie') }}
+
+                </h4>
+
             </div>
 
             <div class="card">
-                <div class="card-header">
+                <div class="card-header fondoRosaClaro">
                     <h5 class="card-title">Información de la temporada</h5>
                 </div>
                 <div class="card-body">
                     <dl class="row">
-                        <dt class="col-sm-4">Nombre:</dt>
+                        <dt class="col-sm-4">Nombre de la serie:</dt>
+                        <dd class="col-sm-8">{{ $serie->nombre }}</dd>
+                        <hr>
+                        <dt class="col-sm-4">Nombre de la temporada:</dt>
                         <dd class="col-sm-8">{{ $temporada->nombre }}</dd>
-
+                        <hr>
                         <dt class="col-sm-4">Número:</dt>
                         <dd class="col-sm-8">{{ $temporada->numero }}</dd>
-
+                        <hr>
                         <dt class="col-sm-4">Fecha de estreno:</dt>
                         <dd class="col-sm-8">{{ $temporada->fecha_estreno }}</dd>
+                        <hr>
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('series.show', $serie) }}" class="btn btn-secondary me-2">Volver</a>
-                    <a href="{{ route('temporadas.edit', [$temporada, $serie]) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn bg-purple text-white">Editar
+                        Temporada</a>
                 </div>
             </div>
         </div>
@@ -35,9 +46,9 @@
         <!-- Episodios -->
         <div class="col-lg-6 my-5">
             <div class="card shadow">
-                <div class="card-header d-flex justify-content-between">
+                <div class="card-header d-flex justify-content-between fondoRosaClaro">
                     <h5 class="text-dark">{{ __('Episodios') }}</h5>
-                    <a href="{{ route('episodios.create', [$serie, $temporada]) }}" class="btn btn-success">Crear
+                    <a href="{{ route('episodios.create', [$serie, $temporada]) }}" class="btn fondoRosa text-white">Crear
                         episodio</a>
                 </div>
 
@@ -46,7 +57,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+
                                     <th>Número episodio</th>
                                     <th>Fecha estreno</th>
                                     <th>Acciones</th>
@@ -55,7 +66,7 @@
                             <tbody>
                                 @forelse ($episodios as $episodio)
                                     <tr>
-                                        <td>{{ $episodio->id }}</td>
+
                                         <td>{{ $episodio->numero }}</td>
                                         <td>{{ $episodio->fecha_estreno }}</td>
                                         <td>
@@ -73,13 +84,13 @@
                                                 tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-header card-header-custom">
                                                             <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar
                                                                 Borrado {{ $episodio->id }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Cerrar"></button>
                                                         </div>
-                                                        <div class="modal-body">
+                                                        <div class="modal-body modal-content-custom">
                                                             <p>¿Estás seguro de que deseas borrar este episodio?</p>
                                                         </div>
                                                         <div class="modal-footer">

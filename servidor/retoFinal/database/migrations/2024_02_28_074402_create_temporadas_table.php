@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('temporadas', function (Blueprint $table) {
             $table->id();
+            $table->string("nombre");
             $table->bigInteger("numero");
             $table->date("fecha_estreno");
             $table->unsignedBigInteger("serie_id");
