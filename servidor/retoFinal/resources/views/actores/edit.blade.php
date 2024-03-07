@@ -54,9 +54,8 @@
                         <label for="imagen" class="form-label">imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($actore->imagen))
-                            <img src="{{ asset($actore->imagen) }}" alt="Imagen de la película" class="my-4 rounded" style="max-width: 300px;">
+                            <img src="data:image/png;base64,{{ $actore->imagen }}" alt="Imagen de la película" class="my-4 rounded" style="max-width: 300px;">
                         @endif
-
                     </div>
                     <div class="gap-2">
                         <button type="submit" class="btn bg-purple text-white">Actualizar</button>

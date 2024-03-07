@@ -50,7 +50,7 @@
                         <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded ">
 
                     @if (isset($serie->imagen))
-                        <img src="{{ asset($serie->imagen) }}" class="my-3 rounded" alt="Imagen de la serie"
+                        <img src="data:image/png;base64,{{ $serie->imagen }}" class="my-3 rounded" alt="Imagen de la serie"
                             style="max-width: 300px;">
                     @endif
                     <div class="invalid-feedback" id="imagenFeedback"></div>

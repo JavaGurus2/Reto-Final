@@ -27,7 +27,7 @@
                         <dd class="col-sm-8">{{ $user->email }}</dd>
 
                         <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8"> <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario"
+                        <dd class="col-sm-8"> <img src="data:image/png;base64,{{ $user->imagen }}" alt="Imagen del usuario"
                                 style="max-width: 300px;"></dd>
                     </dl>
                 </div>
