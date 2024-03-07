@@ -118,6 +118,8 @@ async function cambiarMiLista() {
   let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
   if (mensajeMiLista.value.includes('Añadir')) {
     try {
+      const user_id = JSON.parse(sessionStorage.getItem('usuario')).id
+      console.log(user_id)
       const response = await fetch(URL, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token'),
@@ -127,7 +129,7 @@ async function cambiarMiLista() {
         body: JSON.stringify({
           referencia_id: referencia_id.value,
           tipo: 'serie',
-          user_id: JSON.parse(sessionStorage.getItem('usuario')).id
+          user_id: user_id
         })
       })
       const datos = await response.json()

@@ -13,7 +13,7 @@ class APIMiListaController extends Controller
         $validated = $request->validate([
             "referencia_id" => "required",
             "tipo" => "required",
-            "user_id"
+            "user_id" => "required",
         ]);
 
         miLista::create($validated);
