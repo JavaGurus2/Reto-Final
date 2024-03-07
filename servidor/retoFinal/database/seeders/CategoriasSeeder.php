@@ -41,6 +41,7 @@ class CategoriasSeeder extends Seeder
         }
 
 
+/*
         // Categorías para series
         $categoriasSeries = [
             'Acción',
@@ -67,6 +68,8 @@ class CategoriasSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+*/
 
     }
 }
