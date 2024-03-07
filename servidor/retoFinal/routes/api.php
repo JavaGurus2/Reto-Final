@@ -3,6 +3,7 @@
 use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\APIBuscarController;
 use App\Http\Controllers\APIHomeController;
+use App\Http\Controllers\APIMiListaController;
 use App\Http\Controllers\APIPeliculaController;
 use App\Http\Controllers\APISerieController;
 use Illuminate\Http\Request;
