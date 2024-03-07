@@ -6,7 +6,7 @@ use App\Models\Categoria;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
 
-class APIHomeController extends Controller
+class APIHPeliculasController extends Controller
 {
     public function novedades()
     {
@@ -43,6 +43,23 @@ class APIHomeController extends Controller
         $categorias = Categoria::all();
         return $categorias;
     }
+
+    public function rellenar(Request $request)
+{
+    $novedades = $this->novedades();
+    $tendencias = $this->tendencias();
+    $randomCategorias = $this->randomcategorias();
+    $todasCategorias = $this->todasCategorias();
+
+    $data = [
+        'novedades' => $novedades,
+        'tendencias' => $tendencias,
+        'randomCategorias' => $randomCategorias,
+        'todasCategorias' => $todasCategorias,
+    ];
+
+    return response()->json($data);
+}
 
     public function filtro(Request $request)
     {
