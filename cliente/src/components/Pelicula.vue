@@ -55,10 +55,6 @@ async function cargarPelicula() {
   clasificacion.value = data.value.pelicula.clasificacion
   pelicula.value = 'http://egiflix.es:81/' + data.value.pelicula.archivo.split('/').pop()
 }
-function descargar() {
-  const urlArchivo = pelicula.value
-  window.open(urlArchivo, '_blank')
-}
 
 // Lo de mi lista
 const mensajeMiLista = ref('')
@@ -130,6 +126,24 @@ async function cambiarMiLista() {
     }
   }
 }
+
+async function guardarDescarga() {
+  try {
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/descarga/pelicula`, {
+      method: 'post',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: JSON.parse(sessionStorage.getItem('usuario')).id,
+        pelicula_id: id.value
+      })
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <template>
@@ -147,13 +161,23 @@ async function cambiarMiLista() {
     <p>
       {{ sinopsis }}
     </p>
-    <button
-      v-if="mensajeMiLista"
-      :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
-      @click="cambiarMiLista"
-    >
-      {{ mensajeMiLista }}
-    </button>
+    <div class="d-flex justify-content-between align-items-center">
+      <button
+        v-if="mensajeMiLista"
+        :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+        @click="cambiarMiLista"
+      >
+        {{ mensajeMiLista }}
+      </button>
+      <a
+        v-if="pelicula"
+        @click="guardarDescarga"
+        :download="true"
+        :href="pelicula"
+        class="btn btn-primary"
+        >Descargar</a
+      >
+    </div>
   </div>
   <div class="col-10 align-self-center">
     <h2>Reparto</h2>
@@ -164,8 +188,6 @@ async function cambiarMiLista() {
       <p v-else>No hay actores asociados.</p>
     </div>
   </div>
-  <a v-if="pelicula" :download="true" :href="pelicula">Descargar</a>
-  <button v-if="pelicula" @click="descargar">Descargar tesst</button>
 </template>
 <style>
 .scroll {

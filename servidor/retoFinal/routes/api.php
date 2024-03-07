@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\APIBuscarController;
+use App\Http\Controllers\APIDescargasController;
 use App\Http\Controllers\APIHomeController;
 use App\Http\Controllers\APIMiListaController;
 use App\Http\Controllers\APIPeliculaController;
@@ -35,4 +36,6 @@ Route::middleware('auth.jwt')->get('/buscar', [APIBuscarController::class, "busc
 Route::middleware('auth.jwt')->get('/milista', [APIMiListaController::class, "comprobar"]);
 Route::middleware('auth.jwt')->post('/milista', [APIMiListaController::class, "anadir"]);
 Route::middleware('auth.jwt')->delete('/milista', [APIMiListaController::class, "eliminar"]);
+Route::middleware('auth.jwt')->post('/descarga/pelicula', [APIDescargasController::class, "pelicula"]);
+Route::middleware('auth.jwt')->post('/descarga/episodio', [APIDescargasController::class, "episodio"]);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
