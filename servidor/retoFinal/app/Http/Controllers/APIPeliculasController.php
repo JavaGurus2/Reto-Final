@@ -22,21 +22,21 @@ class APIPeliculasController extends Controller
     }
 
     public function randomcategorias()
-{
-    $categorias = Categoria::inRandomOrder()->limit(5)->get();
+    {
+        $categorias = Categoria::inRandomOrder()->limit(5)->get();
 
-    $categoriasConPeliculas = $categorias->map(function ($categoria) {
-        $peliculas = $categoria->peliculas()->inRandomOrder()->limit(5)->get();
+        $categoriasConPeliculas = $categorias->map(function ($categoria) {
+            $peliculas = $categoria->peliculas()->inRandomOrder()->limit(5)->get();
 
-        return [
-            'categoria' => $categoria,
-            'peliculas' => $peliculas,
-            'peliserie' => null,
-        ];
-    });
+            return [
+                'categoria' => $categoria,
+                'peliculas' => $peliculas,
+                'peliserie' => null,
+            ];
+        });
 
-    return $categoriasConPeliculas;
-}
+        return $categoriasConPeliculas;
+    }
 
 
     public function todasCategorias()
@@ -52,7 +52,7 @@ class APIPeliculasController extends Controller
         }
         $milistas = $user->milistas()->get();
 
-        $series = [];
+        $peliculas = [];
 
         foreach ($milistas as $milista) {
             if ($milista->tipo == 'pelicula') {
