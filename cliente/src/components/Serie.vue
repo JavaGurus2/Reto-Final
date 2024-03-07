@@ -88,6 +88,24 @@ function elegirTemporada(eleccion) {
   temporadaSeleccionada.value = eleccion
 }
 
+async function guardarDescarga(episodio) {
+  try {
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/descarga/episodio`, {
+      method: 'post',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: JSON.parse(sessionStorage.getItem('usuario')).id,
+        episodio_id: episodio
+      })
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // Lo de mi lista
 const mensajeMiLista = ref('')
 const milistaItem = ref('')
@@ -235,6 +253,7 @@ async function cambiarMiLista() {
 
               <div class="col-6 descarga d-flex align-items-center justify-content-end">
                 <a
+                  @click="guardarDescarga(episodio.id)"
                   :download="true"
                   :href="'http://egiflix.es:81/' + episodio.archivo.split('/').pop()"
                   class="justify-content-center"

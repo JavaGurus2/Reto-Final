@@ -30,7 +30,7 @@ class APIDescargasController extends Controller
             "episodio_id" => "required"
         ]);
         DB::table('descarga_serie')->insert([
-            'episodio_id' => $validated['pelicula_id'],
+            'episodio_id' => $validated['episodio_id'],
             'user_id' => $validated['user_id'],
             'created_at' => now(),
             'updated_at' => now(),
