@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label">Fecha de Estreno</label>
+                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno"
                             value="{{ $temporada->fecha_estreno }}" required>
                         <div class="invalid-feedback">

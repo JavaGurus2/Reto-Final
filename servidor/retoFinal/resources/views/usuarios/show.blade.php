@@ -27,7 +27,7 @@
                         <dd class="col-sm-8">{{ $user->email }}</dd>
 
                         <dt class="col-sm-4">Imagen:</dt>
-                        <dd class="col-sm-8"> <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario"
+                        <dd class="col-sm-8"> <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario" class="img-fluid"
                                 style="max-width: 300px;"></dd>
                     </dl>
                 </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="col-6 ms-4">
             <div class="card border border-dark shadow-lg rounded cartaShow card-descargas">
@@ -65,7 +65,7 @@
                                             class="btn btn-primary btn-md">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        
+
 
                                     </td>
                                 </tr>
@@ -116,9 +116,9 @@
                                 @endif
                             </ul>
                         </nav>
-                        
+
                     </div>
-        
+
                     <div class="table-responsive">
                         <h4>Series descargadas:</h4>
                         <table class="table table-striped">
@@ -138,7 +138,7 @@
                                         <a href="{{ route('series.show', $descarga) }}" class="btn btn-primary btn-md">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        
+
 
                                     </td>
                                 </tr>
@@ -160,24 +160,24 @@
                                         </a>
                                     </li>
                                 @endif
-                        
+
                                 @if ($descargasSeries->currentPage() > 3)
                                     <li class="page-item"><span class="page-link">1</span></li>
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                 @endif
-                        
+
                                 @for ($i = max(1, $descargasSeries->currentPage() - 2); $i <= min($descargasSeries->lastPage(), $descargasSeries->currentPage() + 2); $i++)
                                     <li class="page-item @if ($i == $descargasSeries->currentPage()) active @endif">
                                         <a class="page-link"
                                             href="{{ $descargasSeries->url($i) }}">{{ $i }}</a>
                                     </li>
                                 @endfor
-                        
+
                                 @if ($descargasSeries->currentPage() < $descargasSeries->lastPage() - 2)
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                     <li class="page-item"><span class="page-link">{{ $descargasSeries->lastPage() }}</span></li>
                                 @endif
-                        
+
                                 @if ($descargasSeries->nextPageUrl())
                                     <li class="page-item">
                                         <a class="page-link"
@@ -189,14 +189,14 @@
                                 @endif
                             </ul>
                         </nav>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-        
-        
-        
+
+
+
 
     </div>
 @endsection
