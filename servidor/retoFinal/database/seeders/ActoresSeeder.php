@@ -44,6 +44,36 @@ class ActoresSeeder extends Seeder
                 'email' => 'evan@email.com',
                 'imagen' => 'https://example.com/david.jpg',
             ],
+            [
+                    'nombre' => 'Tom',
+                'apellido' => 'Hanks',
+                'email' => 'tom@email.com',
+                'imagen' => 'https://example.com/tom.jpg',
+            ],
+            [
+                'nombre' => 'Scarlett',
+                'apellido' => 'Johansson',
+                'email' => 'scarlett@email.com',
+                'imagen' => 'https://example.com/scarlett.jpg',
+            ],
+            [
+                'nombre' => 'Brad',
+                'apellido' => 'Pitt',
+                'email' => 'brad@email.com',
+                'imagen' => 'https://example.com/brad.jpg',
+            ],
+            [
+                'nombre' => 'Jennifer',
+                'apellido' => 'Lawrence',
+                'email' => 'jennifer@email.com',
+                'imagen' => 'https://example.com/jennifer.jpg',
+            ],
+            [
+                'nombre' => 'Chris',
+                'apellido' => 'Hemsworth',
+                'email' => 'chris@email.com',
+                'imagen' => 'https://example.com/chris.jpg',
+            ],
         ];
 
         // Insertar los datos en la tabla
