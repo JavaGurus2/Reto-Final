@@ -71,7 +71,7 @@ onBeforeMount(async () => {
     elemento.peliserie = [...elemento.peliculas, ...elemento.series]
   }
   // Mi lista
-  miLista.value = [...data.milista]
+  miLista.value = [...data.milista.series, ...data.milista.peliculas]
 })
 </script>
 <template>

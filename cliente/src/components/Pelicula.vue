@@ -25,9 +25,10 @@ const DIRECCION = 'admin.egiflix.es'
 const peliculasStore = usePeliculasStore()
 const actores = ref([])
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   id.value = route.params.id
-  cargarPelicula()
+  await cargarPelicula()
+  await comprobarMiLista()
 })
 
 async function cargarPelicula() {
@@ -58,6 +59,77 @@ function descargar() {
   const urlArchivo = pelicula.value
   window.open(urlArchivo, '_blank')
 }
+
+// Lo de mi lista
+const mensajeMiLista = ref('')
+const milistaItem = ref('')
+async function comprobarMiLista() {
+  try {
+    const response = await fetch(
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=pelicula&referencia_id=${id.value}&user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        }
+      }
+    )
+    const datos = await response.json()
+    if (datos.milistaItem.length > 0) {
+      mensajeMiLista.value = 'Quitar de Mi Lista'
+      milistaItem.value = datos.milistaItem[0].id
+    } else {
+      mensajeMiLista.value = 'Añadir a mi lista'
+    }
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
+async function cambiarMiLista() {
+  await comprobarMiLista()
+  let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
+  if (mensajeMiLista.value.includes('Añadir')) {
+    try {
+      const user_id = JSON.parse(sessionStorage.getItem('usuario')).id
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          referencia_id: id.value,
+          tipo: 'pelicula',
+          user_id: user_id
+        })
+      })
+      const datos = await response.json()
+      if (datos) {
+        mensajeMiLista.value = 'Quitar de Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    try {
+      console.log(id.value)
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'DELETE',
+        body: JSON.stringify({ id: milistaItem.value })
+      })
+      const data = await response.json()
+      if (data.data == 'borrado') {
+        mensajeMiLista.value = 'Añadir a Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 </script>
 
 <template>
@@ -75,6 +147,13 @@ function descargar() {
     <p>
       {{ sinopsis }}
     </p>
+    <button
+      v-if="mensajeMiLista"
+      :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+      @click="cambiarMiLista"
+    >
+      {{ mensajeMiLista }}
+    </button>
   </div>
   <div class="col-10 align-self-center">
     <h2>Reparto</h2>
