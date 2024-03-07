@@ -43,17 +43,17 @@ class SeriesSeeder extends Seeder
                 'clasificacion' => '+13',
             ],
             [
-                'nombre' => 'Full Metal Alchemist Brotherhood',
-                'sinopsis' => '"Fullmetal Alchemist: Brotherhood" es un anime basado en el manga de Hiromu Arakawa y es una versión más fiel y completa de la historia que su predecesora, "Fullmetal Alchemist". La serie sigue las aventuras de dos hermanos alquimistas, Edward y Alphonse Elric, en un mundo donde la alquimia es una ciencia avanzada.',
-                'imagen' => 'storage/images/fma.jpg',
-                'fecha_estreno' => '2023-01-05',
-                'clasificacion' => '+13',
-            ],
-            [
                 'nombre' => 'Demon Slayer',
                 'sinopsis' => '"Demon Slayer" (también conocido como "Kimetsu no Yaiba") es un manga y anime japonés creado por Koyoharu Gotouge. La historia sigue a Tanjiro Kamado, un joven que se convierte en un cazador de demonios después de que su familia es masacrada por un demonio, excepto su hermana menor Nezuko, quien es transformada en un demonio pero conserva parte de su humanidad.',
                 'imagen' => 'storage/images/demonSlayer.png',
                 'fecha_estreno' => '2023-01-06',
+                'clasificacion' => '+13',
+            ],
+            [
+                'nombre' => 'Full Metal Alchemist Brotherhood',
+                'sinopsis' => '"Fullmetal Alchemist: Brotherhood" es un anime basado en el manga de Hiromu Arakawa y es una versión más fiel y completa de la historia que su predecesora, "Fullmetal Alchemist". La serie sigue las aventuras de dos hermanos alquimistas, Edward y Alphonse Elric, en un mundo donde la alquimia es una ciencia avanzada.',
+                'imagen' => 'storage/images/fma.jpg',
+                'fecha_estreno' => '2023-01-05',
                 'clasificacion' => '+13',
             ],
             [

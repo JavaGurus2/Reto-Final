@@ -43,7 +43,7 @@ class TemporadasSeeder extends Seeder
                 'nombre' => 'Naruto',
                 'numero' => 1,
                 'fecha_estreno' => '2023-01-03',
-                'serie_id' => 2,
+                'serie_id' => 3,
             ],
             [
                 'nombre' => 'Naruto Shippuden',
@@ -72,6 +72,12 @@ class TemporadasSeeder extends Seeder
             [
                 'nombre' => 'Attack on Titan',
                 'numero' => 4,
+                'fecha_estreno' => '2023-04-04',
+                'serie_id' => 4,
+            ],
+            [
+                'nombre' => 'Attack on Titan',
+                'numero' => 5,
                 'fecha_estreno' => '2023-04-04',
                 'serie_id' => 4,
             ],

@@ -17,7 +17,7 @@ class EpisodiosSeeder extends Seeder
         [
             [
                 'numero' => 1,
-                'archivo' => '1episodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'La que se avecina',
                 'fecha_estreno' => '2023-01-01',
                 'duracion' => 45, // duración en minutos
@@ -26,7 +26,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '1episodio2.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'La que se avecina',
                 'fecha_estreno' => '2023-01-02',
                 'duracion' => 42, // duración en minutos
@@ -35,7 +35,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '2episodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Dias Pasados',
                 'fecha_estreno' => '2023-01-02',
                 'duracion' => 42, // duración en minutos
@@ -44,7 +44,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '2episodio2.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'Visceras',
                 'fecha_estreno' => '2023-01-03',
                 'duracion' => 45, // duración en minutos
@@ -53,7 +53,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '21episodio1.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'Lo que se avecina',
                 'fecha_estreno' => '2023-02-02',
                 'duracion' => 44, // duración en minutos
@@ -62,7 +62,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '22episodio2.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Sangria',
                 'fecha_estreno' => '2023-02-03',
                 'duracion' => 42, // duración en minutos
@@ -71,7 +71,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '31episodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Semilla',
                 'fecha_estreno' => '2023-03-03',
                 'duracion' => 44, // duración en minutos
@@ -80,7 +80,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '32episodio1.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'Enfermo',
                 'fecha_estreno' => '2023-03-03',
                 'duracion' => 42, // duración en minutos
@@ -89,7 +89,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '3episodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'Entra! Uzumaki Naruto',
                 'fecha_estreno' => '2023-01-04',
                 'duracion' =>24, // duración en minutos
@@ -98,7 +98,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '3episodio2.mp4',
+                'archivo' => 'storage/videos/drabonball2.mp4',
                 'titulo' => 'Yo soy Konohamaru!',
                 'fecha_estreno' => '2023-01-05',
                 'duracion' =>24, // duración en minutos
@@ -107,7 +107,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '33episodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Regreso a casa',
                 'fecha_estreno' => '2023-01-04',
                 'duracion' =>24, // duración en minutos
@@ -116,7 +116,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '33episodio2.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'El Akatsuki hace su movimiento',
                 'fecha_estreno' => '2023-01-05',
                 'duracion' =>24, // duración en minutos
@@ -125,7 +125,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '4aepisodio1.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'A ti, dentro de 2000 años',
                 'fecha_estreno' => '2023-01-05',
                 'duracion' =>24, // duración en minutos
@@ -134,7 +134,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '4aepisodio1.mp4',
+                'archivo' => 'storage/videos/shrek.mp4',
                 'titulo' => 'Aquel dia',
                 'fecha_estreno' => '2023-01-06',
                 'duracion' =>24, // duración en minutos
@@ -143,7 +143,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '4aepisodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'Una tenue luz en la desesperación',
                 'fecha_estreno' => '2023-01-07',
                 'duracion' =>24, // duración en minutos
@@ -152,7 +152,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 4,
-                'archivo' => '4episodio1.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'La noche de la desbandada',
                 'fecha_estreno' => '2023-01-08',
                 'duracion' =>24, // duración en minutos
@@ -162,7 +162,7 @@ class EpisodiosSeeder extends Seeder
 
             [
                 'numero' => 1,
-                'archivo' => '41bepisodio1.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'El titan bestia',
                 'fecha_estreno' => '2023-02-05',
                 'duracion' =>24, // duración en minutos
@@ -171,7 +171,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '42bepisodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'He vuelto a casa',
                 'fecha_estreno' => '2023-02-06',
                 'duracion' =>24, // duración en minutos
@@ -180,7 +180,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '43bepisodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Hacia el sudoeste',
                 'fecha_estreno' => '2023-02-07',
                 'duracion' =>24, // duración en minutos
@@ -189,7 +189,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 4,
-                'archivo' => '4episodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Soldado',
                 'fecha_estreno' => '2023-02-08',
                 'duracion' =>24, // duración en minutos
@@ -198,7 +198,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '41cepisodio1.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'Señales de humo',
                 'fecha_estreno' => '2023-03-05',
                 'duracion' =>24, // duración en minutos
@@ -207,7 +207,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '42cepisodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Dolor',
                 'fecha_estreno' => '2023-03-06',
                 'duracion' =>24, // duración en minutos
@@ -216,7 +216,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '43cepisodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'Relatos del pasado',
                 'fecha_estreno' => '2023-03-07',
                 'duracion' =>24, // duración en minutos
@@ -225,7 +225,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '41depisodio1.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'Al otro lado del mar',
                 'fecha_estreno' => '2023-04-05',
                 'duracion' =>24, // duración en minutos
@@ -234,7 +234,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '42depisodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'El tren en la noche oscura',
                 'fecha_estreno' => '2023-04-06',
                 'duracion' =>24, // duración en minutos
@@ -243,7 +243,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '43episodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'La puerta de la esperanza',
                 'fecha_estreno' => '2023-04-07',
                 'duracion' =>24, // duración en minutos
@@ -252,7 +252,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '41eepisodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'El juicio',
                 'fecha_estreno' => '2023-05-05',
                 'duracion' =>24, // duración en minutos
@@ -261,7 +261,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '42eepisodio1.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'Ataque sorpresa',
                 'fecha_estreno' => '2023-05-06',
                 'duracion' =>24, // duración en minutos
@@ -270,16 +270,16 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '43eepisodio1.mp4',
+                'archivo' => 'storage/videos/shrek.mp4',
                 'titulo' => 'Hermanos',
                 'fecha_estreno' => '2023-05-07',
                 'duracion' =>24, // duración en minutos
                 'sinopsis' => 'Eren hiere gravemente a Porco más allá de sus capacidades regenerativas, mientras que Colt le ruega a Zeke que no use su grito hasta que Falco esté fuera de su alcance.',
-                'temporada_id' => 9, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 11, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 4,
-                'archivo' => '44eepisodio1.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Recuerdos del futuro',
                 'fecha_estreno' => '2023-05-08',
                 'duracion' =>24, // duración en minutos
@@ -288,7 +288,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 5,
-                'archivo' => '45eepisodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'De ti hace dos mil años',
                 'fecha_estreno' => '2023-05-09',
                 'duracion' =>24, // duración en minutos
@@ -297,7 +297,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '5eepisodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'Cruce en la vida nocturna',
                 'fecha_estreno' => '2023-01-06',
                 'duracion' =>24, // duración en minutos
@@ -306,7 +306,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' => '5eepisodio2.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'Un corazon compasivo',
                 'fecha_estreno' => '2023-01-07',
                 'duracion' =>24, // duración en minutos
@@ -315,7 +315,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 3,
-                'archivo' => '5eepisodio3.mp4',
+                'archivo' => 'storage/videos/shrek.mp4',
                 'titulo' => 'Sabiduria del maestro',
                 'fecha_estreno' => '2023-01-08',
                 'duracion' =>24, // duración en minutos
@@ -324,7 +324,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 4,
-                'archivo' => '5eepisodio4.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Finalmente, un aprendiz',
                 'fecha_estreno' => '2023-01-09',
                 'duracion' =>24, // duración en minutos
@@ -333,7 +333,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 5,
-                'archivo' => '5eepisodio5.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'Mi propio estilo de lucha',
                 'fecha_estreno' => '2023-01-10',
                 'duracion' =>24, // duración en minutos
@@ -342,7 +342,7 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 1,
-                'archivo' => '6episodio1.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Full metal alchemist ',
                 'fecha_estreno' => '2023-01-07',
                 'duracion' =>24, // duración en minutos
@@ -351,103 +351,103 @@ class EpisodiosSeeder extends Seeder
             ],
             [
                 'numero' => 2,
-                'archivo' =>  '6episodio2.mp4',
+                'archivo' =>  'storage/videos/shrek.mp4',
                 'titulo' => 'La ciudad de Herejes',
                 'fecha_estreno' => '2023-01-08',
                 'duracion' =>24, // duración en minutos
                 'sinopsis' => ' conocemos a los hermanos Elric, quienes viven en el país de Amestris y están aprendiendo sobre la alquimia bajo la tutela de su madre. Trágicamente, su madre muere y los hermanos deciden usar la alquimia para intentar resucitarla. Sin embargo, su intento falla y como consecuencia, Edward pierde un brazo y una pierna, mientras que Alphonse pierde su cuerpo entero, quedando su alma sellada en una armadura.',
-                'temporada_id' => 12, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 3,
-                'archivo' =>  '6episodio3.mp4',
+                'archivo' =>  'storage/videos/pokemon.mp4',
                 'titulo' => 'La piedra de alma',
                 'fecha_estreno' => '2023-01-09',
                 'duracion' =>24, // duración en minutos
                 'sinopsis' => 'los hermanos Elric, Edward y Alphonse, llegan a la ciudad de Lior en busca de información sobre la Piedra Filosofal. En su búsqueda, se encuentran con Rose, una joven que ha perdido la fe en los dioses después de la muerte de sus padres durante una guerra civil en la ciudad.',
-                'temporada_id' => 12, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 4,
-                'archivo' =>  '6episodio4.mp4',
+                'archivo' =>  'storage/videos/dragonball.mp4',
                 'titulo' => 'Poder Inexplicable',
                 'fecha_estreno' => '2023-01-10',
                 'duracion' =>24, // duración en minutos
                 'sinopsis' => 'los hermanos Elric continúan su búsqueda de la Piedra Filosofal para restaurar sus cuerpos. Llegan a la ciudad de Dublith en busca de información sobre un alquimista conocido como "El Ciego" que podría tener pistas sobre la piedra.',
-                'temporada_id' => 12, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 5,
-                'archivo' => '6episodio5.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'El alquimista de la mina',
                 'fecha_estreno' => '2023-01-11',
                 'duracion' =>24, // duración en minutos
                 'sinopsis' => 'los hermanos Elric continúan su viaje hacia el este en busca de pistas sobre la Piedra Filosofal. Se detienen en una ciudad minera llamada Youswell, donde se encuentran con un alquimista llamado Yoki.',
-                'temporada_id' => 12, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
             ],
 
             [
                 'numero' => 1,
-                'archivo' => '7episodio1.mp4',
+                'archivo' => 'storage/videos/marvel.mp4',
                 'titulo' => 'El nombre del juego',
                 'fecha_estreno' => '2023-01-20',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => 'En este episodio, somos presentados al mundo en el que se desarrolla la serie, donde los superhéroes son tratados como celebridades y tienen contratos con grandes corporaciones.',
-                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 2,
-                'archivo' => '7episodio2.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'Cherry',
                 'fecha_estreno' => '2023-01-21',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => 'los miembros de "The Boys" continúan su misión de exponer y detener a los superhéroes corruptos. Mientras tanto, los Siete, el grupo de superhéroes más poderoso y famoso, continúan con sus propias agendas y manipulaciones detrás de escena.',
-                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 3,
-                'archivo' => '7episodio3.mp4',
+                'archivo' => 'storage/videos/digimon.mp4',
                 'titulo' => 'Conseguir algo',
                 'fecha_estreno' => '2023-01-22',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => ' continúan su búsqueda para exponer y detener a los superhéroes corruptos, mientras que los miembros de los Siete continúan con sus propias agendas y manipulaciones.',
-                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 4,
-                'archivo' => '7episodio4.mp4',
+                'archivo' => 'storage/videos/oliver.mp4',
                 'titulo' => 'La hembra de la especie',
                 'fecha_estreno' => '2023-01-23',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => 'En este episodio, se introduce a un nuevo personaje en la trama: una mujer misteriosa y poderosa conocida como "The Female" ("La Hembra"), cuyo verdadero nombre es Kimiko.',
-                'temporada_id' => 13, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 1,
-                'archivo' => '8episodio1.mp4',
+                'archivo' => 'storage/videos/dragonball.mp4',
                 'titulo' => 'El que Mónica tiene un compañero de cuarto',
                 'fecha_estreno' => '2023-02-20',
                 'duracion' =>30, // duración en minutos
                 'sinopsis' => 'Rachel Green, una joven que ha dejado plantado a su prometido en el altar, busca refugio en el apartamento de su amiga de la infancia, Mónica Geller.',
-                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 15, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 2,
-                'archivo' => '8episodio2.mp4',
+                'archivo' => 'storage/videos/dragonball2.mp4',
                 'titulo' => 'El que tiene el sonograma al final',
                 'fecha_estreno' => '2023-02-21',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => ' Ross se encuentra abrumado por la noticia de que su exesposa, Carol, está embarazada de su hijo. A pesar de sus sentimientos encontrados sobre la situación, Ross decide ser parte activa en la vida del bebé.',
-                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 15, // ID de la temporada a la que pertenece el episodio
             ],
             [
                 'numero' => 3,
-                'archivo' => '8episodio3.mp4',
+                'archivo' => 'storage/videos/pokemon.mp4',
                 'titulo' => 'El que tiene el pulgar',
                 'fecha_estreno' => '2023-02-23',
                 'duracion' =>56, // duración en minutos
                 'sinopsis' => 'Chandler descubre que su ex novia Janice, conocida por su risa peculiar, todavía tiene una llave de su apartamento y sigue apareciendo inesperadamente. Chandler lucha por encontrar una manera de terminar definitivamente con la relación sin herir los sentimientos de Janice.',
-                'temporada_id' => 14, // ID de la temporada a la que pertenece el episodio
+                'temporada_id' => 15, // ID de la temporada a la que pertenece el episodio
             ],
 
 
