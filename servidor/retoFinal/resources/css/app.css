@@ -46,7 +46,7 @@ li:hover i {
   color: black;
 }
 li:hover span {
-  color: white;
+  color: black !important;
 }
 
 /* ESTILOS SWITCH MODO CLARO/OSCURO */
@@ -147,17 +147,21 @@ input:checked + .slider:before {
 }
 
 .bg-purple:hover .fa-solid.fa-list-check,
-.bg-purple:hover .ahover {
+.bg-purple:hover .ahover,
+.bg-purplea:hover .ahover,
+.bg-purplea:hover .fa-solid.fa-list-check {
   color: white !important;
 }
 
-.bg-purple:hover .ahover {
+.bg-purple:hover .ahover,
+.bg-purplea:hover .ahover {
   border-color: white !important; /* Establece el color del borde en blanco */
 }
 
 .ahover:hover {
   transition: transform 0.3s ease;
   transform: scale(1.4);
+  color: white;
 }
 
 .btn-warning:hover {
@@ -4015,7 +4019,7 @@ textarea.form-control-lg {
 .nav-pills {
   --bs-nav-pills-border-radius: var(--bs-border-radius);
   --bs-nav-pills-link-active-color: #fff;
-  --bs-nav-pills-link-active-bg: #0d6efd;
+  --bs-nav-pills-link-active-bg: purple;
 }
 .nav-pills .nav-link {
   border-radius: var(--bs-nav-pills-border-radius);
@@ -5155,8 +5159,8 @@ textarea.form-control-lg {
   --bs-list-group-disabled-color: var(--bs-secondary-color);
   --bs-list-group-disabled-bg: var(--bs-body-bg);
   --bs-list-group-active-color: #fff;
-  --bs-list-group-active-bg: #0d6efd;
-  --bs-list-group-active-border-color: #0d6efd;
+  --bs-list-group-active-bg: purple;
+  --bs-list-group-active-border-color: purple;
   display: flex;
   flex-direction: column;
   padding-left: 0;
@@ -12110,7 +12114,7 @@ li:hover i {
 }
 
 li:hover span {
-  color: white;
+  color: black !important;
 }
 
 /* ESTILOS SWITCH MODO CLARO/OSCURO */
@@ -12211,17 +12215,21 @@ input:checked + .slider:before {
 }
 
 .bg-purple:hover .fa-solid.fa-list-check,
-.bg-purple:hover .ahover {
+.bg-purple:hover .ahover,
+.bg-purplea:hover .ahover,
+.bg-purplea:hover .fa-solid.fa-list-check {
   color: white !important;
 }
 
-.bg-purple:hover .ahover {
+.bg-purple:hover .ahover,
+.bg-purplea:hover .ahover {
   border-color: white !important; /* Establece el color del borde en blanco */
 }
 
 .ahover:hover {
   transition: transform 0.3s ease;
   transform: scale(1.4);
+  color: white;
 }
 
 .btn-warning:hover {
@@ -12457,6 +12465,13 @@ label {
 
 .cartaShow {
   background-color: rgba(125, 125, 125, 0.425);
+}
+
+.login {
+  background-image: url("../../public/images/logo_egiflix.jfif");
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen vertical y horizontalmente */
 }
 
 /*# sourceMappingURL=app.css.map */
