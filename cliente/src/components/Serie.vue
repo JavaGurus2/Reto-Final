@@ -102,10 +102,9 @@ async function comprobarMiLista() {
       }
     )
     const datos = await response.json()
-    console.log(datos)
     if (datos.milistaItem.length > 0) {
       mensajeMiLista.value = 'Quitar de Mi Lista'
-      milistaItem.value = milistaItem.id
+      milistaItem.value = datos.milistaItem[0].id
     } else {
       mensajeMiLista.value = 'Añadir a mi lista'
     }
@@ -135,11 +134,14 @@ async function cambiarMiLista() {
     }
   } else {
     try {
-      const response = await fetch(URL + `?id=${milistaItem.id}`, {
+      console.log(milistaItem.value + '----------------')
+      const response = await fetch(URL, {
         headers: {
-          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
         },
-        method: 'DELETE'
+        method: 'DELETE',
+        body: JSON.stringify({ id: milistaItem.value })
       })
     } catch (error) {
       console.error(error)
