@@ -41,7 +41,7 @@ async function buscarContenidoCategoria(categoria_id) {
     }
   })
   const data = await response.json()
-  return [...data.peliculas]
+  return data.peliculas
 }
 
 const novedades = ref([])
@@ -62,16 +62,16 @@ onBeforeMount(async () => {
   )
   const data = await response.json()
   categorias.value = data.todasCategorias
-  novedades.value = [...data.novedades.peliculas]
-  tendencias.value = [...data.tendencias.peliculas]
-  categoriasPeliSerie.value = [...data.randomCategorias]
+  novedades.value = data.novedades
+  tendencias.value = data.tendencias
+  categoriasPeliSerie.value = data.randomCategorias
   // Juntar las series y las peliculas
   for (let i = 0; i < categoriasPeliSerie.value.length; i++) {
     const elemento = categoriasPeliSerie.value[i]
-    elemento.peliserie = [...elemento.peliculas]
+    elemento.peliserie = elemento.peliculas
   }
   // Mi lista
-  miLista.value = [...data.milista.peliculas]
+  miLista.value = data.milista.peliculas
 })
 </script>
 <template>

@@ -21,45 +21,67 @@ class APIPeliculasController extends Controller
     }
 
     public function randomcategorias()
-    {
-        $categorias = Categoria::inRandomOrder()->limit(5)->get();
+{
+    $categorias = Categoria::inRandomOrder()->limit(5)->get();
 
-        $categoriasConPeliculas = $categorias->map(function ($categoria) {
-            $peliculas = Pelicula::whereHas('categorias', function ($query) use ($categoria) {
-                $query->where('categoria_id', $categoria->id);
-            })->inRandomOrder()->limit(5)->get();
+    $categoriasConPeliculas = $categorias->map(function ($categoria) {
+        $peliculas = $categoria->peliculas()->inRandomOrder()->limit(5)->get();
 
-            return [
-                'categoria' => $categoria,
-                'peliculas' => $peliculas,
-            ];
-        });
+        return [
+            'categoria' => $categoria,
+            'peliculas' => $peliculas,
+            'peliserie' => null,
+        ];
+    });
 
-        return $categoriasConPeliculas;
-    }
+    return $categoriasConPeliculas;
+}
+
 
     public function todasCategorias()
     {
         $categorias = Categoria::all();
         return $categorias;
     }
+    public function milista($user_id)
+    {
+        $user = User::find($user_id);
+        if (!$user) {
+            return null;
+        }
+        $milistas = $user->milistas()->get();
+
+        $series = [];
+
+        foreach ($milistas as $milista) {
+            if ($milista->tipo == 'pelicula') {
+                $pelicula = Pelicula::find($milista->referencia_id);
+                if ($pelicula) {
+                    $peliculas[] = $pelicula;
+                }
+            }
+        }
+        return $peliculas;
+    }
 
     public function rellenar(Request $request)
-{
-    $novedades = $this->novedades();
-    $tendencias = $this->tendencias();
-    $randomCategorias = $this->randomcategorias();
-    $todasCategorias = $this->todasCategorias();
+    {
+        $novedades = $this->novedades();
+        $tendencias = $this->tendencias();
+        $randomCategorias = $this->randomcategorias();
+        $todasCategorias = $this->todasCategorias();
+        $milista = $this->milista($request["user_id"]);
 
-    $data = [
-        'novedades' => $novedades,
-        'tendencias' => $tendencias,
-        'randomCategorias' => $randomCategorias,
-        'todasCategorias' => $todasCategorias,
-    ];
+        $data = [
+            'novedades' => $novedades,
+            'tendencias' => $tendencias,
+            'randomCategorias' => $randomCategorias,
+            'todasCategorias' => $todasCategorias,
+            'milista' => $milista,
+        ];
 
-    return response()->json($data);
-}
+        return response()->json($data);
+    }
 
     public function filtro(Request $request)
     {

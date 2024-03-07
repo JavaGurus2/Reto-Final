@@ -29,24 +29,20 @@ class APIHomeController extends Controller
         $categorias = Categoria::inRandomOrder()->limit(5)->get();
 
         $categoriasConPeliculasYSeries = $categorias->map(function ($categoria) {
-            $peliculas = Pelicula::whereHas('categorias', function ($query) use ($categoria) {
-                $query->where('categoria_id', $categoria->id);
-            })->inRandomOrder()->limit(5)->get();
-
-            $series = Serie::whereHas('categorias', function ($query) use ($categoria) {
-                $query->where('categoria_id', $categoria->id);
-            })->inRandomOrder()->limit(5)->get();
+            $peliculas = $categoria->peliculas()->inRandomOrder()->limit(5)->get();
+            $series = $categoria->series()->inRandomOrder()->limit(5)->get();
 
             return [
                 'categoria' => $categoria,
                 'peliculas' => $peliculas,
                 'series' => $series,
-                'peliserie' => null,
+                'peliserie' => null
             ];
         });
 
         return $categoriasConPeliculasYSeries;
     }
+
 
 
     public function todasCategorias()
