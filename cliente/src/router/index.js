@@ -28,6 +28,12 @@ const router = createRouter({
       meta: { requiresAuth: true } // Esta ruta requiere autenticación
     },
     {
+      path: '/series',
+      name: 'series',
+      component: () => import('../views/SeriesView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/series/:id',
       name: 'serie',
       component: () => import('../views/SerieView.vue'),
