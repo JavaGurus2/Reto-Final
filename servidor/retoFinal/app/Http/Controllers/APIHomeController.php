@@ -62,6 +62,7 @@ class APIHomeController extends Controller
             return null;
         }
         $milistas = $user->milistas();
+        return $milistas;
 
         $series = [];
         $peliculas = [];
@@ -103,8 +104,7 @@ class APIHomeController extends Controller
             'randomCategorias' => $randomCategorias,
             'todasCategorias' => $todasCategorias,
             'milista' => [
-                'series' => $milista[0],
-                'peliculas' => $milista[1],
+                'series' => $milista,
             ]
         ];
 
