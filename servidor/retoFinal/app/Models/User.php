@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function milistas()
     {
-        return $this->hasMany(miLista::class)->withTimestamps();
+        return $this->hasMany(miLista::class);
     }
 
     /**
