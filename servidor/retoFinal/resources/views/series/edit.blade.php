@@ -5,12 +5,12 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center  ">
-            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary mb-2">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow mb-2">
 
 
                 <h4>
                     <a href="{{ route('series.show',$serie) }}" class="text-indigo-300 "> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-4"></i></a>
                     {{ __('Detalles Serie') }}
                 </h4>
 
@@ -124,7 +124,7 @@
 
 
                     <div class="gap-2">
-                        <button type="submit" class="btn bg-purple text-white ">Actualizar</button>
+                        <button type="submit" class="btn fondoRosa text-white ">Actualizar</button>
                     </div>
                 </form>
             </div>

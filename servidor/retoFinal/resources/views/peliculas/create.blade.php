@@ -7,7 +7,7 @@
                 <div class="  box-shadow ">
                     <h4 class="p-3 m-1  text-white">
                         <a href="{{ route('peliculas.index') }}" class="text-indigo-300 "> <i
-                                class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-black p-1"></i></a>
+                                class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                         {{ __('Películas') }}
 
                     </h4>
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-purple text-white ">Crear Película</button>
+                            <button type="submit" class="btn fondoRosa text-white mb-5 ">Crear Película</button>
                         </form>
                     </div>
                 </div>

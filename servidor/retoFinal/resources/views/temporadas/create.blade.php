@@ -8,7 +8,7 @@
             <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
                 <h4>
                     <a href="{{ route('series.show', $serie) }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-4"></i></a>
                     {{ __('Temporadas') }}
 
                 </h4>
@@ -51,7 +51,7 @@
                     <input type="hidden" name="serie_id" value="{{ $serie->id }}">
 
                     <div class="gap-2 mt-4">
-                        <input type="submit" class="btn bg-purple text-white" value="Crear">
+                        <input type="submit" class="btn fondoRosa text-white" value="Crear">
 
                     </div>
                 </form>

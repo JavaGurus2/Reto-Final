@@ -9,7 +9,7 @@
             <div>
                 <h4>
                     <a href="{{ route('series.index') }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-4"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-4"></i></a>
                     {{ __('Series') }}
 
                 </h4>
@@ -48,7 +48,7 @@
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('series.edit', $serie) }}" class="btn bg-purple text-white">Editar</a>
+                    <a href="{{ route('series.edit', $serie) }}" class="btn fondoRosa text-white">Editar</a>
                 </div>
             </div>
 

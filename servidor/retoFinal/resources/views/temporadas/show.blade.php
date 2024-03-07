@@ -9,7 +9,7 @@
             <div>
                 <h4 class="mb-5">
                     <a href="{{ route('series.show', $serie) }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 "></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-2 "></i></a>
                     {{ __('Detalles Serie') }}
 
                 </h4>
@@ -37,7 +37,7 @@
                     </dl>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn bg-purple text-white">Editar
+                    <a href="{{ route('temporadas.edit', [$serie, $temporada]) }}" class="btn fondoRosa text-white">Editar
                         Temporada</a>
                 </div>
             </div>

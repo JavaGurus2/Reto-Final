@@ -8,7 +8,7 @@
             <div class="col-8 my-5 border border-dark shadow-lg p-4 rounded cartaShow ">
                 <h4 class="mb-3 p-1 m-1">
                     <a href="{{ route('usuarios.index') }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                     {{ __('Usuarios') }}
 
                 </h4>
@@ -65,7 +65,7 @@
 
 
                     <div class="mb-3 d-flex justify-content-start ">
-                        <input type="submit" class="btn btn-primary bg-purple" style="width: 200px" value="Crear">
+                        <input type="submit" class="btn btn-primary fondoRosa" style="width: 200px" value="Crear">
                     </div>
 
                 </form>

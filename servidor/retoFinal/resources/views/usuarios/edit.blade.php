@@ -8,7 +8,7 @@
             <div class="col  border border-dark shadow-lg p-4 rounded cartaShow">
                 <h4 class="mb-3 p-1 m-1">
                     <a href="{{ route('usuarios.show', $user) }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                     {{ __('Detalles Usuario') }}
 
                 </h4>
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn bg-purple text-white">Actualizar</button>
+                        <button type="submit" class="btn fondoRosa text-white">Actualizar</button>
                     </div>
                 </form>
             </div>

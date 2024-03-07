@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 mt-5 ">
-                <div class="card">
-                    <div class="card-header p-3  text-dark">
+            <div class="col-md-8 my-5  ">
+                <div class="card cartaShow ">
+                    <div class="card-header p-3 text-white ">
                         <h4 class="p-1 m-1 ">
                             <a href="{{ route('peliculas.index') }}" class="text-indigo-300"> <i
-                                    class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                                    class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                             {{ __('Películas') }}
                         </h4>
 
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-purple text-white" id="submitButton"
+                            <button type="submit" class="btn fondoRosa text-white" id="submitButton"
                                 {{ $edit ? '' : 'disabled' }}>Modificar</button>
                         </form>
                     </div>

@@ -8,7 +8,7 @@
             <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
                 <h4>
                     <a href="{{ route('episodios.show', [$serie, $temporada, $episodio]) }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1 mb-5"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-5"></i></a>
                     {{ __('Detalles Episodio') }}
 
                 </h4>
@@ -86,7 +86,7 @@
 
 
                         <div class="mt-5 gap-2">
-                            <button type="submit" class="btn bg-purple text-white">Actualizar</button>
+                            <button type="submit" class="btn fondoRosa text-white">Actualizar</button>
                         </div>
                 </form>
             </div>
