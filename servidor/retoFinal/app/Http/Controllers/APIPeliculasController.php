@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Pelicula;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class APIPeliculasController extends Controller
