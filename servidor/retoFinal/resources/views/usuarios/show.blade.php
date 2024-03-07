@@ -28,7 +28,7 @@
 
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8"> <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario" class="img-fluid"
-                                style="max-width: 300px;"></dd>
+                                ></dd>
                     </dl>
                 </div>
                 <div class="px-3 my-4">

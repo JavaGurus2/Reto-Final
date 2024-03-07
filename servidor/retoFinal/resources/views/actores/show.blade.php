@@ -33,7 +33,7 @@
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8">
                             <img src="{{ asset($actore->imagen) }}" alt="Imagen del actor" class="rounded box-shadow img-fluid"
-                                style="max-width: 300px;">
+                                >
                         </dd>
                     </dl>
                 </div>

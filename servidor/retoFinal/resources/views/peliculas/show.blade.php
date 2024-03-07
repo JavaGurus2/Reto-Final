@@ -65,11 +65,11 @@
                                 </label>
                                 <br>
                                 <input type="file" name="imagen" id="imagen"
-                                    class="form-control-file bg-white p-2 rounded " accept="image/*"
+                                    class="form-control-file bg-white p-2 rounded img-fluid " accept="image/*"
                                     {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->imagen))
                                     <img src="{{ asset($pelicula->imagen) }}" class="my-3 rounded img-fluid"
-                                        alt="Imagen de la película" style="max-width: 300px;">
+                                        alt="Imagen de la película" >
                                 @endif
                                 <div class="invalid-feedback" id="imagenFeedback"></div>
                             </div>
@@ -82,11 +82,11 @@
                                 </label>
                                 <br>
                                 <input type="file" name="archivo" id="archivo"
-                                    class="form-control-file bg-white p-2 rounded " accept="video/*"
+                                    class="form-control-file bg-white p-2 rounded img-fluid " accept="video/*"
                                     {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->archivo))
-                                    <video class="rounded" controls style="max-width: 400px;">
-                                        <source src="{{ asset($pelicula->archivo) }}">
+                                    <video class="rounded img-fluid" controls >
+                                        <source src="{{ asset($pelicula->archivo) }}" class="img-fluid">
                                     </video>
                                 @endif
                                 <div class="invalid-feedback" id="archivoFeedback"></div>

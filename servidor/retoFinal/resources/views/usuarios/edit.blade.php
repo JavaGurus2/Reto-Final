@@ -63,7 +63,7 @@
                         <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($user->imagen))
                             <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario" class="my-4 img-fluid"
-                                style="max-width: 350px; ">
+                               >
                         @endif
                     </div>
                     <div class="mb-3 form-check">

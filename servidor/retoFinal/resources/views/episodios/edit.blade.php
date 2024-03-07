@@ -59,7 +59,7 @@
                             <h3>Archivo</h3>
                         </label>
                         <input type="file" name="archivo" id="archivo"
-                            class="form-control-file  bg-white p-2 rounded text-black" accept="video/*">
+                            class="form-control-file  bg-white p-2 rounded text-black img-fluid" accept="video/*" >
                     </div>
                     <div class="mb-3">
                         <label for="duracion" class="form-label">

@@ -39,7 +39,7 @@
                         <hr>
                         <dt class="col-sm-4">Episodio:</dt>
                         <dd class="col-sm-8">
-                            <video class="rounded" controls style="max-width: 500px;">
+                            <video class="rounded img-fluid" controls >
                                 <source src="{{ asset($episodio->archivo) }}">
                             </video>
                         </dd>
