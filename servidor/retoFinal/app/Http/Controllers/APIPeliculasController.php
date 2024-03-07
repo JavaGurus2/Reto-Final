@@ -6,7 +6,7 @@ use App\Models\Categoria;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
 
-class APIHPeliculasController extends Controller
+class APIPeliculasController extends Controller
 {
     public function novedades()
     {
