@@ -90,11 +90,11 @@ function elegirTemporada(eleccion) {
 
 // Lo de mi lista
 const mensajeMiLista = ref('')
-
+const milistaItem = ref('')
 async function comprobarMiLista() {
   try {
     const response = await fetch(
-      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${data.value.serie.id}`,
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=serie&referencia_id=${referencia_id.value}`,
       {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token')
@@ -103,13 +103,47 @@ async function comprobarMiLista() {
     )
     const datos = await response.json()
     console.log(datos)
-    if (datos.milistaItem) {
+    if (datos.milistaItem.length > 0) {
       mensajeMiLista.value = 'Quitar de Mi Lista'
+      milistaItem.value = milistaItem.id
     } else {
       mensajeMiLista.value = 'Añadir a mi lista'
     }
   } catch (error) {
     console.error(error.message)
+  }
+}
+
+async function cambiarMiLista() {
+  let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
+  if (mensajeMiLista.value.includes('Añadir')) {
+    try {
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ referencia_id: referencia_id.value, tipo: 'serie' })
+      })
+      const datos = await response.json()
+      if (datos) {
+        mensajeMiLista.value = 'Quitar de Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    try {
+      const response = await fetch(URL + `?id=${milistaItem.id}`, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        },
+        method: 'DELETE'
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>
@@ -132,7 +166,7 @@ async function comprobarMiLista() {
       </p>
       <button
         v-if="mensajeMiLista"
-        :class="`btn btn-outline-danger mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+        :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
         @click="cambiarMiLista"
       >
         {{ mensajeMiLista }}

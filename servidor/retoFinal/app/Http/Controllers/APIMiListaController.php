@@ -20,9 +20,9 @@ class APIMiListaController extends Controller
         return response()->json(["data" => "creado"]);
     }
 
-    public function eliminar(string $id)
+    public function eliminar(Request $request)
     {
-        $contenido = miLista::find($id);
+        $contenido = miLista::find($request["id"]);
         $contenido->delete();
         return response()->json(["data" => "borrado"]);
     }

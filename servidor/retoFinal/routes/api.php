@@ -34,5 +34,5 @@ Route::middleware('auth.jwt')->post('/buscarSerie', [APISerieController::class, 
 Route::middleware('auth.jwt')->get('/buscar', [APIBuscarController::class, "buscar"]);
 Route::middleware('auth.jwt')->get('/milista', [APIMiListaController::class, "comprobar"]);
 Route::middleware('auth.jwt')->post('/milista', [APIMiListaController::class, "anadir"]);
-Route::middleware('auth.jwt')->delete('/milista/{id}', [APIMiListaController::class, "eliminar"]);
+Route::middleware('auth.jwt')->delete('/milista', [APIMiListaController::class, "eliminar"]);
 Route::post('/login', [APIAuthController::class, 'login'])->name('login');
