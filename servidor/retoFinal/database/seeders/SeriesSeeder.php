@@ -45,7 +45,7 @@ class SeriesSeeder extends Seeder
             [
                 'nombre' => 'Demon Slayer',
                 'sinopsis' => '"Demon Slayer" (también conocido como "Kimetsu no Yaiba") es un manga y anime japonés creado por Koyoharu Gotouge. La historia sigue a Tanjiro Kamado, un joven que se convierte en un cazador de demonios después de que su familia es masacrada por un demonio, excepto su hermana menor Nezuko, quien es transformada en un demonio pero conserva parte de su humanidad.',
-                'imagen' => 'storage/images/demonSlayer.png',
+                'imagen' => 'storage/images/demonSlayer.PNG',
                 'fecha_estreno' => '2023-01-06',
                 'clasificacion' => '+13',
             ],
