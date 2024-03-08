@@ -73,7 +73,7 @@ class PeliculasSeeder extends Seeder
             [
                 'titulo' => 'Pinocho',
                 'sinopsis' => 'El carpintero Gepetto crea una marioneta de madera que, un día, comienza a hablar y andar. Su nombre: Pinocho, su deseo: convertirse en un niño de verdad.',
-                'imagen' => 'storage/images/pinocho.png',
+                'imagen' => 'storage/images/pinocho.PNG',
                 'archivo' => 'storage/videos/jhon.mp4',
                 'fecha_estreno' => '2023-01-09',
             ],
