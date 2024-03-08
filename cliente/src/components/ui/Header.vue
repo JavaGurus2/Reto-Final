@@ -17,7 +17,7 @@
           <input
             type="text"
             class="form-control border-0 bg-secondary-subtle"
-            :placeholder="'Buscar ' + tipoBusqueda"
+            :placeholder="'Buscar'"
             v-model="textoBusqueda"
           />
           <span class="input-group-text bg-transparent border-0">
@@ -49,7 +49,7 @@
   </div>
 </template>
 <script setup>
-import { camelize, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useBusquedaStore } from '../../stores/busqueda'
 import { useRouter } from 'vue-router'
 const { tipoBusqueda } = defineProps({
