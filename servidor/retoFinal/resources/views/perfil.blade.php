@@ -19,7 +19,7 @@
                     Informacion Perfil
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ asset(auth()->user()->imagen) }}" alt="foto-perfil" class="rounded-circle m-2" width="100"
+                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt="foto-perfil" class="rounded-circle m-2" width="100"
                         height="100">
                 </div>
 

@@ -28,10 +28,28 @@ const router = createRouter({
       meta: { requiresAuth: true } // Esta ruta requiere autenticación
     },
     {
+      path: '/series',
+      name: 'series',
+      component: () => import('../views/SeriesView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/series/:id',
       name: 'serie',
       component: () => import('../views/SerieView.vue'),
-      
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/buscar',
+      name: 'buscar',
+      component: () => import('../views/BuscarView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/peliculas',
+      name: 'peliculas',
+      component: () => import('../views/PeliculasView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })

@@ -32,7 +32,7 @@
                         <dt class="col-sm-4">Imagen:</dt>
                         <dd class="col-sm-8">
                             @if (isset($serie->imagen))
-                                <img src="{{ asset($serie->imagen) }}" alt="Imagen de la serie"
+                                <img src="data:image/png;base64,{{ $serie->imagen }}" alt="Imagen de la serie"
                                     class="img-fluid rounded sombraImagen" style="max-width: 300px;">
                             @endif
                         </dd>

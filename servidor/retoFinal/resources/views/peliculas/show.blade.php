@@ -68,7 +68,7 @@
                                     class="form-control-file bg-white p-2 rounded " accept="image/*"
                                     {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->imagen))
-                                    <img src="{{ asset($pelicula->imagen) }}" class="my-3 rounded"
+                                    <img src="data:image/png;base64,{{ $pelicula->imagen }}" class="my-3 rounded"
                                         alt="Imagen de la película" style="max-width: 300px;">
                                 @endif
                                 <div class="invalid-feedback" id="imagenFeedback"></div>

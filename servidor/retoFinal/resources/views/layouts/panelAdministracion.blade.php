@@ -202,7 +202,7 @@
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
 
-                                    <img src="{{ asset(auth()->user()->imagen) }}" alt="" width="32"
+                                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt="" width="32"
                                         height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 

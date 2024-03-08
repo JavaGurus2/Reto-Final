@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,13 +12,13 @@ return new class extends Migration
     {
         Schema::create('descarga_pelicula', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("actor_id");
+            $table->unsignedBigInteger("pelicula_id");
             $table->unsignedBigInteger("user_id");
 
 
-            $table->foreign("actor_id")
+            $table->foreign("pelicula_id")
                 ->references("id")
-                ->on("actores")
+                ->on("peliculas")
                 ->onDelete("CASCADE");
 
 

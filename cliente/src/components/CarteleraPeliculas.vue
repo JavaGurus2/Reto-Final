@@ -34,14 +34,14 @@ async function filtradoCategoria(categoria) {
 }
 
 async function buscarContenidoCategoria(categoria_id) {
-  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/home/${categoria_id}`, {
+  const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/peliculas/${categoria_id}`, {
     headers: {
       Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json'
     }
   })
   const data = await response.json()
-  return [...data.peliculas, ...data.series]
+  return data.peliculas
 }
 
 const novedades = ref([])
@@ -52,7 +52,7 @@ const miLista = ref([])
 
 onBeforeMount(async () => {
   const response = await fetch(
-    `${PROTOCOLO}://${DIRECCION}/api/home?user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
+    `${PROTOCOLO}://${DIRECCION}/api/peliculas?user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
     {
       headers: {
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
@@ -62,16 +62,16 @@ onBeforeMount(async () => {
   )
   const data = await response.json()
   categorias.value = data.todasCategorias
-  novedades.value = [...data.novedades.peliculas, ...data.novedades.series]
-  tendencias.value = [...data.tendencias.peliculas, ...data.tendencias.series]
-  categoriasPeliSerie.value = [...data.randomCategorias]
+  novedades.value = data.novedades
+  tendencias.value = data.tendencias
+  categoriasPeliSerie.value = data.randomCategorias
   // Juntar las series y las peliculas
   for (let i = 0; i < categoriasPeliSerie.value.length; i++) {
     const elemento = categoriasPeliSerie.value[i]
-    elemento.peliserie = [...elemento.peliculas, ...elemento.series]
+    elemento.peliserie = elemento.peliculas
   }
   // Mi lista
-  miLista.value = [...data.milista.series, ...data.milista.peliculas]
+  miLista.value = data.milista
 })
 </script>
 <template>
@@ -81,13 +81,13 @@ onBeforeMount(async () => {
         <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/home" class="btn btn-outline-purple active">Todo</router-link>
+              <router-link to="/home" class="btn btn-outline-purple">Todo</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/series" class=" btn btn-outline-purple">Series</router-link>
+              <router-link to="/series" class="btn btn-outline-purple">Series</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/peliculas" class=" btn btn-outline-purple">Películas</router-link>
+              <router-link to="/peliculas" class="btn btn-outline-purple active">Películas</router-link>
             </li>
           </ul>
         </div>
@@ -159,7 +159,7 @@ onBeforeMount(async () => {
       </div>
       <!-- Mostrar mensaje si no hay series en esa categoría -->
       <div v-else>
-        <p>No hay pelis/series en esta categoría.</p>
+        <p>No hay peliculas en esta categoría.</p>
       </div>
     </div>
   </div>
@@ -219,11 +219,12 @@ onBeforeMount(async () => {
   /* Elimina el subrayado predeterminado */
   border-radius: 0.25rem;
   /* Bordes redondeados */
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   /* Transición suave */
   border-radius: 10px;
 }
-
 
 .btn-outline-purple:hover,
 .btn-outline-purple:focus,

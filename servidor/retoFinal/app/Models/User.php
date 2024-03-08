@@ -27,6 +27,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Serie::class)->withTimestamps();
     }
+    public function milistas()
+    {
+        return $this->hasMany(miLista::class);
+    }
 
     /**
      * The attributes that are mass assignable.

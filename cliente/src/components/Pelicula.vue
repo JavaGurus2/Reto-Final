@@ -25,9 +25,10 @@ const DIRECCION = 'admin.egiflix.es'
 const peliculasStore = usePeliculasStore()
 const actores = ref([])
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   id.value = route.params.id
-  cargarPelicula()
+  await cargarPelicula()
+  await comprobarMiLista()
 })
 
 async function cargarPelicula() {
@@ -54,9 +55,94 @@ async function cargarPelicula() {
   clasificacion.value = data.value.pelicula.clasificacion
   pelicula.value = 'http://egiflix.es:81/' + data.value.pelicula.archivo.split('/').pop()
 }
-function descargar() {
-  const urlArchivo = pelicula.value
-  window.open(urlArchivo, '_blank')
+
+// Lo de mi lista
+const mensajeMiLista = ref('')
+const milistaItem = ref('')
+async function comprobarMiLista() {
+  try {
+    const response = await fetch(
+      `${PROTOCOLO}://${DIRECCION}/api/milista?tipo=pelicula&referencia_id=${id.value}&user_id=${JSON.parse(sessionStorage.getItem('usuario')).id}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        }
+      }
+    )
+    const datos = await response.json()
+    if (datos.milistaItem.length > 0) {
+      mensajeMiLista.value = 'Quitar de Mi Lista'
+      milistaItem.value = datos.milistaItem[0].id
+    } else {
+      mensajeMiLista.value = 'Añadir a mi lista'
+    }
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
+async function cambiarMiLista() {
+  await comprobarMiLista()
+  let URL = `${PROTOCOLO}://${DIRECCION}/api/milista`
+  if (mensajeMiLista.value.includes('Añadir')) {
+    try {
+      const user_id = JSON.parse(sessionStorage.getItem('usuario')).id
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          referencia_id: id.value,
+          tipo: 'pelicula',
+          user_id: user_id
+        })
+      })
+      const datos = await response.json()
+      if (datos) {
+        mensajeMiLista.value = 'Quitar de Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    try {
+      console.log(id.value)
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        },
+        method: 'DELETE',
+        body: JSON.stringify({ id: milistaItem.value })
+      })
+      const data = await response.json()
+      if (data.data == 'borrado') {
+        mensajeMiLista.value = 'Añadir a Mi Lista'
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+async function guardarDescarga() {
+  try {
+    const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/descarga/pelicula`, {
+      method: 'post',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: JSON.parse(sessionStorage.getItem('usuario')).id,
+        pelicula_id: id.value
+      })
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 </script>
 
@@ -75,6 +161,23 @@ function descargar() {
     <p>
       {{ sinopsis }}
     </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <button
+        v-if="mensajeMiLista"
+        :class="`btn mb-2 ${mensajeMiLista.includes('Añadir') ? 'btn-outline-danger' : 'btn-danger '}`"
+        @click="cambiarMiLista"
+      >
+        {{ mensajeMiLista }}
+      </button>
+      <a
+        v-if="pelicula"
+        @click="guardarDescarga"
+        :download="true"
+        :href="pelicula"
+        class="btn btn-primary"
+        >Descargar</a
+      >
+    </div>
   </div>
   <div class="col-10 align-self-center">
     <h2>Reparto</h2>
@@ -85,8 +188,6 @@ function descargar() {
       <p v-else>No hay actores asociados.</p>
     </div>
   </div>
-  <a v-if="pelicula" :download="true" :href="pelicula">Descargar</a>
-  <button v-if="pelicula" @click="descargar">Descargar tesst</button>
 </template>
 <style>
 .scroll {
@@ -95,9 +196,22 @@ function descargar() {
 }
 
 .scroll::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+  height: 0.5em;
 }
 
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 0.5em;
+}
+.scroll::-webkit-scrollbar-thumb:hover,
+.scroll::-webkit-scrollbar-thumb:active {
+  background-color: #999;
+}
 .peliserie-container,
 .categorias-container {
   display: flex;

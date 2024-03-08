@@ -1,22 +1,26 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 const PROTOCOLO = 'http'
 const DIRECCION = 'admin.egiflix.es'
 export const useBusquedaStore = defineStore('busqueda', () => {
   const resultadoBusqueda = ref([])
-  const textoBusqueda = ref('')
+  const texto = ref('')
   async function buscar(textoBus) {
     try {
-      const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscar?texto=${textoBus}`)
+      const response = await fetch(`${PROTOCOLO}://${DIRECCION}/api/buscar?texto=${textoBus}`, {
+        headers: {
+          Authorization: 'Bearer ' + sessionStorage.getItem('token')
+        }
+      })
       if (response.ok) {
         const data = await response.json()
-        resultadoBusqueda.value = data.value
-        textoBusqueda.value = textoBus
+        texto.value = textoBus
+        resultadoBusqueda.value = [...data.peliculas, ...data.series]
       }
     } catch (error) {
       console.error(error)
     }
   }
 
-  return { resultadoBusqueda, buscar }
+  return { resultadoBusqueda, texto, buscar }
 })

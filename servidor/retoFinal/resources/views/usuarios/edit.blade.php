@@ -62,7 +62,7 @@
                         </label>
                         <input type="file" class="form-control" id="imagen" name="imagen">
                         @if (isset($user->imagen))
-                            <img src="{{ asset($user->imagen) }}" alt="Imagen del usuario" class="my-4"
+                            <img src="data:image/png;base64,{{ $user->imagen }}" alt="Imagen del usuario" class="my-4"
                                 style="max-width: 350px; ">
                         @endif
                     </div>

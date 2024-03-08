@@ -41,7 +41,7 @@ async function buscarContenidoCategoria(categoria_id) {
     }
   })
   const data = await response.json()
-  return [...data.peliculas, ...data.series]
+  return data.series
 }
 
 const novedades = ref([])
@@ -62,29 +62,30 @@ onBeforeMount(async () => {
   )
   const data = await response.json()
   categorias.value = data.todasCategorias
-  novedades.value = [...data.novedades.peliculas, ...data.novedades.series]
-  tendencias.value = [...data.tendencias.peliculas, ...data.tendencias.series]
+  novedades.value = data.novedades.series
+  tendencias.value = data.tendencias.series
   categoriasPeliSerie.value = [...data.randomCategorias]
-  // Juntar las series y las peliculas
-  for (let i = 0; i < categoriasPeliSerie.value.length; i++) {
-    const elemento = categoriasPeliSerie.value[i]
-    elemento.peliserie = [...elemento.peliculas, ...elemento.series]
-  }
+  // Asignar las categorías con series solamente
+  categoriasPeliSerie.value = data.randomCategorias.map(elemento => {
+    elemento.peliserie = elemento.series
+    return elemento
+  })
   // Mi lista
-  miLista.value = [...data.milista.series, ...data.milista.peliculas]
+  miLista.value = data.milista.series
 })
 </script>
 <template>
+
   <div class="row p-2 g-0 bg-dark text-white">
     <div class="col-12">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/home" class="btn btn-outline-purple active">Todo</router-link>
+              <router-link to="/home" class="btn btn-outline-purple">Todo</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/series" class=" btn btn-outline-purple">Series</router-link>
+              <router-link to="/series" class="active btn btn-outline-purple">Series</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/peliculas" class=" btn btn-outline-purple">Películas</router-link>
@@ -159,7 +160,7 @@ onBeforeMount(async () => {
       </div>
       <!-- Mostrar mensaje si no hay series en esa categoría -->
       <div v-else>
-        <p>No hay pelis/series en esta categoría.</p>
+        <p>No hay series en esta categoría.</p>
       </div>
     </div>
   </div>
