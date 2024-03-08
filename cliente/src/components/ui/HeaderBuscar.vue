@@ -1,7 +1,7 @@
 <template>
   <header class="row g-0">
     <div class="col-12 d-flex gap-2 p-4 bg-blackl">
-      <RouterLink href="/home">
+      <a href="http://egiflix.es/home">
         <svg
           width="32"
           height="32"
@@ -14,7 +14,7 @@
             fill="white"
           ></path>
         </svg>
-      </RouterLink>
+      </a>
       <form class="w-100" @submit.prevent="null">
         <input
           type="text"
@@ -31,7 +31,6 @@
 </template>
 <script setup>
 import { useBusquedaStore } from '../../stores/busqueda'
-import { RouterLink } from 'vue-router'
 import { onBeforeMount, onMounted, ref } from 'vue'
 const text = ref('')
 const emit = defineEmits(['buscado'])
