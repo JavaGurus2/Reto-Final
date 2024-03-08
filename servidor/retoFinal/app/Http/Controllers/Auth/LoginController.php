@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     public function __construct()
     {
@@ -25,5 +25,19 @@ class LoginController extends Controller
         }
 
         return redirect()->intended($this->redirectTo);
+    }
+
+    public function logout(Request $request)
+    {
+        // Personaliza el comportamiento de logout como desees
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        // Cambia la URL de redirección según tus necesidades
+        return redirect('/login');
     }
 }

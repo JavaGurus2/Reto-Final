@@ -19,6 +19,7 @@
                             'placeholder' => 'Buscar por título',
                         ])
 
+                        <h3>Usuarios admin</h3>
                         <div class="table-responsive prueba">
                             <table id="indexTable" class="table table-bordered table-dark">
                                 <thead class="bg-dark">
@@ -29,22 +30,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($usuarios as $usuario)
+                                    @forelse ($adminUsuarios as $admin)
                                         <tr>
-                                            <td>{{ $usuario->name }}</td>
-                                            <td>{{ $usuario->email }}</td>
+                                            <td>{{ $admin->name }}</td>
+                                            <td>{{ $admin->email }}</td>
                                             <td>
-                                                <a href="{{ route('usuarios.show', $usuario) }}"
+                                                <a href="{{ route('usuarios.show', $admin) }}"
                                                     class="btn btn-primary btn-md">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
-                                                    data-bs-target="#confirmDeleteModal_{{ $usuario->id }}"
-                                                    data-product-id="{{ $usuario->id }}">
+                                                    data-bs-target="#confirmDeleteModal_{{ $admin->id }}"
+                                                    data-product-id="{{ $admin->id }}">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                                 <!-- VENTANA MODAL -->
-                                                <div class="modal fade" id="confirmDeleteModal_{{ $usuario->id }}"
+                                                <div class="modal fade" id="confirmDeleteModal_{{ $admin->id }}"
                                                     tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-custom">
@@ -54,7 +55,7 @@
                                                             <div class="modal-header modal-header-custom">
                                                                 <!-- Aplica la clase personalizada para el encabezado del modal -->
                                                                 <h5 class="modal-title" id="confirmDeleteModalLabel">
-                                                                    Confirmar Borrado {{ $usuario->id }}</h5>
+                                                                    Confirmar Borrado {{ $admin->id }}</h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                                             </div>
@@ -66,7 +67,7 @@
                                                                 <!-- Aplica la clase personalizada para el pie del modal -->
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Cancelar</button>
-                                                                <form action="{{ route('usuarios.destroy', $usuario) }}"
+                                                                <form action="{{ route('usuarios.destroy', $admin) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -82,7 +83,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4">No hay usuarios</td>
+                                            <td colspan="4">No hay adminUsuarios</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -90,36 +91,149 @@
                         </div>
                         <nav aria-label="Page navigation example" class="d-flex justify-content-center">
                             <ul class="pagination">
-                                @if ($usuarios->previousPageUrl())
+                                @if ($adminUsuarios->previousPageUrl())
                                     <li class="page-item">
                                         <a class="page-link"
-                                            href="{{ $usuarios->appends(request()->except('page'))->previousPageUrl() }}">
+                                            href="{{ $adminUsuarios->appends(request()->except('adminPage'))->previousPageUrl() }}">
+                                            <span aria-hidden="true" class="text-dark">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+                        
+                                @if ($adminUsuarios->currentPage() > 3)
+                                    <li class="page-item"><span class="page-link">1</span></li>
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                        
+                                @for ($i = max(1, $adminUsuarios->currentPage() - 2); $i <= min($adminUsuarios->lastPage(), $adminUsuarios->currentPage() + 2); $i++)
+                                    <li class="page-item @if ($i == $adminUsuarios->currentPage()) active @endif">
+                                        <a class="page-link"
+                                            href="{{ $adminUsuarios->appends(request()->except('adminPage'))->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                        
+                                @if ($adminUsuarios->currentPage() < $adminUsuarios->lastPage() - 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    <li class="page-item"><span class="page-link">{{ $adminUsuarios->lastPage() }}</span></li>
+                                @endif
+                        
+                                @if ($adminUsuarios->nextPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $adminUsuarios->appends(request()->except('adminPage'))->nextPageUrl() }}"
+                                            aria-label="Next">
+                                            <span aria-hidden="true" class="text-dark">&raquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                        
+                        
+
+                        <!--alumnos-->
+                        <h3>Usuarios alumnos</h3>
+                        <div class="table-responsive prueba">
+                            <table id="indexTable" class="table table-bordered table-dark">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($alumnos as $alumno)
+                                        <tr>
+                                            <td>{{ $alumno->name }}</td>
+                                            <td>{{ $alumno->email }}</td>
+                                            <td>
+                                                <a href="{{ route('usuarios.show', $alumno) }}"
+                                                    class="btn btn-primary btn-md">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal_{{ $alumno->id }}"
+                                                    data-product-id="{{ $alumno->id }}">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                                <!-- VENTANA MODAL -->
+                                                <div class="modal fade" id="confirmDeleteModal_{{ $alumno->id }}"
+                                                    tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-custom">
+                                                        <!-- Aplica la clase personalizada para el tamaño del modal -->
+                                                        <div class="modal-content modal-content-custom">
+                                                            <!-- Aplica la clase personalizada para el contenido del modal -->
+                                                            <div class="modal-header modal-header-custom">
+                                                                <!-- Aplica la clase personalizada para el encabezado del modal -->
+                                                                <h5 class="modal-title" id="confirmDeleteModalLabel">
+                                                                    Confirmar Borrado {{ $alumno->id }}</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                            </div>
+                                                            <div class="modal-body modal-body-custom">
+                                                                <!-- Aplica la clase personalizada para el cuerpo del modal -->
+                                                                <p>¿Estás seguro de que deseas borrar esta película?</p>
+                                                            </div>
+                                                            <div class="modal-footer modal-footer-custom">
+                                                                <!-- Aplica la clase personalizada para el pie del modal -->
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancelar</button>
+                                                                <form action="{{ route('usuarios.destroy', $alumno) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Eliminar</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4">No hay alumnos</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                @if ($alumnos->previousPageUrl())
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="{{ $alumnos->appends(request()->except('page'))->previousPageUrl() }}">
                                             <span aria-hidden="true" class="text-dark">&laquo;</span>
                                         </a>
                                     </li>
                                 @endif
 
-                                @if ($usuarios->currentPage() > 3)
+                                @if ($alumnos->currentPage() > 3)
                                     <li class="page-item"><span class="page-link">1</span></li>
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                 @endif
 
-                                @for ($i = max(1, $usuarios->currentPage() - 2); $i <= min($usuarios->lastPage(), $usuarios->currentPage() + 2); $i++)
-                                    <li class="page-item @if ($i == $usuarios->currentPage()) active @endif">
+                                @for ($i = max(1, $alumnos->currentPage() - 2); $i <= min($alumnos->lastPage(), $alumnos->currentPage() + 2); $i++)
+                                    <li class="page-item @if ($i == $alumnos->currentPage()) active @endif">
                                         <a class="page-link"
-                                            href="{{ $usuarios->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+                                            href="{{ $alumnos->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
                                     </li>
                                 @endfor
 
-                                @if ($usuarios->currentPage() < $usuarios->lastPage() - 2)
+                                @if ($alumnos->currentPage() < $alumnos->lastPage() - 2)
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
-                                    <li class="page-item"><span class="page-link">{{ $usuarios->lastPage() }}</span></li>
+                                    <li class="page-item"><span class="page-link">{{ $alumnos->lastPage() }}</span></li>
                                 @endif
 
-                                @if ($usuarios->nextPageUrl())
+                                @if ($alumnos->nextPageUrl())
                                     <li class="page-item">
                                         <a class="page-link"
-                                            href="{{ $usuarios->appends(request()->except('page'))->nextPageUrl() }}"
+                                            href="{{ $alumnos->appends(request()->except('page'))->nextPageUrl() }}"
                                             aria-label="Next">
                                             <span aria-hidden="true" class="text-dark">&raquo;</span>
                                         </a>
@@ -131,5 +245,7 @@
                 </div>
             </div>
         </div>
+
+        
     </div>
 @endsection

@@ -29,7 +29,27 @@ class UsersSeeder extends Seeder
             'name' => 'Ander',
             'email' => 'ander@email.com',
             'imagen' => null,
-            'rol' => false,
+            'rol' => null,
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Iker',
+            'email' => 'iker@email.com',
+            'imagen' => null,
+            'rol' => true,
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jorge',
+            'email' => 'jorge@email.com',
+            'imagen' => null,
+            'rol' => null,
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'created_at' => now(),

@@ -8,7 +8,7 @@
             <div>
                 <h4>
                     <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-2 mb-5"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-5"></i></a>
                     {{ __('Detalles Temporada') }}
 
                 </h4>
@@ -39,7 +39,7 @@
                         <hr>
                         <dt class="col-sm-4">Episodio:</dt>
                         <dd class="col-sm-8">
-                            <video class="rounded" controls style="max-width: 500px;">
+                            <video class="rounded img-fluid" controls >
                                 <source src="{{ asset($episodio->archivo) }}">
                             </video>
                         </dd>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="px-3 my-4 justify-content-center">
                     <a href="{{ route('episodios.edit', [$serie, $temporada, $episodio]) }}"
-                        class="btn bg-purple text-white">Editar</a>
+                        class="btn fondoRosa text-white">Editar</a>
                 </div>
             </div>
         </div>

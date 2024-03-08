@@ -5,10 +5,10 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center ">
-            <div class="col-8 border border-dark shadow-lg p-4 rounded bg-secondary my-5">
+            <div class="col-8 border border-dark shadow-lg p-4 rounded cartaShow my-5">
                 <h4 class="mb-5  text-white">
                     <a href="{{ route('temporadas.show', [$serie, $temporada]) }}" class="text-indigo-300 "> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                     {{ __('Detalles Temporada ') }}
 
                 </h4>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label">Fecha de Estreno</label>
+                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno"
                             value="{{ $temporada->fecha_estreno }}" required>
                         <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="gap-2">
-                        <button type="submit" class="btn bg-purple text-white">Actualizar</button>
+                        <button type="submit" class="btn fondoRosa text-white">Actualizar</button>
                     </div>
                 </form>
             </div>

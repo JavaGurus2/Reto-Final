@@ -14,17 +14,25 @@ class CategoriasSeeder extends Seeder
     public function run()
     {
         // Categorías para películas
-        $categoriasPeliculas = [
+        $categorias = [
             'Acción',
             'Comedia',
             'Drama',
             'Ciencia Ficción',
-            'Suspenso',
-            "Terror"
+            'Suspense',
+            "Terror",
+            "Amor",
+            "Aventura",
+            "Animacion",
+            "Historico",
+            "Intelectual",
+            "Oscura",
+            "Cruda",
+            "Emocional"
         ];
 
         // Insertar las categorías para películas
-        foreach ($categoriasPeliculas as $categoria) {
+        foreach ($categorias as $categoria) {
             DB::table('categorias')->insert([
                 'nombre' => $categoria,
                 'created_at' => now(),
@@ -32,13 +40,24 @@ class CategoriasSeeder extends Seeder
             ]);
         }
 
+
+/*
         // Categorías para series
         $categoriasSeries = [
-            'Drama',
-            'Comedia',
-            'Fantasía',
-            'Terror',
             'Acción',
+            'Comedia',
+            'Drama',
+            'Ciencia Ficción',
+            'Suspense',
+            "Terror",
+            "Amor",
+            "Aventura",
+            "Animacion",
+            "Historico",
+            "Intelectual",
+            "Oscura",
+            "Cruda",
+            "Emocional"
         ];
 
         // Insertar las categorías para series
@@ -49,5 +68,8 @@ class CategoriasSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+*/
+
     }
 }

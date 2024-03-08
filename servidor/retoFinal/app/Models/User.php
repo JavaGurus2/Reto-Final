@@ -20,12 +20,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function descargasPeliculas()
     {
-        return $this->belongsToMany(Pelicula::class)->withTimestamps();
+        return $this->belongsToMany(Pelicula::class, 'descarga_pelicula')->withTimestamps();
     }
 
     public function descargasSeries()
     {
-        return $this->belongsToMany(Serie::class)->withTimestamps();
+        return $this->belongsToMany(Serie::class, 'descarga_serie', 'user_id', 'episodio_id')->withTimestamps();
     }
     public function milistas()
     {

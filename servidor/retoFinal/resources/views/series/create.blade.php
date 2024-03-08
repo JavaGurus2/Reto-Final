@@ -8,7 +8,7 @@
             <div class="col-8 border-dark shadow-lg p-4 rounded cartaShow mb-2">
                 <h4 class="mb-3 p-1 m-1">
                     <a href="{{ route('series.index') }}" class="text-indigo-300"> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                     {{ __('Series') }}
 
                 </h4>
@@ -134,7 +134,7 @@
 
 
                     <div class=" gap-3 m-5">
-                        <input type="submit" class="btn bg-purple text-white" value="Crear">
+                        <input type="submit" class="btn fondoRosa text-white" value="Crear">
                     </div>
                 </form>
             </div>

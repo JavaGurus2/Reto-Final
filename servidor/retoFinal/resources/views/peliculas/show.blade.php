@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 mt-5 ">
-                <div class="card">
-                    <div class="card-header p-3  text-dark">
+            <div class="col-md-8 my-5  ">
+                <div class="card cartaShow ">
+                    <div class="card-header p-3 text-white ">
                         <h4 class="p-1 m-1 ">
                             <a href="{{ route('peliculas.index') }}" class="text-indigo-300"> <i
-                                    class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                                    class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                             {{ __('Películas') }}
                         </h4>
 
@@ -65,7 +65,7 @@
                                 </label>
                                 <br>
                                 <input type="file" name="imagen" id="imagen"
-                                    class="form-control-file bg-white p-2 rounded " accept="image/*"
+                                    class="form-control-file bg-white p-2 rounded img-fluid " accept="image/*"
                                     {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->imagen))
                                     <img src="data:image/png;base64,{{ $pelicula->imagen }}" class="my-3 rounded"
@@ -82,11 +82,11 @@
                                 </label>
                                 <br>
                                 <input type="file" name="archivo" id="archivo"
-                                    class="form-control-file bg-white p-2 rounded " accept="video/*"
+                                    class="form-control-file bg-white p-2 rounded img-fluid " accept="video/*"
                                     {{ $edit ? '' : 'disabled' }}>
                                 @if (isset($pelicula->archivo))
-                                    <video class="rounded" controls style="max-width: 400px;">
-                                        <source src="{{ asset($pelicula->archivo) }}">
+                                    <video class="rounded img-fluid" controls >
+                                        <source src="{{ asset($pelicula->archivo) }}" class="img-fluid">
                                     </video>
                                 @endif
                                 <div class="invalid-feedback" id="archivoFeedback"></div>
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-purple text-white" id="submitButton"
+                            <button type="submit" class="btn fondoRosa text-white" id="submitButton"
                                 {{ $edit ? '' : 'disabled' }}>Modificar</button>
                         </form>
                     </div>

@@ -8,7 +8,7 @@
             <div>
                 <h4 class="p-3 m-1  text-white">
                     <a href="{{ route('categorias.index') }}" class="text-indigo-300 "> <i
-                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 bg-purple rounded text-white p-1"></i></a>
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1"></i></a>
                     {{ __('Categorías') }}
 
                 </h4>
@@ -28,7 +28,7 @@
                     </dl>
                 </div>
                 <div class="px-3 mt-4 mb-2">
-                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn text-white bg-purple">Editar</a>
+                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn text-white fondoRosa">Editar</a>
                 </div>
             </div>
         </div>

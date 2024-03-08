@@ -15,10 +15,15 @@ class UsuarioController extends Controller
     }
 
     public function index()
-    {
-        $usuarios = User::paginate(9);
-        return view('usuarios.index', compact('usuarios'));
-    }
+{
+    $adminUsuarios = User::whereNotNull('rol')->paginate(5, ['*'], 'adminPage');
+    $alumnos = User::whereNull('rol')->paginate(5);
+
+    return view('usuarios.index', compact('adminUsuarios', 'alumnos'));
+}
+
+    
+
 
 
     public function create()
@@ -57,10 +62,16 @@ class UsuarioController extends Controller
     }
 
 
-    public function show(User $user)
+    public function show($id)
     {
-        return view('usuarios.show', compact('user'));
+        $user = User::findOrFail($id);
+        $descargasPeliculas = $user->descargasPeliculas()->paginate(4, ['*'], 'peliculasPage');
+        $descargasSeries = $user->descargasSeries()->paginate(4);
+    
+        return view('usuarios.show', compact('user', 'descargasPeliculas', 'descargasSeries'));
     }
+    
+    
 
 
     public function edit(User $user)
