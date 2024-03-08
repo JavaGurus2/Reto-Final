@@ -59,7 +59,7 @@ class PeliculasSeeder extends Seeder
             [
                 'titulo' => 'John Wick',
                 'sinopsis' => 'John Wick (Keanu Reeves) descubre un camino para derrotar a la Alta Mesa. Pero para poder ganar su libertad, Wick deberá enfrentarse a un nuevo rival con poderosas alianzas en todo el mundo, capaz de convertir a viejos amigos en enemigos.',
-                'imagen' => 'storage/images/John.jpg',
+                'imagen' => 'storage/images/john.jpg',
                 'archivo' => 'storage/videos/jhon.mp4',
                 'fecha_estreno' => '2023-01-07',
             ],
