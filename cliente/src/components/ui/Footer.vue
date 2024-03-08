@@ -4,7 +4,9 @@ const router = useRouter()
 function cerrarSesion() {
   sessionStorage.removeItem('token')
   sessionStorage.removeItem('usuario')
-  router.push({ path: '/' })
+  setTimeout(() => {
+    router.push({ path: '/' })
+  }, 1000)
 }
 </script>
 <template>
@@ -49,7 +51,9 @@ function cerrarSesion() {
           </defs>
         </svg>
       </RouterLink>
-      <button @click="cerrarSesion()">
+    </div>
+    <div class="col d-flex justify-content-center">
+      <button @click="cerrarSesion">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
           <path
             fill="#ffffff"
@@ -71,5 +75,7 @@ footer {
 
 button {
   background: transparent;
+  border: none;
+  outline: none;
 }
 </style>

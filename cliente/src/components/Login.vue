@@ -60,7 +60,7 @@ async function validarLogin() {
   if (!error.value) {
     // Supuesto usuario recibido de la api
     // emit('logueado')
-    router.push({ path: '/buscar' })
+    router.push({ path: '/home' })
   }
 }
 </script>
