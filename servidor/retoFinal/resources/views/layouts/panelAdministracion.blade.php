@@ -11,7 +11,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark panelColor d-md-none">
-    <a class="navbar-brand mx-3" href="/dashboard">
+    <a class="navbar-brand mx-3" href="/home">
         <img src="{{ asset('/images/logo.png') }}" width="50" height="50" class="img-fluid" alt="">
 
     </a>
@@ -202,8 +202,8 @@
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
 
-                                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt="" width="32"
-                                        height="32" class="rounded-circle me-2">
+                                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt=""
+                                        width="32" height="32" class="rounded-circle me-2">
                                     <strong>{{ strlen(auth()->user()->name) > 10 ? substr(auth()->user()->name, 0, 10) . '...' : auth()->user()->name }}</strong>
 
                                 </a>
