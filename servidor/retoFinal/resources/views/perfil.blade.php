@@ -19,8 +19,8 @@
                     Informacion Perfil
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt="foto-perfil" class="rounded-circle m-2" width="100"
-                        height="100">
+                    <img src="data:image/png;base64,{{ auth()->user()->imagen }}" alt="foto-perfil" class="rounded-circle m-2"
+                        width="100" height="100">
                 </div>
 
                 <div class="card-body">
@@ -64,6 +64,7 @@
                             <label for="imagen" class="form-label">Imagen</label>
                             <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
                         </div>
+                        <input type="hidden" id="rol" name="rol" value="1">
 
                         <!-- Botón de Enviar -->
                         <button type="submit" class="btn btn-primary">Enviar</button>
