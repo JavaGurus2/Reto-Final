@@ -66,7 +66,7 @@ onBeforeMount(async () => {
   tendencias.value = data.tendencias.series
   categoriasPeliSerie.value = [...data.randomCategorias]
   // Asignar las categorías con series solamente
-  categoriasPeliSerie.value = data.randomCategorias.map(elemento => {
+  categoriasPeliSerie.value = data.randomCategorias.map((elemento) => {
     elemento.peliserie = elemento.series
     return elemento
   })
@@ -75,20 +75,21 @@ onBeforeMount(async () => {
 })
 </script>
 <template>
-
   <div class="row p-2 g-0 bg-dark text-white">
     <div class="col-12">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/home" class="btn btn-outline-purple">Todo</router-link>
+              <router-link to="/home" class="btn btn-outline-secondary">Todo</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/series" class="active btn btn-outline-purple">Series</router-link>
+              <router-link to="/series" class="active btn btn-outline-secondary"
+                >Series</router-link
+              >
             </li>
             <li class="nav-item">
-              <router-link to="/peliculas" class=" btn btn-outline-purple">Películas</router-link>
+              <router-link to="/peliculas" class="btn btn-outline-secondary">Películas</router-link>
             </li>
           </ul>
         </div>
@@ -97,8 +98,13 @@ onBeforeMount(async () => {
     <div class="col-12 p-2">
       <div class="scroll">
         <form class="categorias-container" style="padding-bottom: 1em; gap: 1em; text-wrap: nowrap">
-          <CategoriaItem v-if="categorias.length > 0" v-for="(categoria, index) in categorias" :key="index"
-            :categoria="categoria" @filtradoCategoria="filtradoCategoria" />
+          <CategoriaItem
+            v-if="categorias.length > 0"
+            v-for="(categoria, index) in categorias"
+            :key="index"
+            :categoria="categoria"
+            @filtradoCategoria="filtradoCategoria"
+          />
           <button v-else class="btn btn-primary" type="button" disabled>
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Cargando...
@@ -121,7 +127,11 @@ onBeforeMount(async () => {
       <h2>Tendencias</h2>
       <div class="scroll">
         <div class="peliserie-container">
-          <PeliSerieItem v-for="(tendencia, index) in tendencias" :key="index" :peliserie="tendencia" />
+          <PeliSerieItem
+            v-for="(tendencia, index) in tendencias"
+            :key="index"
+            :peliserie="tendencia"
+          />
         </div>
       </div>
     </div>
@@ -137,13 +147,21 @@ onBeforeMount(async () => {
     </div>
     <hr />
     <!-- Random o categorias seleccionadas -->
-    <div v-if="!filtrado && categoriasFiltradas.length == 0" v-for="(elemento, index) in categoriasPeliSerie"
-      :key="index" class="col-12 mt-2">
+    <div
+      v-if="!filtrado && categoriasFiltradas.length == 0"
+      v-for="(elemento, index) in categoriasPeliSerie"
+      :key="index"
+      class="col-12 mt-2"
+    >
       <h2>{{ elemento.categoria.nombre }}</h2>
       <!-- Primero el de las 5 random -->
       <div class="scroll">
         <div class="peliserie-container">
-          <PeliSerieItem v-for="(item, index) in elemento.peliserie" :key="index" :peliserie="item" />
+          <PeliSerieItem
+            v-for="(item, index) in elemento.peliserie"
+            :key="index"
+            :peliserie="item"
+          />
         </div>
       </div>
     </div>
@@ -155,7 +173,11 @@ onBeforeMount(async () => {
       <!-- Verificar si hay elementos en la categoría filtrada -->
       <div v-if="elemento.peliserie && elemento.peliserie.length > 0" class="scroll">
         <div class="peliserie-container">
-          <PeliSerieItem v-for="(item, index) in elemento.peliserie" :key="index" :peliserie="item" />
+          <PeliSerieItem
+            v-for="(item, index) in elemento.peliserie"
+            :key="index"
+            :peliserie="item"
+          />
         </div>
       </div>
       <!-- Mostrar mensaje si no hay series en esa categoría -->
@@ -198,7 +220,7 @@ onBeforeMount(async () => {
   flex-wrap: nowrap;
 }
 
-.peliserie-container>* {
+.peliserie-container > * {
   flex: 0 0 auto;
   width: 33.33%;
   margin-right: 10px;
@@ -207,32 +229,6 @@ onBeforeMount(async () => {
 /*nav*/
 
 .btn-outline-purple {
-  color: #ca40d6;
-  /* Color del texto */
-  background-color: transparent;
-  /* Fondo transparente */
-  border: 2px solid #ca40d6;
-  /* Borde sólido morado */
-  padding: 0.5rem 1.5rem;
-  /* Espacio interno con 1.5rem (aproximadamente 24px) a los lados y 0.5rem (aproximadamente 8px) arriba y abajo */
   margin-right: 10px;
-  text-decoration: none;
-  /* Elimina el subrayado predeterminado */
-  border-radius: 0.25rem;
-  /* Bordes redondeados */
-  transition: background-color 0.3s, color 0.3s;
-  /* Transición suave */
-  border-radius: 10px;
-}
-
-
-.btn-outline-purple:hover,
-.btn-outline-purple:focus,
-.btn-outline-purple.active {
-  background-color: #ca40d6;
-  /* Cambia el color de fondo cuando el botón está activo */
-  color: #fff;
-  /* Cambia el color del texto cuando el botón está activo */
-  border-color: purple;
 }
 </style>

@@ -2,8 +2,6 @@
   <!-- Ya estan en el container se supone -->
   <Header tipo-busqueda="hola" />
   <Cartelera />
-  <!-- Para separa el footer del contenido -->
-  <div class="m-5 p-1"></div>
   <Footer />
 </template>
 

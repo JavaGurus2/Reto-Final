@@ -65,7 +65,7 @@ async function validarLogin() {
 </script>
 
 <template>
-  <section class="vh-100 d-flex flex-column justify-content-center">
+  <section class="d-flex flex-column justify-content-center p-5" style="height: 90vh">
     <!-- Mirar que solo puede salir una vez -->
     <Notificacion v-if="error" tipo="Error" :mensaje="mensajeError" />
     <div class="container-fluid">
@@ -107,14 +107,6 @@ async function validarLogin() {
               />
             </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="recuerdame" />
-                <label class="form-check-label" for="recuerdame"> Recuerdame </label>
-              </div>
-              <a href="#!" class="text-body">¿Has olvidado la contraseña?</a>
-            </div>
-
             <div class="text-center text-lg-start mt-4 pt-2">
               <button type="submit" class="btn btn-primary btn-lg">Login</button>
             </div>
@@ -122,27 +114,13 @@ async function validarLogin() {
         </div>
       </div>
     </div>
-    <div
-      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 bg-primary fixed-bottom"
-    >
-      <div class="text-white mb-3 mb-md-0">Copyright © 2024. Egibide</div>
-
-      <div>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="#!" class="text-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </div>
   </section>
+  <div
+    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 bg-primary"
+    style="height: 10vh"
+  >
+    <div class="text-white mb-3 mb-md-0">Copyright © 2024. Egibide</div>
+  </div>
 </template>
 
 <style scoped>
@@ -165,6 +143,9 @@ async function validarLogin() {
 
 .boton-link {
   position: absolute;
+  background-color: black;
+  padding: 2em;
+  border-radius: 1em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -180,7 +161,7 @@ async function validarLogin() {
 }
 
 h3 {
-  color: #00ced1;
+  color: white;
 }
 
 .heartbeat {
