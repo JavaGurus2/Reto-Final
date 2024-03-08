@@ -32,7 +32,7 @@ const { resultado } = defineProps({
   resultado: Object
 })
 
-let URL = 'http://localhost:5173/'
+let URL = 'http://egilix.es/'
 if (resultado.nombre) {
   URL += 'series/' + resultado.id
 } else {
