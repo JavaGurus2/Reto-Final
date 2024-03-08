@@ -74,7 +74,16 @@ class SeriesSeeder extends Seeder
         ];
 
         foreach ($series as $serie) {
-            DB::table('series')->insert($serie);
+            $binaryData = file_get_contents(asset($serie["imagen"]));
+            $base64 = base64_encode($binaryData);
+            DB::table('series')->insert([
+                "nombre" => $serie["nombre"],
+                "sinopsis" => $serie["sinopsis"],
+                "imagen" => $base64,
+                "fecha_estreno" => $serie["fecha_estreno"],
+                "clasificacion" => $serie["clasificacion"],
+            ]);
+
+        }
     }
-}
 }
