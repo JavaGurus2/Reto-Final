@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const userPhoto = ref(JSON.parse(sessionStorage.getItem('usuario')).imagen)
 const nombre = ref(JSON.parse(sessionStorage.getItem('usuario')).name)
@@ -48,6 +49,12 @@ async function actualizarDP() {
     })
 
     const data = await response.json()
+    const router = useRouter()
+    if (data.messagge) {
+      sessionStorage.removeItem('usuario')
+      sessionStorage.removeItem('token')
+      router.push('/')
+    }
 
     if (data.data === 'Actualizado') {
       success.value = 'Datos Personales actualizados con exito.'
@@ -105,6 +112,12 @@ async function actualizarC() {
     })
 
     const data = await response.json()
+    const router = useRouter()
+    if (data.messagge) {
+      sessionStorage.removeItem('usuario')
+      sessionStorage.removeItem('token')
+      router.push('/')
+    }
 
     console.log(data.data)
 

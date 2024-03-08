@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { usePeliculasStore } from '@/stores/pelicula'
 import RepartoItem from './RepartoItem.vue'
@@ -44,6 +44,12 @@ async function cargarPelicula() {
   })
 
   data.value = await response.json()
+  const router = useRouter()
+  if (data.value.messagge) {
+    sessionStorage.removeItem('usuario')
+    sessionStorage.removeItem('token')
+    router.push('/')
+  }
 
   actores.value = data.value.actores
 

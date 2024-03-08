@@ -3,6 +3,7 @@
 import PeliSerieItem from './PeliSerieItem.vue'
 import CategoriaItem from './CategoriaItem.vue'
 import { ref, onBeforeMount } from 'vue'
+import { useRouter } from 'vue-router'
 
 const PROTOCOLO = 'http'
 const DIRECCION = 'admin.egiflix.es'
@@ -41,6 +42,12 @@ async function buscarContenidoCategoria(categoria_id) {
     }
   })
   const data = await response.json()
+  const router = useRouter()
+  if (data.messagge) {
+    sessionStorage.removeItem('usuario')
+    sessionStorage.removeItem('token')
+    router.push('/')
+  }
   return data.peliculas
 }
 
@@ -61,6 +68,12 @@ onBeforeMount(async () => {
     }
   )
   const data = await response.json()
+  const router = useRouter()
+  if (data.messagge) {
+    sessionStorage.removeItem('usuario')
+    sessionStorage.removeItem('token')
+    router.push('/')
+  }
   categorias.value = data.todasCategorias
   novedades.value = data.novedades
   tendencias.value = data.tendencias
