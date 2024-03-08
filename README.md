@@ -1,4 +1,4 @@
 # Reto-Final
 ## Links de Aplicaciones
-- [VUE] (http://egiflix.es)
-- [LARAVEL] (http://admin.egiflix.es)
+ - [Laravel](http://admin.egiflix.es)
+ - [VUE](http://egiflix.es)
