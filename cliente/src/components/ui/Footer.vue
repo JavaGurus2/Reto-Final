@@ -49,8 +49,8 @@ function cerrarSesion() {
           </defs>
         </svg>
       </RouterLink>
-      <button @click="cerrarSesion">
-        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+      <button @click="cerrarSesion()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
           <path
             fill="#ffffff"
             d="M16 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2h-2V5H5v14h9v-2zm2.5-10.5l-1.414 1.414L20.172 11H10v2h10.172l-3.086 3.086L18.5 17.5L24 12z"
@@ -67,5 +67,9 @@ a:hover svg path {
 
 footer {
   border-top: solid 1px #ca40d6;
+}
+
+button {
+  background: transparent;
 }
 </style>
