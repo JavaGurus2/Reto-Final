@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark panelColor d-md-none">
     <a class="navbar-brand mx-3" href="/home">
-        <img src="{{ asset('/images/logo-egiflix.jfif') }}" width="50" height="50" class="img-fluid"
+        <img src="{{ asset('/images/logo_egiflix.jfif') }}" width="50" height="50" class="img-fluid"
             alt="">
 
     </a>
@@ -27,7 +27,7 @@
         <div class="offcanvas-header">
             <div class="p-4 text-center">
                 <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
-                    <img src="{{ asset('/images/logo-egiflix.jfif') }}" width="50" height="50" class="img-fluid"
+                    <img src="{{ asset('/images/logo_egiflix.jfif') }}" width="50" height="50" class="img-fluid"
                         alt="">
                     <span class="fs-4  d-md-inline text-white">EgiFlix</span>
                 </a>
@@ -100,7 +100,7 @@
                                 <a href="#"
                                     class="d-flex align-items-center text-light text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('/images/Killerlogo-egiflix.jfif') }}" alt="" width="32"
+                                    <img src="{{ asset('/images/Killerlogo_egiflix.jfif') }}" alt="" width="32"
                                         height="32" class="rounded-circle me-2">
                                     <strong>{{ auth()->user()->name }}</strong>
                                 </a>
@@ -134,7 +134,7 @@
                 class="  col-auto d-flex flex-column panelColor min-vh-100 dark-bg d-none d-md-block col-sm-3 col-md-4 col-xl-2">
                 <div class="p-4 text-center">
                     <a href="{{ route('home') }}" class="d-block mb-3 text-decoration-none">
-                        <img src="{{ asset('/images/logo-egiflix.jfif') }}" width="50" height="50"
+                        <img src="{{ asset('/images/logo_egiflix.jfif') }}" width="50" height="50"
                             class="img-fluid mx-3" alt="logo">
                         <span class="fs-4 d-none d-md-inline text-white ">EgiFlix</span>
                     </a>
