@@ -46,6 +46,8 @@ async function loginApi() {
     mostrarError(e.message)
   }
 }
+
+const router = useRouter()
 async function validarLogin() {
   if (email.value.length == 0) {
     mostrarError('El email no puede ser nulo')
@@ -57,7 +59,7 @@ async function validarLogin() {
   if (!error.value) {
     // Supuesto usuario recibido de la api
     // emit('logueado')
-    window.location.replace(window.location.href + 'home')
+    router.push({ path: '/buscar' })
   }
 }
 </script>
@@ -68,25 +70,41 @@ async function validarLogin() {
     <Notificacion v-if="error" tipo="Error" :mensaje="mensajeError" />
     <div class="container-fluid">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-4 d-flex imagen-container heartbeat ">
-          <img src="/src/assets/logo_egiflix.jfif" class="img-fluid imagen-logo rounded-5 " alt="Sample image"
-            id="logo" />
-          <div class="boton-link ">
+        <div class="col-12 col-lg-4 d-flex imagen-container heartbeat">
+          <img
+            src="/src/assets/logo_egiflix.jfif"
+            class="img-fluid imagen-logo rounded-5"
+            alt="Sample image"
+            id="logo"
+          />
+          <div class="boton-link">
             <h3><strong>Entra en nuestra página de gestión</strong></h3>
-            <a href="http://admin.egiflix.es/login" class="btn btn-primary fs-4 " style="width: 50%;">Entrar</a>
+            <a href="http://admin.egiflix.es/login" class="btn btn-primary fs-4" style="width: 50%"
+              >Entrar</a
+            >
           </div>
         </div>
 
         <div class="col-lg-8">
           <form @submit.prevent="validarLogin">
             <div class="form-outline mb-4">
-              <input type="email" id="email" class="form-control form-control-lg" placeholder="Correo electronico"
-                v-model="email" />
+              <input
+                type="email"
+                id="email"
+                class="form-control form-control-lg"
+                placeholder="Correo electronico"
+                v-model="email"
+              />
             </div>
 
             <div class="form-outline mb-3">
-              <input type="password" id="password" class="form-control form-control-lg" placeholder="Contraseña"
-                v-model="password" />
+              <input
+                type="password"
+                id="password"
+                class="form-control form-control-lg"
+                placeholder="Contraseña"
+                v-model="password"
+              />
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
@@ -105,7 +123,8 @@ async function validarLogin() {
       </div>
     </div>
     <div
-      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 bg-primary fixed-bottom">
+      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 bg-primary fixed-bottom"
+    >
       <div class="text-white mb-3 mb-md-0">Copyright © 2024. Egibide</div>
 
       <div>
@@ -139,13 +158,9 @@ async function validarLogin() {
   position: relative;
 }
 
-
-
 .imagen-logo:hover {
   transition: transform 2s ease;
   transform: rotateY(360deg);
-
-
 }
 
 .boton-link {
@@ -156,18 +171,16 @@ async function validarLogin() {
   display: none;
 }
 
-.imagen-logo:hover+.boton-link {
+.imagen-logo:hover + .boton-link {
   display: block;
-
 }
 
 .boton-link:hover {
   display: block;
-
 }
 
 h3 {
-  color: #00CED1;
+  color: #00ced1;
 }
 
 .heartbeat {
