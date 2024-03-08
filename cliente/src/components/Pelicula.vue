@@ -10,9 +10,7 @@ const route = useRoute()
 //Variables de la pelicula
 const pelicula = ref('')
 const titulo = ref('')
-const duracion = ref('')
 const fecha = ref('')
-const clasificacion = ref('')
 const sinopsis = ref('')
 const id = ref('')
 const data = ref([])
@@ -57,8 +55,6 @@ async function cargarPelicula() {
   peliculasStore.cambiarTitulo(titulo.value)
   sinopsis.value = data.value.pelicula.sinopsis
   fecha.value = data.value.pelicula.fecha_estreno
-  duracion.value = data.value.pelicula.duracion
-  clasificacion.value = data.value.pelicula.clasificacion
   pelicula.value = 'http://egiflix.es:81/' + data.value.pelicula.archivo.split('/').pop()
 }
 
@@ -160,10 +156,7 @@ async function guardarDescarga() {
     </video>
   </div>
   <div class="col-10 align-self-center mt-3">
-    <p>
-      Fecha de estreno: {{ fecha }} -Clasificación: {{ clasificacion }} -Duración:
-      {{ duracion }} min
-    </p>
+    <p>Fecha de estreno: {{ fecha }}</p>
     <p>
       {{ sinopsis }}
     </p>
@@ -175,14 +168,19 @@ async function guardarDescarga() {
       >
         {{ mensajeMiLista }}
       </button>
-      <a
-        v-if="pelicula"
-        @click="guardarDescarga"
-        :download="true"
-        :href="pelicula"
-        class="btn btn-primary"
-        >Descargar</a
-      >
+      <a v-if="pelicula" @click="guardarDescarga" :download="true" :href="pelicula"
+        ><svg
+          width="22"
+          height="28"
+          viewBox="0 0 22 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.333252 27.3334V24.6667H21.6666V27.3334H0.333252ZM10.9999 22L1.66659 10H6.99992V0.666687H14.9999V10H20.3333L10.9999 22Z"
+            fill="white"
+          /></svg
+      ></a>
     </div>
   </div>
   <div class="col-10 align-self-center">
