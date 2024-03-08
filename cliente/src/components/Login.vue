@@ -36,6 +36,7 @@ async function loginApi() {
       console.log(data)
       sessionStorage.setItem('usuario', JSON.stringify(data.usuario))
       sessionStorage.setItem('token', data.token)
+      error.value = false
     } else {
       throw new Error(
         'Ha ocurrido un error mientras se realizaba la peticion, intentelo de nuevo mas tarde'
@@ -59,7 +60,7 @@ async function validarLogin() {
   if (!error.value) {
     // Supuesto usuario recibido de la api
     // emit('logueado')
-    router.push({ path: '/buscar' })
+    router.push({ path: '/home' })
   }
 }
 </script>

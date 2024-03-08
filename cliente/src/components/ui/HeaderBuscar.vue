@@ -1,7 +1,7 @@
 <template>
   <header class="row g-0">
     <div class="col-12 d-flex gap-2 p-4 bg-blackl">
-      <a href="http://localhost:5173/home">
+      <a href="http://egiflix.es/home">
         <svg
           width="32"
           height="32"
