@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import { RouterLink, useRouter } from 'vue-router'
 const router = useRouter()
 function cerrarSesion() {
@@ -53,13 +53,7 @@ function cerrarSesion() {
       </RouterLink>
     </div>
     <div class="col d-flex justify-content-center">
-      <button
-        @click="
-          () => {
-            cerrarSesion()
-          }
-        "
-      >
+      <button @click="cerrarSesion">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
           <path
             fill="#ffffff"
