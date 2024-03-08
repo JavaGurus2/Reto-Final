@@ -171,7 +171,7 @@ class PeliculasSeeder extends Seeder
                 "sinopsis" => $pelicula["sinopsis"],
                 "imagen" => $base64,
                 "archivo" => $pelicula["archivo"],
-                "fecha_estrenos" => $pelicula["fecha_estreno"],
+                "fecha_estreno" => $pelicula["fecha_estreno"],
             ]);
         }
     }
