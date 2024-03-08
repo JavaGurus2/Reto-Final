@@ -136,7 +136,7 @@ class PeliculasSeeder extends Seeder
             [
                 'titulo' => 'Matrix',
                 'sinopsis' => 'Neo trabajada en una empresa de software. Su vida se ve alterada cuando entabla contacto telefónico con el que cree que es otro hacker y unos misteriosos agentes comienzan a seguirle.',
-                'imagen' => 'storage/images/matrix.jpg',
+                'imagen' => 'storage/images/matrix.jpeg',
                 'archivo' => 'storage/videos/matrix.mp4',
                 'fecha_estreno' => '2023-01-18',
             ],
