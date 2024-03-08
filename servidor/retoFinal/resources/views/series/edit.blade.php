@@ -9,8 +9,8 @@
 
 
                 <h4>
-                    <a href="{{ route('series.show',$serie) }}" class="text-indigo-300 "> <i
-                        class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-4"></i></a>
+                    <a href="{{ route('series.show', $serie) }}" class="text-indigo-300 "> <i
+                            class="fa-solid fa-arrow-left  me-3 text-indigo-300 fondoRosa rounded text-white p-1 mb-4"></i></a>
                     {{ __('Detalles Serie') }}
                 </h4>
 
@@ -26,11 +26,14 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('series.update', $serie) }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('series.update', $serie) }}" method="POST" class="needs-validation"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="nombre" class="form-label"><h3>Nombre</h3></label>
+                        <label for="nombre" class="form-label">
+                            <h3>Nombre</h3>
+                        </label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
                             value="{{ $serie->nombre }}" required>
                         <div class="invalid-feedback">
@@ -38,7 +41,9 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="sinopsis" class="form-label"><h3>Sinopsis</h3></label>
+                        <label for="sinopsis" class="form-label">
+                            <h3>Sinopsis</h3>
+                        </label>
                         <input type="text" class="form-control" id="sinopsis" name="sinopsis"
                             value="{{ $serie->sinopsis }}" required>
                         <div class="invalid-feedback">
@@ -47,17 +52,20 @@
                     </div>
 
                     <div class="mb-3">
-                        <input type="file" name="imagen" id="imagen" class="form-control-file bg-white p-2 rounded img-fluid">
+                        <input type="file" name="imagen" id="imagen"
+                            class="form-control-file bg-white p-2 rounded img-fluid">
 
-                    @if (isset($serie->imagen))
-                        <img src="data:image/png;base64,{{ $serie->imagen }}" class="my-3 rounded" alt="Imagen de la serie"
-                            style="max-width: 300px;">
-                    @endif
-                    <div class="invalid-feedback" id="imagenFeedback"></div>
+                        @if (isset($serie->imagen))
+                            <img src="data:image/png;base64,{{ $serie->imagen }}" class="my-3 rounded"
+                                alt="Imagen de la serie" style="max-width: 300px;">
+                        @endif
+                        <div class="invalid-feedback" id="imagenFeedback"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="fecha_estreno" class="form-label"><h3>Fecha de Estreno</h3></label>
+                        <label for="fecha_estreno" class="form-label">
+                            <h3>Fecha de Estreno</h3>
+                        </label>
                         <input type="date" class="form-control" id="fecha_estreno" name="fecha_estreno"
                             value="{{ $serie->fecha_estreno }}" required>
                         <div class="invalid-feedback">
@@ -66,7 +74,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="clasificacion" class="form-label"><h3>Clasificación</h3></label>
+                        <label for="clasificacion" class="form-label">
+                            <h3>Clasificación</h3>
+                        </label>
                         <input type="text" class="form-control" id="clasificacion" name="clasificacion"
                             value="{{ $serie->clasificacion }}" required>
                         <div class="invalid-feedback">
@@ -77,7 +87,9 @@
                     <!-- CATEGORIAS -->
                     <div class="mb-3">
                         <div class="card p-3">
-                            <label for="categoria" class="form-label"><h3>Categoría</h3></label>
+                            <label for="categoria" class="form-label">
+                                <h3>Categoría</h3>
+                            </label>
 
                             <div class="row">
                                 @foreach ($categorias as $categoria)
@@ -101,7 +113,9 @@
                     <!-- ACTORES -->
                     <div class="mb-3">
                         <div class="card p-3">
-                            <label for="actor" class="form-label"><h3>Actor</h3></label>
+                            <label for="actor" class="form-label">
+                                <h3>Actor</h3>
+                            </label>
 
                             <div class="row">
                                 @foreach ($actores as $actor)
