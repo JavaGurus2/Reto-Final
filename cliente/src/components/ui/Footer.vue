@@ -1,5 +1,11 @@
 <script>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+const router = useRouter()
+function cerrarSesion() {
+  sessionStorage.removeItem('token')
+  sessionStorage.removeItem('usuario')
+  router.push({ path: '/' })
+}
 </script>
 <template>
   <footer class="mt-auto mx-0 row bg-black py-4">
@@ -43,6 +49,14 @@ import { RouterLink } from 'vue-router'
           </defs>
         </svg>
       </RouterLink>
+      <button @click="cerrarSesion">
+        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+          <path
+            fill="#ffffff"
+            d="M16 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2h-2V5H5v14h9v-2zm2.5-10.5l-1.414 1.414L20.172 11H10v2h10.172l-3.086 3.086L18.5 17.5L24 12z"
+          />
+        </svg>
+      </button>
     </div>
   </footer>
 </template>
