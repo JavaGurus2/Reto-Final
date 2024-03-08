@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('/images/logo_egiflix.jfif') }}">
 
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss'])
