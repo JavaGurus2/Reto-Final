@@ -249,11 +249,7 @@
 
     </div>
 
-    <div class="row bg-dark bg-gradiant text-center text-white py-4" style="max-height: 100vh">
-        <div class="col">
-            @yield('footer')
-        </div>
-    </div>
+
     <script src="https://kit.fontawesome.com/2f23627a24.js" crossorigin="anonymous"></script>
     @vite(['resources/js/app.js'])
 </div>
