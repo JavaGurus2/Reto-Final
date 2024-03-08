@@ -163,7 +163,16 @@ class PeliculasSeeder extends Seeder
             ],
         ];
         foreach ($peliculas as $pelicula) {
-            DB::table('peliculas')->insert($pelicula);
+            $binaryData = file_get_contents($pelicula["imagen"]);
+            $base64 = base64_encode($binaryData);
+
+            DB::table('peliculas')->insert([
+                "titulo" => $pelicula["titulo"],
+                "sinopsis" => $pelicula["sinopsis"],
+                "imagen" => $base64,
+                "archivo" => $pelicula["archivo"],
+                "fecha_estrenos" => $pelicula["fecha_estreno"],
+            ]);
         }
     }
 }

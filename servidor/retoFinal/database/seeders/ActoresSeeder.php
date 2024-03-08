@@ -45,7 +45,7 @@ class ActoresSeeder extends Seeder
                 'imagen' => 'storage/images/evan.jpg',
             ],
             [
-                    'nombre' => 'Tom',
+                'nombre' => 'Tom',
                 'apellido' => 'Hanks',
                 'email' => 'tom@email.com',
                 'imagen' => 'storage/images/tom.jpg',
@@ -78,7 +78,16 @@ class ActoresSeeder extends Seeder
 
         // Insertar los datos en la tabla
         foreach ($actores as $actor) {
-            DB::table('actores')->insert($actor);
+
+            $binaryData = file_get_contents(asset($actor["imagen"]));
+            $base64 = base64_encode($binaryData);
+
+            DB::table('actores')->insert([
+                "nombre" => $actor["nombre"],
+                "apellido" => $actor["apellido"],
+                "email" => $actor["email"],
+                "imagen" => $base64,
+            ]);
         }
     }
 }
