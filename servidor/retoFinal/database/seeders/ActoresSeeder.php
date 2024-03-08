@@ -72,7 +72,7 @@ class ActoresSeeder extends Seeder
                 'nombre' => 'Chris',
                 'apellido' => 'Hemsworth',
                 'email' => 'chris@email.com',
-                'imagen' => 'storage/images/chris.jpg',
+                'imagen' => 'storage/images/Chris.jpg',
             ],
         ];
 
