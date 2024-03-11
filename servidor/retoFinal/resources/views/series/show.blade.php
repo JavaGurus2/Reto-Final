@@ -61,6 +61,9 @@
                     <span class="text-dark ">
                         <h4>{{ __('Temporadas') }}</h4>
                     </span>
+                    <div>
+                        <a href="{{ route('temporadas.create', $serie) }}" class="btn fondoRosa text-white img-fluid">Crear temporada</a>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -167,9 +170,6 @@
                             @endif
                         </ul>
                     </nav>
-                    <div>
-                        <a href="{{ route('temporadas.create', $serie) }}" class="btn fondoRosa text-white img-fluid">Crear temporada</a>
-                    </div>
                 </div>
             </div>
         </div>
