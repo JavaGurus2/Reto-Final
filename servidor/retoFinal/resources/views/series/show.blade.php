@@ -5,7 +5,7 @@
 @section('content')
     <div
         class="row d-flex justify-content-center align-items-center my-5 border border-dark shadow-lg p-4 rounded  cartaShow">
-        <div class="col-6 justify-content-center align-items-center">
+        <div class="col-md-6 col-12 justify-content-center align-items-center">
             <div>
                 <h4>
                     <a href="{{ route('series.index') }}" class="text-indigo-300"> <i
@@ -55,7 +55,7 @@
         </div>
 
         <!-- TEMPORADAS-->
-        <div class="col-6 my-5">
+        <div class="col-md-6 col-12 my-5">
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between fondoRosaClaro">
                     <span class="text-dark ">
